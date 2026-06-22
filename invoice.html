@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice - Tyrelm Nation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      color: #111;
+    }
+    .invoice {
+      max-width: 700px;
+      width: 100%;
+      background: #fff;
+      padding: 48px;
+      border-radius: 8px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid #C9A84C;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-left h1 {
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .header-left h1 em {
+      font-style: italic;
+      color: #C9A84C;
+    }
+    .header-left p {
+      font-size: 12px;
+      color: #666;
+      margin-top: 4px;
+    }
+    .header-right {
+      text-align: right;
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .invoice-title {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .invoice-title h2 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .invoice-title span {
+      font-size: 11px;
+      color: #C9A84C;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .row h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 4px;
+    }
+    .row strong {
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+      font-size: 13px;
+    }
+    th {
+      text-align: left;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      padding: 8px 4px 8px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    td {
+      padding: 12px 4px 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+    td:last-child, th:last-child { text-align: right; }
+    td:nth-child(3), th:nth-child(3) { text-align: center; }
+    .total-row td {
+      font-weight: 700;
+      border-bottom: none;
+      padding-top: 16px;
+    }
+    .total-row td:last-child {
+      font-size: 18px;
+      color: #C9A84C;
+    }
+    .footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid #ddd;
+      font-size: 11px;
+      color: #999;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .footer strong { color: #666; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .invoice { box-shadow: none; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice">
+    <div class="header">
+      <div class="header-left">
+        <img src="LOGO/LOGO.webp" alt="Tyrelm Nation" style="height:48px;width:auto;">
+        <div>
+          <h1>Tyrelm<em>*Nation</em></h1>
+          <p>Recording &middot; Mixing &middot; Mastering &middot; Production</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <strong>Tyrelm Nation</strong><br>
+        Nairobi, Kenya<br>
+        +254 706 602 914<br>
+        tyrellmatekwa@gmail.com
+      </div>
+    </div>
+
+    <div class="invoice-title">
+      <span>Invoice</span>
+      <h2>INV-001</h2>
+    </div>
+
+    <div class="row">
+      <div>
+        <h4>Bill To</h4>
+        <strong>Client Name</strong><br>
+        Client Email<br>
+        Client Phone
+      </div>
+      <div style="text-align:right">
+        <h4>Invoice Date</h4>
+        <span>___________________<br><br></span>
+        <h4>Due Date</h4>
+        <span>___________________</span>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Description</th>
+          <th>Qty</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>________________</td>
+          <td>________________</td>
+          <td>___</td>
+          <td>_______ KES</td>
+        </tr>
+        <tr>
+          <td>________________</td>
+          <td>________________</td>
+          <td>___</td>
+          <td>_______ KES</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3">Total</td>
+          <td>_________ KES</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="font-size:12px;color:#666;line-height:1.7;margin-bottom:24px;padding:16px;background:#fafafa;border-radius:6px;">
+      <strong style="color:#111">Payment Instructions</strong><br><br>
+      1. Go to <strong>M-Pesa &rarr; Send Money</strong><br>
+      2. Enter number: <strong>0745 101 314</strong><br>
+      3. Enter the total amount above<br>
+      4. Send and forward confirmation to:<br>
+      &nbsp;&nbsp;WhatsApp: <a href="https://wa.me/254706602914" style="color:#C9A84C">+254 706 602 914</a><br>
+      &nbsp;&nbsp;Email: <a href="mailto:tyrellmatekwa@gmail.com" style="color:#C9A84C">tyrellmatekwa@gmail.com</a>
+    </div>
+
+    <div class="footer">
+      <strong>Tyrelm Nation</strong> &mdash; Nairobi, Kenya<br>
+      +254 706 602 914 &bull; tyrellmatekwa@gmail.com<br>
+      Terms &amp; Credits: <a href="Tyrelm_Nation_Terms_and_Credits.pdf" style="color:#C9A84C">Download PDF</a>
+    </div>
+  </div>
+</body>
+</html>
