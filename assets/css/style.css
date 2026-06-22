@@ -67,7 +67,7 @@ ul { list-style: none; }
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: url('../../PICS/background.jpg') center/cover no-repeat;
+  background: url('../../PICS/background.webp') center/cover no-repeat;
   filter: blur(8px);
   will-change: transform, filter;
 }
