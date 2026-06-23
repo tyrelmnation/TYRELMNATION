@@ -109,9 +109,6 @@ function toggleChat() {
   chatPanel.classList.toggle('open');
   if (chatPanel.classList.contains('open')) {
     chatInput.focus();
-    if (!chatMsgs.querySelector('.msg.bot')) {
-      addMsg('Niaje! Tyrelm Studio Assistant here. Services, merch, booking, releases \u2014 I know everything about the site. Very nice. Utanishow ukikuwa interested.', 'bot');
-    }
   }
 }
 
