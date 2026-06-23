@@ -148,6 +148,25 @@ function addBotHTML(html) {
   chatMsgs.scrollTop = chatMsgs.scrollHeight;
 }
 
+function showMerchCards(outfits) {
+  var html = '<div class="merch-card-grid">';
+  for (var i = 0; i < outfits.length; i++) {
+    var o = outfits[i];
+    html += '<div class="merch-chat-card" onclick="window.open(\'' + o.link + '\',\'_blank\')">';
+    html += '  <div class="merch-chat-visual">';
+    html += '    <img class="merch-chat-top" src="' + o.top + '" loading="lazy">';
+    if (o.bottom) html += '    <img class="merch-chat-bottom" src="' + o.bottom + '" loading="lazy">';
+    html += '  </div>';
+    html += '  <div class="merch-chat-info">';
+    html += '    <span class="merch-chat-name">' + o.name + '</span>';
+    html += '    <span class="merch-chat-price">' + o.price + '</span>';
+    html += '  </div>';
+    html += '</div>';
+  }
+  html += '</div>';
+  addBotHTML(html);
+}
+
 
 function sendMsg() {
   const text = chatInput.value.trim();
@@ -190,15 +209,13 @@ function sendMsg() {
       reply = map.services;
     } else if (topic === 'merch') {
       addMsg(map.merch, 'bot');
-      addBotHTML(
-        '<div style="display:flex;flex-direction:column;gap:6px;padding:4px 0;">' +
-        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set." target="_blank" class="merch-link">\u2728 White Set (hoodie + cargo) \u2014 KSh 2,500</a>' +
-        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set." target="_blank" class="merch-link">\u2728 Black Set (hoodie + cargo) \u2014 KSh 2,500</a>' +
-        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set." target="_blank" class="merch-link">\u2728 White Tee + Black Cargo \u2014 KSh 2,100</a>' +
-        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set." target="_blank" class="merch-link">\u2728 Black Tee + White Cargo \u2014 KSh 2,100</a>' +
-        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set." target="_blank" class="merch-link">\u2728 Limited Edition Set \u2014 KSh 4,000</a>' +
-        '</div>'
-      );
+      showMerchCards([
+        { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set.' },
+        { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set.' },
+        { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set.' },
+        { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set.' },
+        { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set.' }
+      ]);
       return;
     } else if (topic === 'production' || topic === 'mixing' || topic === 'tracking' || topic === 'consultation') {
       reply = map[topic];
