@@ -220,7 +220,6 @@ function sendMsg() {
     } else if (topic === 'production' || topic === 'mixing' || topic === 'tracking' || topic === 'consultation') {
       reply = map[topic];
       addMsg(reply, 'bot');
-      setTimeout(function() { document.getElementById('services').scrollIntoView({ behavior: 'smooth' }); }, 200);
       return;
     } else if (topic && map[topic]) {
       reply = map[topic];
