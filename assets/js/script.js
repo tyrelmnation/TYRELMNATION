@@ -145,7 +145,6 @@ function addBotHTML(html) {
   div.className = 'msg bot msg-html';
   div.innerHTML = html;
   chatMsgs.appendChild(div);
-  chatMsgs.scrollTop = chatMsgs.scrollHeight;
 }
 
 function showMerchCards(outfits) {
