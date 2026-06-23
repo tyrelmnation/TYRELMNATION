@@ -198,9 +198,34 @@ function sendMsg() {
     } else if (topic === 'pricing') {
       reply = map.services;
     } else if (topic === 'merch') {
-      reply = map.merch;
-      addMsg(reply, 'bot');
-      addImages('bot', 'PICS/white-hoodie.webp', 'PICS/black-hoodie.webp', 'PICS/white-tee-front.webp', 'PICS/black-tee-front.webp', 'PICS/limited-cargo.webp');
+      if (shengMode) {
+        reply = map.merch;
+        addMsg(reply, 'bot');
+        addImages('bot', 'PICS/white-hoodie.webp', 'PICS/black-hoodie.webp', 'PICS/white-tee-front.webp', 'PICS/black-tee-front.webp', 'PICS/limited-cargo.webp');
+      } else {
+        // Targeted response based on what they asked about
+        if (/\b(tee|t.?shirt|tshirt|shati)\b/.test(lower) && !/\b(hoodie|hood|cargo)\b/.test(lower)) {
+          reply = 'T-shirts: White Tee + Black Cargo = 2,100 KES. Black Tee + White Cargo = 2,100 KES. Order via WhatsApp +254 706 602 914.';
+          addMsg(reply, 'bot');
+          addImages('bot', 'PICS/white-tee-front.webp', 'PICS/black-tee-front.webp');
+        } else if (/\b(hoodie|hood)\b/.test(lower) && !/\b(tee|t.?shirt|tshirt|cargo)\b/.test(lower)) {
+          reply = 'Hoodies: White set (hoodie + cargo) = 2,500 KES. Black set (hoodie + cargo) = 2,500 KES. Order via WhatsApp +254 706 602 914.';
+          addMsg(reply, 'bot');
+          addImages('bot', 'PICS/white-hoodie.webp', 'PICS/black-hoodie.webp');
+        } else if (/\b(cargo)\b/.test(lower) && !/\b(tee|t.?shirt|tshirt|hoodie|hood)\b/.test(lower)) {
+          reply = 'Cargo pants: Part of every set. White cargo + hoodie = 2,500 KES. Black cargo + hoodie = 2,500 KES. Tee + cargo sets = 2,100 KES. Order via WhatsApp +254 706 602 914.';
+          addMsg(reply, 'bot');
+          addImages('bot', 'PICS/white-cargo.webp', 'PICS/black-cargo.webp');
+        } else if (/\b(limited)\b/.test(lower)) {
+          reply = 'Limited Edition Set: hoodie + special cargo = 4,000 KES. Order via WhatsApp +254 706 602 914.';
+          addMsg(reply, 'bot');
+          addImages('bot', 'PICS/limited-cargo.webp');
+        } else {
+          reply = map.merch;
+          addMsg(reply, 'bot');
+          addImages('bot', 'PICS/white-hoodie.webp', 'PICS/black-hoodie.webp', 'PICS/white-tee-front.webp', 'PICS/black-tee-front.webp', 'PICS/limited-cargo.webp');
+        }
+      }
       return;
     } else if (topic && map[topic]) {
       reply = map[topic];
