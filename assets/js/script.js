@@ -69,24 +69,25 @@ function bestFuzzyMatch(word, wordList) {
 
 // Topic keywords for exact + fuzzy matching
 const topicKeywords = {
-  merch: ['merch', 'store', 'hoodie', 'tee', 'shirt', 'cargo', 'clothing', 'buy', 'order', 'limited', 'outfit'],
-  production: ['production', 'produce', 'beat', 'instrumental', 'producer', 'producing'],
-  mixing: ['mixing', 'mastering', 'mix', 'master', 'stereo', 'atmos', 'ambisonic', 'mastered', 'mixed'],
-  tracking: ['tracking', 'recording', 'record', 'vocal', 'voiceover', 'engineering', 'track'],
-  consultation: ['consultation', 'consult', 'feedback', 'pre-production', 'arrangement'],
-  services: ['service', 'offer', 'capabilities'],
-  releases: ['release', 'music', 'single', 'album', 'listen', 'discography', 'song', 'songs', 'new'],
-  experience: ['experience', 'work', 'project', 'client', 'portfolio', 'career', 'background', 'projects'],
-  stems: ['stem', 'send', 'file', 'upload', 'wav', 'dropbox', 'collaborate', 'stems'],
+  merch: ['merch', 'store', 'hoodie', 'tee', 'shirt', 'cargo', 'clothing', 'buy', 'order', 'limited', 'outfit', 'tisho', 'tshirt', 't-shirt', 'shati'],
+  production: ['production', 'produce', 'beat', 'instrumental', 'producer', 'producing', 'sanaa', 'ngoma'],
+  mixing: ['mixing', 'mastering', 'mix', 'master', 'stereo', 'atmos', 'ambisonic', 'mastered', 'mixed', 'sauti'],
+  tracking: ['tracking', 'recording', 'record', 'vocal', 'voiceover', 'engineering', 'track', 'studio', 'rekodi'],
+  consultation: ['consultation', 'consult', 'feedback', 'pre-production', 'arrangement', 'ushauri'],
+  services: ['service', 'offer', 'capabilities', 'huduma'],
+  releases: ['release', 'music', 'single', 'album', 'listen', 'discography', 'song', 'songs', 'new', 'wimbo', 'nyimbo', 'muziki'],
+  experience: ['experience', 'work', 'project', 'client', 'portfolio', 'career', 'background', 'projects', 'kazi'],
+  stems: ['stem', 'send', 'file', 'upload', 'wav', 'dropbox', 'collaborate', 'stems', 'stems'],
   plugin: ['plugin', 'free', 'download', 'tyson', 'bundle', 'tyroom', 'tymlapse', 'reverb', 'delay', 'plugins'],
-  tour: ['tour', 'live', 'sane', 'performance', 'concert', 'show', 'performing'],
-  book: ['book', 'schedule', 'appointment', 'reserve', 'booking'],
-  hours: ['hour', 'time', 'when', 'open', 'available', 'hours'],
-  location: ['location', 'where', 'nairobi', 'remote', 'address', 'based'],
+  tour: ['tour', 'live', 'sane', 'performance', 'concert', 'show', 'performing', 'tamasha'],
+  book: ['book', 'schedule', 'appointment', 'reserve', 'booking', 'kahawa'],
+  hours: ['hour', 'time', 'when', 'open', 'available', 'hours', 'saa'],
+  location: ['location', 'where', 'nairobi', 'remote', 'address', 'based', 'wapi'],
   newsletter: ['newsletter', 'subscribe', 'mailing', 'email list'],
-  terms: ['term', 'credit', 'policy', 'condition', 'terms'],
-  contact: ['contact', 'whatsapp', 'instagram', 'reach', 'social', 'phone', 'number'],
-  about: ['who', 'about', 'tyrelm', 'matekwa', 'edwin', 'story', 'bio', 'tyrelmnation'],
+  terms: ['term', 'credit', 'policy', 'condition', 'terms', 'sheria'],
+  contact: ['contact', 'whatsapp', 'instagram', 'reach', 'social', 'phone', 'number', 'namba', 'simu'],
+  about: ['who', 'about', 'tyrelm', 'matekwa', 'edwin', 'story', 'bio', 'tyrelmnation', 'msanii'],
+  pricing: ['price', 'cost', 'rate', 'kes', 'how much', 'fee', 'charg', 'ngapi', 'bei', 'pesa', 'senti', 'gharama'],
 };
 
 // Flatten all keywords for fuzzy matching
@@ -166,10 +167,12 @@ function sendMsg() {
     let reply;
     if (topic === 'greeting') {
       reply = shengMode ? 'Yo! Sheng mode iko active. Uliza chochote \u2014 niko ready.' : 'Yo! Tyrelm Studio Assistant here. Ask me anything about the site. Or say "Sheng" to switch to Sheng.';
+    } else if (topic === 'pricing') {
+      reply = map.services;
     } else if (topic && map[topic]) {
       reply = map[topic];
     } else {
-      reply = fallback;
+      reply = shengMode ? 'Sijaelewa. Jaribu tena ama WhatsApp +254 706 602 914.' : 'Didn\'t quite catch that. Try rephrasing or WhatsApp +254 706 602 914.';
     }
 
     addMsg(reply, 'bot');
