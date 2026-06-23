@@ -2,25 +2,45 @@
 const chatPanel = document.getElementById('chatPanel');
 const chatMsgs = document.getElementById('chatMsgs');
 const chatInput = document.getElementById('chatInput');
+let shengMode = false;
+
 const knowledge = {
-  about: 'Niaje! Tyrelm (Edwin Matekwa) here \u2014 recording, mixing, mastering na production based Nairobi, Kenya. I run Tyrelm Nation, a production company blending art, music na science for talent discovery. Very nice vibes only.',
-  services: 'Niaje! Service zangu ni nne very nice: 1) Music Production \u2014 20K KES per project, collab 50/50. 2) Mixing & Mastering \u2014 stereo 15K/track, album deal 12K/track, Dolby Atmos 25K/track, mastering tu 5K/track. 3) Tracking/Recording \u2014 2K KES/hr, studio 1K-5K/hr. 4) Audio Consultation \u2014 2.5K KES/session. Utanishow ukikuwa interested.',
-  production: 'Niaje! Music Production ni 20K KES per project. Unaeka custom instrumentals, vocal arrangement, full song structuring. Collab rate 50/50 on composition na streaming. Performance track +2K, stripped version +3K. Revision moja included, extra 3K/round. Delivery 7-14 business days. Very nice. Utanishow ukikuwa interested.',
-  mixing: 'Niaje! Mixing & Mastering \u2014 stereo 15K/track. Album deal (5+ tracks) 12K/track. Dolby Atmos 25K/track. Mastering tu 5K/track. Delivery 24-bit/48kHz WAV. Revision mbili included. Atmos inahitaji min 5 business days. Very nice, utanistua ukidai kitu yoyote.',
-  tracking: 'Tracking/Recording \u2014 Engineering 2K KES/hr. Studio space 1K-5K/hr depends na location. Setup, recording, comping na file delivery ziko included. Tuma materials 24hrs before. Utanishow ukikuwa interested.',
-  consultation: 'Audio Consultation \u2014 2.5K KES per session (60min). Mix feedback, arrangement review, pre-production advice. Tuma materials 12hrs before. Remote via Zoom ama WhatsApp. Very nice.',
-  releases: 'Latest releases: "Better Person" (Single, 2025) \u2014 https://youtu.be/aAjFKC2pdzw . "Ghost" (Single, 2026) \u2014 https://youtu.be/DX-zDYDqjMk . Full discography iko YouTube: https://youtube.com/@Tyrelm . Very nice vibes, utanistua ukidai kitu yoyote.',
-  experience: 'Experience: 2026 \u2014 Session Diaspor.a (Matt Ngesa, Clerk Keeng, Mordecai Dex). 2024-26 \u2014 Wyatt Boyer (Chicago) mixing/mastering. 2025-26 \u2014 ARGO AR Game soundtrack with WWF-Kenya. 2025 \u2014 "Time and Space" na "Broken Diary" albums (15 tracks). 2023 \u2014 Lowki The Great, Dicemane. 2018-25 \u2014 Voice over, theme songs na sync licensing. Very nice run.',
-  stems: 'Niaje! Tuma stems zako via: 1) WhatsApp \u2014 short voice notes. 2) Email tyrellmatekwa@gmail.com \u2014 full tracks. 3) Dropbox \u2014 large projects: https://www.dropbox.com/request/cq6xi9h8o504mm926l37 . Reviews in 2-3 business days. Format: 24-bit/44k-48kHz WAV. Utanishow ukikuwa interested.',
-  plugin: 'Free TYSONICS bundle \u2014 TYROOM (analog reverb) na TYMLAPSE (delay). Very nice plugins. Download free from the Free Plugin section. Utanistua ukidai kitu yoyote.',
-  tour: 'Sane Sessions \u2014 live performance series blending raw performance, atmosphere na sound. Inakuja soon. Dates zitatangazwa. Performances across the country. Very nice.',
+  about: 'Tyrelm (Edwin Matekwa) is a recording, mixing, mastering, and production engineer based in Nairobi, Kenya. He founded Tyrelm Nation, a production company blending art, music, and science for talent discovery.',
+  services: 'Four services: 1) Music Production \u2014 20,000 KES/project, collab 50/50, perf track +2,000, stripped +3,000. 2) Mixing & Mastering \u2014 stereo 15,000/track, album 12,000/track, Dolby Atmos 25,000/track, mastering only 5,000/track, 2 revisions included. 3) Tracking/Recording \u2014 2,000 KES/hr engineering, studio 1,000-5,000/hr. 4) Audio Consultation \u2014 2,500 KES/session, 60min, send materials 12hrs before.',
+  production: 'Music Production: 20,000 KES per project. Includes custom instrumentals, vocal arrangement, full song structuring. Collab rate: 50/50 on composition & streaming. Performance track add: +2,000 KES. Stripped version add: +3,000 KES. One revision included, additional 3,000 KES/round. Delivery 7-14 business days.',
+  mixing: 'Mixing & Mastering: Stereo Mix & Master 15,000 KES/track. Album deal (5+ tracks) 12,000 KES/track. Dolby Atmos/Ambisonic 25,000 KES/track. Mastering only 5,000 KES/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Atmos requires min 5 business days.',
+  tracking: 'Tracking/Recording: Engineering 2,000 KES/hr. Studio space 1,000-5,000 KES/hr depending on location. Includes setup, recording, comping, file delivery. Send session materials 24hrs in advance.',
+  consultation: 'Audio Consultation: 2,500 KES per session (60 min). Mix feedback, arrangement review, pre-production advice. Send materials 12hrs before. Remote via Zoom/WhatsApp available.',
+  releases: 'Latest releases: "Better Person" (Single, 2025) \u2014 https://youtu.be/aAjFKC2pdzw . "Ghost" (Single, 2026) \u2014 https://youtu.be/DX-zDYDqjMk . Full discography on YouTube: https://youtube.com/@Tyrelm',
+  experience: 'Experience: 2026 \u2014 Session Diaspor.a (Matt Ngesa, Clerk Keeng, Mordecai Dex). 2024-26 \u2014 Wyatt Boyer (Chicago) mixing/mastering. 2025-26 \u2014 ARGO AR Game soundtrack (with WWF-Kenya). 2025 \u2014 "Time and Space" + "Broken Diary" albums (15 tracks). 2023 \u2014 Lowki The Great "Rise of Greatness", Dicemane "Resilient"/"Rudia" (radio airplay, Shoke Shoke Fest nom). 2018-25 \u2014 Voice over, theme songs, sync licensing.',
+  stems: 'Send your stems via: 1) WhatsApp \u2014 quick voice notes/ideas. 2) Email tyrellmatekwa@gmail.com \u2014 full tracks. 3) Dropbox \u2014 large projects: https://www.dropbox.com/request/cq6xi9h8o504mm926l37 . Reviews within 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
+  plugin: 'Free TYSONICS bundle includes TYROOM (analog reverb emulation) and TYMLAPSE (delay). Download from the Free Plugin section on the site.',
+  tour: 'Sane Sessions \u2014 a live performance series blending raw performance, atmosphere, and sound. Coming soon. Dates TBA. Performances across the country.',
+  merch: 'Tisho na cargo pants utaziget na 2,100 \u2014 zita come kama pair. Hood na cargo ni 2,500. Bei fiti sana! Options: White set 2,500, Black set 2,500, White Tee + Black Cargo 2,100, Black Tee + White Cargo 2,100, Limited Edition 4,000. Order via WhatsApp +254 706 602 914.',
+  book: 'To book a session: WhatsApp +254 706 602 914 or email tyrellmatekwa@gmail.com. Direct line: tyrellmatekwa@gmail.com | +254 706 602 914. Confirmation within 24hrs.',
+  hours: 'Studio sessions typically 10am-8pm EAT (East Africa Time). Flexible by arrangement. Remote sessions available worldwide.',
+  location: 'Based in Nairobi, Kenya. Remote sessions available worldwide for mixing, mastering, and consultation.',
+  newsletter: 'Join the mailing list for updates on new releases, Sane Sessions, merch drops, and studio news. Subscribe on the site. No spam, unsubscribe anytime.',
+  terms: 'Terms & Credits document available for download: Tyrelm_Nation_Terms_and_Credits.pdf',
+  contact: 'WhatsApp: +254 706 602 914. Email: tyrellmatekwa@gmail.com. Instagram: @ty_relm and @tyrelm_nation. YouTube: @Tyrelm.',
+};
+
+const sheng = {
+  about: 'Huyu ni Tyrelm (Edwin Matekwa) \u2014 ni mtu wa recording, mixing, mastering na production based Nairobi. Alianzisha Tyrelm Nation, production company inachanga art, music na science.',
+  services: 'Service ziko nne: 1) Music Production \u2014 20K KES per project, collab 50/50. 2) Mixing & Mastering \u2014 stereo 15K/track, album 12K/track, Dolby Atmos 25K/track, mastering tu 5K/track. 3) Tracking/Recording \u2014 2K KES/hr, studio 1K-5K/hr. 4) Audio Consultation \u2014 2.5K KES/session.',
+  production: 'Music Production ni 20K KES per project. Una custom instrumentals, vocal arrangement, full song structuring. Collab rate 50/50. Performance track +2K, stripped version +3K.',
+  mixing: 'Mixing & Mastering: stereo 15K/track. Album deal 12K/track. Dolby Atmos 25K/track. Mastering tu 5K/track. Delivery 24-bit/48kHz WAV. Revision mbili included.',
+  tracking: 'Tracking/Recording: Engineering 2K KES/hr. Studio 1K-5K/hr. Inawekwa setup, recording, comping, file delivery.',
+  consultation: 'Audio Consultation: 2.5K KES per session (60min). Mix feedback, arrangement advice, pre-production. Remote via Zoom ama WhatsApp.',
+  releases: 'Nyimbo mpya: "Better Person" (Single, 2025) na "Ghost" (Single, 2026). YouTube: https://youtube.com/@Tyrelm',
+  experience: 'Experience: 2026 Session Diaspor.a, 2024-26 Wyatt Boyer, 2025-26 ARGO Game soundtrack, 2025 Albums "Time and Space" na "Broken Diary", 2023 Lowki The Great na Dicemane.',
+  stems: 'Tuma stems zako via: 1) WhatsApp, 2) Email tyrellmatekwa@gmail.com, 3) Dropbox. Reviews 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
+  plugin: 'Free TYSONICS bundle iko na TYROOM (reverb) na TYMLAPSE (delay). Download free from Free Plugin section.',
+  tour: 'Sane Sessions \u2014 live performance series. Inakuja soon. Dates zitatangazwa.',
   merch: 'Niaje! Tisho na cargo pants utaziget na 2,100 \u2014 zita come kama pair. Hood na cargo ni 2,500. Bei fiti sana! Iko: White set 2,500, Black set 2,500, White Tee + Black Cargo 2,100, Black Tee + White Cargo 2,100, Limited Edition 4,000. Order via WhatsApp +254 706 602 914. Very nice! Utanishow ukikuwa interested.',
-  book: 'Niaje! Kubook session: WhatsApp +254 706 602 914 ama email tyrellmatekwa@gmail.com. Direct line: tyrellmatekwa@gmail.com | +254 706 602 914. Confirmation in 24hrs. Utanistua ukidai kitu yoyote.',
-  hours: 'Studio sessions ziko 10am-8pm EAT (East Africa Time). Flexible depending. Remote sessions iko worldwide. Very nice.',
-  location: 'Based Nairobi, Kenya. Remote sessions worldwide for mixing, mastering na consultation. Utanistua ukidai kitu yoyote.',
-  newsletter: 'Join the mailing list for updates on new releases, Sane Sessions, merch drops na studio news. Subscribe on the site. No spam, unsubscribe anytime. Very nice.',
-  terms: 'Terms & Credits document \u2014 download Tyrelm_Nation_Terms_and_Credits.pdf. Utanishow ukikuwa interested.',
-  contact: 'WhatsApp: +254 706 602 914. Email: tyrellmatekwa@gmail.com. Instagram: @ty_relm na @tyrelm_nation. YouTube: @Tyrelm. Utanistua ukidai kitu yoyote!',
+  book: 'Kubook session: WhatsApp +254 706 602 914 ama email tyrellmatekwa@gmail.com. Confirmation in 24hrs.',
+  hours: 'Studio sessions kuanzia 10am-8pm EAT. Inaweza adjust. Remote sessions iko worldwide.',
+  location: 'Based Nairobi, Kenya. Remote sessions worldwide.',
 };
 
 // Levenshtein distance for fuzzy matching
@@ -74,7 +94,7 @@ const allKeywords = Object.values(topicKeywords).flat();
 
 function detectTopic(lower) {
   // Check for greeting first
-  if (/\b(hi|hello|hey|yo|sup|what's up|good morning|good evening|morning|evening)\b/.test(lower)) {
+  if (/\b(hi|hello|hey|yo|sup|niaje|what's up|good morning|good evening|morning|evening|sasa)\b/.test(lower)) {
     return 'greeting';
   }
   // Check each topic by exact substring match first
@@ -128,24 +148,33 @@ function sendMsg() {
   setTimeout(() => {
     const lower = text.toLowerCase();
 
+    // Sheng toggle
+    if (/\b(sheng|sheng mode|niambie kwa sheng)\b/.test(lower)) {
+      shengMode = !shengMode;
+      addMsg(shengMode ? 'Sawa! Sheng mode iko active. Uliza chochote.' : 'Switched to English. Ask me anything.', 'bot');
+      return;
+    }
+
     const topic = detectTopic(lower);
 
     // Price complaint handler
     const priceComplaints = /\b(expensive|ghali|too much|bei mbaya|expensive sana|too expensive|overpriced|pricey|costly|ni bei|sana hii bei|bei yote)\b/;
     if (priceComplaints.test(lower)) {
-      addMsg('\uD83D\uDE02\uD83D\uDE02nakufanyia na bei fiti mali ni safi', 'bot');
+      addMsg(shengMode ? '\uD83D\uDE02\uD83D\uDE02nakufanyia na bei fiti mali ni safi' : 'The prices are fair for the quality. Tisho na cargo at 2,100, hood na cargo at 2,500 \u2014 good value.', 'bot');
       return;
     }
 
+    const map = shengMode ? sheng : knowledge;
+
     let reply;
     if (topic === 'greeting') {
-      reply = 'Niaje! Tyrelm Studio Assistant here. Ask about services, merch, booking, releases \u2014 I know everything. Very nice. Utanishow ukikuwa interested.';
+      reply = shengMode ? 'Yo! Sheng mode iko active. Uliza chochote.' : 'Hi! Tyrelm Studio Assistant here. Ask me about services, pricing, merch, booking, releases, or anything on the site.';
     } else if (topic === 'pricing') {
-      reply = knowledge.services;
-    } else if (topic && knowledge[topic]) {
-      reply = knowledge[topic];
+      reply = map.services;
+    } else if (topic && map[topic]) {
+      reply = map[topic];
     } else {
-      reply = 'Sijaelewa. Rephrase ama WhatsApp +254 706 602 914.';
+      reply = shengMode ? 'Sijaelewa. Jaribu tena ama WhatsApp +254 706 602 914.' : 'Didn\'t catch that. Try rephrasing or WhatsApp +254 706 602 914.';
     }
 
     addMsg(reply, 'bot');
