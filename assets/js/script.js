@@ -2,6 +2,7 @@
 const chatPanel = document.getElementById('chatPanel');
 const chatMsgs = document.getElementById('chatMsgs');
 const chatInput = document.getElementById('chatInput');
+let shengMode = false;
 
 const knowledge = {
   about: 'Tyrelm (Edwin Matekwa) is a recording, mixing, mastering, and production engineer based in Nairobi, Kenya. He founded Tyrelm Nation, a production company blending art, music, and science for talent discovery.',
@@ -24,12 +25,112 @@ const knowledge = {
   contact: 'WhatsApp: +254 706 602 914. Email: tyrellmatekwa@gmail.com. Instagram: @ty_relm and @tyrelm_nation. YouTube: @Tyrelm.',
 };
 
+const sheng = {
+  about: 'Huyu ni Tyrelm (Edwin Matekwa) \u2014 ni mtu wa recording, mixing, mastering na production based Nairobi. Alianzisha Tyrelm Nation, production company inachanga art, music na science.',
+  services: 'Service ziko nne: 1) Music Production \u2014 20K KES per project, collab 50/50. 2) Mixing & Mastering \u2014 stereo 15K/track, album 12K/track, Dolby Atmos 25K/track, mastering tu 5K/track. 3) Tracking/Recording \u2014 2K KES/hr, studio 1K-5K/hr. 4) Audio Consultation \u2014 2.5K KES/session.',
+  production: 'Music Production ni 20K KES per project. Unaeka custom instrumentals, vocal arrangement, full song structuring. Collab rate ni 50/50. Ukitaka performance track +2K, stripped version +3K. Revision moja iko included.',
+  mixing: 'Mixing & Mastering: stereo 15K/track. Album deal (5+ tracks) 12K/track. Dolby Atmos 25K/track. Mastering tu 5K/track. Delivery 24-bit/48kHz WAV. Revision mbili ziko included.',
+  tracking: 'Tracking/Recording: Engineering 2K KES/hr. Studio space 1K-5K/hr depends na location. Inawekwa setup, recording, comping, file delivery.',
+  consultation: 'Audio Consultation: 2.5K KES per session (60min). Mix feedback, arrangement advice, pre-production. Tuma materials 12hrs before. Inaweza remote via Zoom ama WhatsApp.',
+  releases: 'Nyimbo mpya: "Better Person" (Single, 2025) na "Ghost" (Single, 2026). Zote iko YouTube: https://youtube.com/@Tyrelm',
+  experience: 'Experience: 2026 \u2014 Session Diaspor.a. 2024-26 \u2014 Wyatt Boyer mixing/mastering. 2025-26 \u2014 ARGO Game soundtrack. 2025 \u2014 Albums "Time and Space" na "Broken Diary". 2023 \u2014 Lowki The Great, Dicemane. Voice over na theme songs 2018-25.',
+  stems: 'Tuma stems zako via: 1) WhatsApp \u2014 voice notes. 2) Email tyrellmatekwa@gmail.com. 3) Dropbox. Reviews inachukua 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
+  plugin: 'Free TYSONICS bundle iko na TYROOM (reverb) na TYMLAPSE (delay). Download free from Free Plugin section.',
+  tour: 'Sane Sessions \u2014 live performance series. Inakuja soon. Dates zitatangazwa.',
+  merch: 'Merch iko (order via WhatsApp): 1) White Hoodie + White Cargo \u2014 KSh 2,500. 2) Black Hoodie + Black Cargo \u2014 KSh 2,500. 3) White Tee + Black Cargo \u2014 KSh 2,100. 4) Black Tee + White Cargo \u2014 KSh 2,100. 5) Limited Edition \u2014 KSh 4,000.',
+  book: 'Kubook session: WhatsApp +254 706 602 914 ama email tyrellmatekwa@gmail.com. Confirmation in 24hrs.',
+  hours: 'Studio sessions kuanzia 10am-8pm EAT. Inaweza adjust depending. Remote sessions iko worldwide.',
+  location: 'Based Nairobi, Kenya. Remote sessions worldwide.',
+  fallback: 'Naweza kujibu about: services, pricing, releases, experience, stems, plugin, tour, merch, booking, hours, location, contact. Ama WhatsApp +254 706 602 914.',
+};
+
+// Levenshtein distance for fuzzy matching
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = [];
+  for (let i = 0; i <= m; i++) { dp[i] = [i]; }
+  for (let j = 1; j <= n; j++) { dp[0][j] = j; }
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : Math.min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1;
+    }
+  }
+  return dp[m][n];
+}
+
+function bestFuzzyMatch(word, wordList) {
+  let best = null, bestDist = 3;
+  for (const w of wordList) {
+    const dist = levenshtein(word, w);
+    if (dist < bestDist) { bestDist = dist; best = w; }
+  }
+  return best;
+}
+
+// Topic keywords for exact + fuzzy matching
+const topicKeywords = {
+  merch: ['merch', 'store', 'hoodie', 'tee', 'shirt', 'cargo', 'clothing', 'buy', 'order', 'limited', 'outfit'],
+  production: ['production', 'produce', 'beat', 'instrumental', 'producer', 'producing'],
+  mixing: ['mixing', 'mastering', 'mix', 'master', 'stereo', 'atmos', 'ambisonic', 'mastered', 'mixed'],
+  tracking: ['tracking', 'recording', 'record', 'vocal', 'voiceover', 'engineering', 'track'],
+  consultation: ['consultation', 'consult', 'feedback', 'pre-production', 'arrangement'],
+  services: ['service', 'offer', 'capabilities'],
+  releases: ['release', 'music', 'single', 'album', 'listen', 'discography', 'song', 'songs', 'new'],
+  experience: ['experience', 'work', 'project', 'client', 'portfolio', 'career', 'background', 'projects'],
+  stems: ['stem', 'send', 'file', 'upload', 'wav', 'dropbox', 'collaborate', 'stems'],
+  plugin: ['plugin', 'free', 'download', 'tyson', 'bundle', 'tyroom', 'tymlapse', 'reverb', 'delay', 'plugins'],
+  tour: ['tour', 'live', 'sane', 'performance', 'concert', 'show', 'performing'],
+  book: ['book', 'schedule', 'appointment', 'reserve', 'booking'],
+  hours: ['hour', 'time', 'when', 'open', 'available', 'hours'],
+  location: ['location', 'where', 'nairobi', 'remote', 'address', 'based'],
+  newsletter: ['newsletter', 'subscribe', 'mailing', 'email list'],
+  terms: ['term', 'credit', 'policy', 'condition', 'terms'],
+  contact: ['contact', 'whatsapp', 'instagram', 'reach', 'social', 'phone', 'number'],
+  about: ['who', 'about', 'tyrelm', 'matekwa', 'edwin', 'story', 'bio', 'tyrelmnation'],
+};
+
+// Flatten all keywords for fuzzy matching
+const allKeywords = Object.values(topicKeywords).flat();
+
+function detectTopic(lower) {
+  // Check for greeting first
+  if (/\b(hi|hello|hey|yo|sup|what's up|good morning|good evening|morning|evening)\b/.test(lower)) {
+    return 'greeting';
+  }
+  // Check each topic by exact substring match first
+  for (const [topic, keywords] of Object.entries(topicKeywords)) {
+    for (const kw of keywords) {
+      if (lower.includes(kw)) return topic;
+    }
+  }
+  // Fuzzy match each word in the input
+  const words = lower.split(/\s+/);
+  const matchedTopics = {};
+  for (const word of words) {
+    if (word.length < 3) continue;
+    const match = bestFuzzyMatch(word, allKeywords);
+    if (match) {
+      for (const [topic, keywords] of Object.entries(topicKeywords)) {
+        if (keywords.includes(match)) {
+          matchedTopics[topic] = (matchedTopics[topic] || 0) + 1;
+        }
+      }
+    }
+  }
+  // Return topic with most fuzzy matches
+  let bestTopic = null, bestCount = 0;
+  for (const [topic, count] of Object.entries(matchedTopics)) {
+    if (count > bestCount) { bestCount = count; bestTopic = topic; }
+  }
+  return bestTopic;
+}
+
 function toggleChat() {
   chatPanel.classList.toggle('open');
   if (chatPanel.classList.contains('open')) {
     chatInput.focus();
     if (!chatMsgs.querySelector('.msg.bot')) {
-      addMsg('Yo! Tyrelm Studio Assistant here. Ask me anything \u2014 services, pricing, releases, experience, merch, booking, stems, the free plugin \u2014 I know everything on the site.', 'bot');
+      addMsg('Yo! Tyrelm Studio Assistant here. Ask me anything \u2014 services, pricing, releases, experience, merch, booking, stems, the free plugin \u2014 I know everything on the site. Can even chat in Sheng if you want!', 'bot');
     }
   }
 }
@@ -49,73 +150,26 @@ function sendMsg() {
   chatInput.value = '';
   setTimeout(() => {
     const lower = text.toLowerCase();
-    let reply;
 
-    // Greeting first
-    if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey') || lower.includes('yo') || lower.includes('sup') || lower.includes('what\'s up') || lower.includes('good morning') || lower.includes('good evening')) {
-      reply = 'Yo! Welcome to Tyrelm Studio. I know everything on the site \u2014 services, rates, releases, experience, merch, stems, the free plugin, and more. What do you need?';
+    // Toggle Sheng mode
+    if (/\b(sheng|ki(sheng)?|sheng please|sheng mode|niambie|mbovu|manzi|mzeiya)\b/.test(lower)) {
+      shengMode = !shengMode;
+      addMsg(shengMode ? 'Sawa! Nimebadilisha to Sheng mode. Uliza chochote kwa ground.' : 'Switched back to English. Ask me anything.', 'bot');
+      return;
     }
-    // Specific topics checked before generic pricing
-    else if (lower.includes('merch') || lower.includes('store') || lower.includes('hoodie') || lower.includes('tee') || lower.includes('shirt') || lower.includes('cargo') || lower.includes('clothing') || lower.includes('buy') || lower.includes('order') || lower.includes('limited')) {
-      reply = knowledge.merch;
-    }
-    else if (lower.includes('production') || lower.includes('produce') || lower.includes('beat') || lower.includes('instrumental') || lower.includes('song')) {
-      reply = knowledge.production;
-    }
-    else if ((lower.includes('mix') && lower.includes('master')) || lower.includes('mixing') || lower.includes('mastering') || lower.includes('stereo') || lower.includes('atmos') || lower.includes('ambisonic')) {
-      reply = knowledge.mixing;
-    }
-    else if (lower.includes('track') || lower.includes('recording') || lower.includes('record') || lower.includes('vocal') || lower.includes('voiceover') || lower.includes('voice over') || lower.includes('studio space') || lower.includes('engineering')) {
-      reply = knowledge.tracking;
-    }
-    else if (lower.includes('consult') || lower.includes('feedback') || lower.includes('pre-production') || lower.includes('arrangement advice') || lower.includes('mix direction')) {
-      reply = knowledge.consultation;
-    }
-    else if (lower.includes('service') || lower.includes('offer') || lower.includes('do you') || lower.includes('what can you')) {
-      reply = knowledge.services;
-    }
-    // Pricing: only if no specific service matched above
-    else if (lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('kes') || lower.includes('how much') || lower.includes('fee') || lower.includes('charg')) {
-      reply = knowledge.services;
-    }
-    else if (lower.includes('release') || lower.includes('music') || lower.includes('single') || lower.includes('album') || lower.includes('listen') || lower.includes('discography')) {
-      reply = knowledge.releases;
-    }
-    else if (lower.includes('experience') || lower.includes('work') || lower.includes('project') || lower.includes('client') || lower.includes('portfolio') || lower.includes('career') || lower.includes('background')) {
-      reply = knowledge.experience;
-    }
-    else if (lower.includes('stem') || lower.includes('send') || lower.includes('file') || lower.includes('upload') || lower.includes('wav') || lower.includes('dropbox') || lower.includes('collaborate')) {
-      reply = knowledge.stems;
-    }
-    else if (lower.includes('plugin') || lower.includes('free') || lower.includes('download') || lower.includes('tyson') || lower.includes('bundle') || lower.includes('tyroom') || lower.includes('tymlapse') || lower.includes('reverb') || lower.includes('delay')) {
-      reply = knowledge.plugin;
-    }
-    else if (lower.includes('tour') || lower.includes('live') || lower.includes('sane') || lower.includes('performance') || lower.includes('concert') || lower.includes('show')) {
-      reply = knowledge.tour;
-    }
-    else if (lower.includes('book') || lower.includes('schedule') || lower.includes('appointment') || lower.includes('reserve') || lower.includes('session')) {
-      reply = knowledge.book;
-    }
-    else if (lower.includes('hour') || lower.includes('time') || lower.includes('when') || lower.includes('open') || lower.includes('available')) {
-      reply = knowledge.hours;
-    }
-    else if (lower.includes('location') || lower.includes('where') || lower.includes('nairobi') || lower.includes('remote') || lower.includes('address') || lower.includes('based')) {
-      reply = knowledge.location;
-    }
-    else if (lower.includes('newsletter') || lower.includes('subscribe') || lower.includes('mailing') || lower.includes('email list') || lower.includes('stay connected')) {
-      reply = knowledge.newsletter;
-    }
-    else if (lower.includes('term') || lower.includes('credit') || lower.includes('policy') || lower.includes('condition')) {
-      reply = knowledge.terms;
-    }
-    else if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('email') || lower.includes('instagram') || lower.includes('reach') || lower.includes('social') || lower.includes('phone') || lower.includes('number')) {
-      reply = knowledge.contact;
-    }
-    else if (lower.includes('who') || lower.includes('about') || lower.includes('tyrelm') || lower.includes('matekwa') || lower.includes('edwin') || lower.includes('story') || lower.includes('bio')) {
-      reply = knowledge.about;
-    }
-    else {
-      reply = 'I can answer about: services & pricing, music production, mixing/mastering, tracking/recording, consultation, releases, experience, sending stems, the free plugin, tour, merch, booking, hours, location, contact, newsletter, and terms. Or WhatsApp +254 706 602 914.';
+
+    const topic = detectTopic(lower);
+
+    const map = shengMode ? sheng : knowledge;
+    const fallback = shengMode ? sheng.fallback : 'I can answer about: services, pricing, releases, experience, stems, the plugin, tour, merch, booking, hours, location, contact, newsletter, and terms. Or WhatsApp +254 706 602 914.';
+
+    let reply;
+    if (topic === 'greeting') {
+      reply = shengMode ? 'Yo! Sheng mode iko active. Uliza chochote \u2014 niko ready.' : 'Yo! Tyrelm Studio Assistant here. Ask me anything about the site. Or say "Sheng" to switch to Sheng.';
+    } else if (topic && map[topic]) {
+      reply = map[topic];
+    } else {
+      reply = fallback;
     }
 
     addMsg(reply, 'bot');
