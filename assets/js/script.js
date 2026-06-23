@@ -140,6 +140,24 @@ function addMsg(text, sender) {
   chatMsgs.scrollTop = chatMsgs.scrollHeight;
 }
 
+function addImages(sender, ...srcs) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + sender + ' msg-imgs';
+  const grid = document.createElement('div');
+  grid.className = 'msg-img-grid';
+  srcs.forEach(function(s) {
+    const img = document.createElement('img');
+    img.className = 'msg-img-thumb';
+    img.src = s;
+    img.loading = 'lazy';
+    img.onclick = function() { window.open(s, '_blank'); };
+    grid.appendChild(img);
+  });
+  div.appendChild(grid);
+  chatMsgs.appendChild(div);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
 function sendMsg() {
   const text = chatInput.value.trim();
   if (!text) return;
@@ -179,6 +197,11 @@ function sendMsg() {
       reply = shengMode ? 'Yo! Sheng mode iko active. Uliza chochote.' : 'Hi! Tyrelm Studio Assistant here. Ask me about services, pricing, merch, booking, releases, or anything on the site.';
     } else if (topic === 'pricing') {
       reply = map.services;
+    } else if (topic === 'merch') {
+      reply = map.merch;
+      addMsg(reply, 'bot');
+      addImages('bot', 'PICS/white-hoodie.webp', 'PICS/black-hoodie.webp', 'PICS/white-tee-front.webp', 'PICS/black-tee-front.webp', 'PICS/limited-cargo.webp');
+      return;
     } else if (topic && map[topic]) {
       reply = map[topic];
     } else {

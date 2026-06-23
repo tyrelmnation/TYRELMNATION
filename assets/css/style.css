@@ -1116,6 +1116,10 @@ footer a.footer-link:hover { color: var(--gold); }
   border-radius: 12px 12px 12px 4px;
   color: var(--gray-300);
 }
+.msg-imgs { max-width: 100%; padding: 0; border: none; background: none; }
+.msg-img-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+.msg-img-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 1px solid rgba(255,255,255,0.08); transition: transform 0.2s; }
+.msg-img-thumb:hover { transform: scale(1.1); border-color: var(--gold); }
 .chat-input-wrap {
   display: flex;
   border-top: 1px solid rgba(255,255,255,0.05);
