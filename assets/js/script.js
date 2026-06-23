@@ -261,15 +261,17 @@ function sendMsg() {
 
 // NEWSLETTER
 function handleNewsletter(form) {
-  const email = form.email.value.trim();
+  const email = form.field_0.value.trim();
   if (!email) return false;
   const btn = form.querySelector('button');
   btn.textContent = 'Subscribing...';
   btn.disabled = true;
-  fetch('https://formspree.io/f/xwvzqdpj', {
+  var data = new URLSearchParams();
+  data.append('field_0', email);
+  data.append('hpc4b27b6e-eb38-11e9-be00-06b4694bee2a', '');
+  fetch('https://eocampaign1.com/form/313feece-6ed4-11f1-98dc-69ffe802ccb0', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({ email: email, _subject: 'New Tyrelm newsletter subscriber' })
+    body: data
   }).then(function(r) {
     if (r.ok) {
       form.innerHTML = '<p style="color:var(--gold);font-size:14px;">\u2705 You\'re on the list! Check your email to confirm.</p>';
