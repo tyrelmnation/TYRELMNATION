@@ -16,7 +16,7 @@ const knowledge = {
   stems: 'Send your stems via: 1) WhatsApp \u2014 quick voice notes/ideas. 2) Email tyrellmatekwa@gmail.com \u2014 full tracks. 3) Dropbox \u2014 large projects: https://www.dropbox.com/request/cq6xi9h8o504mm926l37 . Reviews within 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
   plugin: 'Free TYSONICS bundle includes TYROOM (analog reverb emulation) and TYMLAPSE (delay). Download from the Free Plugin section on the site.',
   tour: 'Sane Sessions \u2014 a live performance series blending raw performance, atmosphere, and sound. Coming soon. Dates TBA. Performances across the country.',
-  merch: 'Tisho na cargo pants utaziget na 2,100 \u2014 zita come kama pair. Hood na cargo ni 2,500. Bei fiti sana! Options: White set 2,500, Black set 2,500, White Tee + Black Cargo 2,100, Black Tee + White Cargo 2,100, Limited Edition 4,000. Order via WhatsApp +254 706 602 914.',
+  merch: 'T-shirt and cargo pants: 2,100 KES \u2014 they come as a pair. Hoodie and cargo: 2,500 KES. Great value! Options: White set 2,500, Black set 2,500, White Tee + Black Cargo 2,100, Black Tee + White Cargo 2,100, Limited Edition 4,000. Order via WhatsApp +254 706 602 914.',
   book: 'To book a session: WhatsApp +254 706 602 914 or email tyrellmatekwa@gmail.com. Direct line: tyrellmatekwa@gmail.com | +254 706 602 914. Confirmation within 24hrs.',
   hours: 'Studio sessions typically 10am-8pm EAT (East Africa Time). Flexible by arrangement. Remote sessions available worldwide.',
   location: 'Based in Nairobi, Kenya. Remote sessions available worldwide for mixing, mastering, and consultation.',
@@ -160,7 +160,7 @@ function sendMsg() {
     // Price complaint handler
     const priceComplaints = /\b(expensive|ghali|too much|bei mbaya|expensive sana|too expensive|overpriced|pricey|costly|ni bei|sana hii bei|bei yote)\b/;
     if (priceComplaints.test(lower)) {
-      addMsg(shengMode ? '\uD83D\uDE02\uD83D\uDE02nakufanyia na bei fiti mali ni safi' : 'The prices are fair for the quality. Tisho na cargo at 2,100, hood na cargo at 2,500 \u2014 good value.', 'bot');
+      addMsg(shengMode ? '\uD83D\uDE02\uD83D\uDE02nakufanyia na bei fiti mali ni safi' : 'The prices are fair for the quality. A T-shirt and cargo set is 2,100 KES, hoodie and cargo set is 2,500 KES \u2014 good value.', 'bot');
       return;
     }
 
