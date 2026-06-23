@@ -140,6 +140,13 @@ function addMsg(text, sender) {
   chatMsgs.scrollTop = chatMsgs.scrollHeight;
 }
 
+function addBotHTML(html) {
+  const div = document.createElement('div');
+  div.className = 'msg bot msg-html';
+  div.innerHTML = html;
+  chatMsgs.appendChild(div);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
 
 
 function sendMsg() {
@@ -182,9 +189,16 @@ function sendMsg() {
     } else if (topic === 'pricing') {
       reply = map.services;
     } else if (topic === 'merch') {
-      reply = map.merch;
-      addMsg(reply, 'bot');
-      setTimeout(function() { document.getElementById('merch').scrollIntoView({ behavior: 'smooth' }); }, 200);
+      addMsg(map.merch, 'bot');
+      addBotHTML(
+        '<div style="display:flex;flex-direction:column;gap:6px;padding:4px 0;">' +
+        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set." target="_blank" class="merch-link">\u2728 White Set (hoodie + cargo) \u2014 KSh 2,500</a>' +
+        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set." target="_blank" class="merch-link">\u2728 Black Set (hoodie + cargo) \u2014 KSh 2,500</a>' +
+        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set." target="_blank" class="merch-link">\u2728 White Tee + Black Cargo \u2014 KSh 2,100</a>' +
+        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set." target="_blank" class="merch-link">\u2728 Black Tee + White Cargo \u2014 KSh 2,100</a>' +
+        '<a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set." target="_blank" class="merch-link">\u2728 Limited Edition Set \u2014 KSh 4,000</a>' +
+        '</div>'
+      );
       return;
     } else if (topic === 'production' || topic === 'mixing' || topic === 'tracking' || topic === 'consultation') {
       reply = map[topic];

@@ -1116,6 +1116,9 @@ footer a.footer-link:hover { color: var(--gold); }
   border-radius: 12px 12px 12px 4px;
   color: var(--gray-300);
 }
+.msg-html { max-width: 100%; padding: 0 14px 10px; border: none; background: none; border-radius: 0; }
+.merch-link { display: block; background: var(--black-2); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 10px; font-size: 12px; color: var(--gray-300); text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+.merch-link:hover { border-color: var(--gold); background: var(--black-3); color: var(--white); }
 
 .chat-input-wrap {
   display: flex;
