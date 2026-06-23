@@ -381,3 +381,14 @@ fadeEls.forEach(function(el) {
   el.style.transform = 'translateY(30px)';
   observer.observe(el);
 });
+
+// HERO VIDEO
+var heroVideo = document.getElementById('heroVideo');
+var heroPoster = document.getElementById('heroPoster');
+if (heroVideo && heroPoster) {
+  heroVideo.addEventListener('canplay', function() {
+    heroPoster.style.transition = 'opacity 0.8s ease';
+    heroPoster.style.opacity = '0';
+  });
+  heroVideo.play().catch(function() {});
+}
