@@ -140,52 +140,7 @@ function addMsg(text, sender) {
   chatMsgs.scrollTop = chatMsgs.scrollHeight;
 }
 
-function addBotHTML(html) {
-  const div = document.createElement('div');
-  div.className = 'msg bot msg-html';
-  div.innerHTML = html;
-  chatMsgs.appendChild(div);
-  chatMsgs.scrollTop = chatMsgs.scrollHeight;
-}
 
-function showMerchCards(outfits) {
-  var html = '<div class="merch-card-grid">';
-  for (var i = 0; i < outfits.length; i++) {
-    var o = outfits[i];
-    html += '<div class="merch-chat-card">';
-    html += '  <div class="merch-chat-visual">';
-    html += '    <img class="merch-chat-top" src="' + o.top + '" loading="lazy">';
-    if (o.bottom) html += '    <img class="merch-chat-bottom" src="' + o.bottom + '" loading="lazy">';
-    html += '  </div>';
-    html += '  <div class="merch-chat-info">';
-    html += '    <span class="merch-chat-name">' + o.name + '</span>';
-    html += '    <span class="merch-chat-price">' + o.price + '</span>';
-    html += '  </div>';
-    html += '</div>';
-  }
-  html += '</div>';
-  addBotHTML(html);
-}
-
-function showServiceCard(topicKey) {
-  var cards = {
-    production: { icon: '&#9835;', title: 'Music Production', price: '20,000 KES/project', items: ['Custom instrumentals', 'Vocal arrangement', 'Full song structuring', 'Collab 50/50 available'] },
-    mixing: { icon: '&#9835;&#9835;', title: 'Mixing & Mastering', price: '15,000 KES/track', items: ['Stereo Mix & Master', 'Album deal 12K/track', 'Dolby Atmos 25K/track', 'Mastering only 5K/track'] },
-    tracking: { icon: '&#9685;', title: 'Tracking / Recording', price: '2,000 KES/hr', items: ['Engineering fee 2K/hr', 'Studio 1K-5K/hr', 'Full session comping', 'File delivery included'] },
-    consultation: { icon: '&#9998;', title: 'Audio Consultation', price: '2,500 KES/session', items: ['60-min session', 'Mix feedback', 'Arrangement review', 'Pre-production advice'] }
-  };
-  var c = cards[topicKey];
-  if (!c) return;
-  var html = '<div class="service-chat-card">';
-  html += '  <div class="service-chat-icon">' + c.icon + '</div>';
-  html += '  <div class="service-chat-title">' + c.title + '</div>';
-  html += '  <div class="service-chat-price">' + c.price + '</div>';
-  html += '  <ul class="service-chat-list">';
-  for (var i = 0; i < c.items.length; i++) html += '    <li>' + c.items[i] + '</li>';
-  html += '  </ul>';
-  html += '</div>';
-  addBotHTML(html);
-}
 
 function sendMsg() {
   const text = chatInput.value.trim();
@@ -227,57 +182,14 @@ function sendMsg() {
     } else if (topic === 'pricing') {
       reply = map.services;
     } else if (topic === 'merch') {
-      if (shengMode) {
-        reply = map.merch;
-        addMsg(reply, 'bot');
-        showMerchCards([
-          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500' },
-          { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500' },
-          { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100' },
-          { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100' },
-          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000' }
-        ]);
-      } else {
-        if (/\b(tee|t.?shirt|tshirt|shati)\b/.test(lower) && !/\b(hoodie|hood|cargo)\b/.test(lower)) {
-          addMsg(map.merch, 'bot');
-          showMerchCards([
-            { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100' },
-            { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100' }
-          ]);
-        } else if (/\b(hoodie|hood)\b/.test(lower) && !/\b(tee|t.?shirt|tshirt|cargo)\b/.test(lower)) {
-          addMsg(map.merch, 'bot');
-          showMerchCards([
-            { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500' },
-            { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500' }
-          ]);
-        } else if (/\b(cargo)\b/.test(lower) && !/\b(tee|t.?shirt|tshirt|hoodie|hood)\b/.test(lower)) {
-          addMsg(map.merch, 'bot');
-          showMerchCards([
-            { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Cargo set', price: 'KSh 2,500' },
-            { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Cargo set', price: 'KSh 2,500' },
-            { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'Tee + Cargo', price: 'KSh 2,100' }
-          ]);
-        } else if (/\b(limited)\b/.test(lower)) {
-          addMsg(map.merch, 'bot');
-          showMerchCards([
-            { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000' }
-          ]);
-        } else {
-          addMsg(map.merch, 'bot');
-          showMerchCards([
-            { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500' },
-            { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500' },
-            { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100' },
-            { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100' },
-            { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000' }
-          ]);
-        }
-      }
+      reply = map.merch;
+      addMsg(reply, 'bot');
+      setTimeout(function() { document.getElementById('merch').scrollIntoView({ behavior: 'smooth' }); }, 200);
       return;
     } else if (topic === 'production' || topic === 'mixing' || topic === 'tracking' || topic === 'consultation') {
       reply = map[topic];
       addMsg(reply, 'bot');
-      if (!shengMode) showServiceCard(topic);
+      setTimeout(function() { document.getElementById('services').scrollIntoView({ behavior: 'smooth' }); }, 200);
       return;
     } else if (topic && map[topic]) {
       reply = map[topic];
