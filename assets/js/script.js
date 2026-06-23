@@ -14,7 +14,7 @@ const knowledge = {
   stems: 'Niaje! Tuma stems zako via: 1) WhatsApp \u2014 short voice notes. 2) Email tyrellmatekwa@gmail.com \u2014 full tracks. 3) Dropbox \u2014 large projects: https://www.dropbox.com/request/cq6xi9h8o504mm926l37 . Reviews in 2-3 business days. Format: 24-bit/44k-48kHz WAV. Utanishow ukikuwa interested.',
   plugin: 'Free TYSONICS bundle \u2014 TYROOM (analog reverb) na TYMLAPSE (delay). Very nice plugins. Download free from the Free Plugin section. Utanistua ukidai kitu yoyote.',
   tour: 'Sane Sessions \u2014 live performance series blending raw performance, atmosphere na sound. Inakuja soon. Dates zitatangazwa. Performances across the country. Very nice.',
-  merch: 'Niaje! Tisho na pants utaziget na prices hivi: 1) White Hoodie + White Cargo \u2014 KSh 2,500. 2) Black Hoodie + Black Cargo \u2014 KSh 2,500. 3) White Tee + Black Cargo \u2014 KSh 2,100. 4) Black Tee + White Cargo \u2014 KSh 2,100. 5) Limited Edition Set \u2014 KSh 4,000. Order via WhatsApp +254 706 602 914. Very nice! Utanishow ukikuwa interested.',
+  merch: 'Niaje! Tisho na cargo pants utaziget na 2,100 \u2014 zita come kama pair. Hood na cargo ni 2,500. Bei fiti sana! Iko: White set 2,500, Black set 2,500, White Tee + Black Cargo 2,100, Black Tee + White Cargo 2,100, Limited Edition 4,000. Order via WhatsApp +254 706 602 914. Very nice! Utanishow ukikuwa interested.',
   book: 'Niaje! Kubook session: WhatsApp +254 706 602 914 ama email tyrellmatekwa@gmail.com. Direct line: tyrellmatekwa@gmail.com | +254 706 602 914. Confirmation in 24hrs. Utanistua ukidai kitu yoyote.',
   hours: 'Studio sessions ziko 10am-8pm EAT (East Africa Time). Flexible depending. Remote sessions iko worldwide. Very nice.',
   location: 'Based Nairobi, Kenya. Remote sessions worldwide for mixing, mastering na consultation. Utanistua ukidai kitu yoyote.',
@@ -132,6 +132,13 @@ function sendMsg() {
     const lower = text.toLowerCase();
 
     const topic = detectTopic(lower);
+
+    // Price complaint handler
+    const priceComplaints = /\b(expensive|ghali|too much|bei mbaya|expensive sana|too expensive|overpriced|pricey|costly|ni bei|sana hii bei|bei yote)\b/;
+    if (priceComplaints.test(lower)) {
+      addMsg('\uD83D\uDE02\uD83D\uDE02nakufanyia na bei fiti mali ni safi', 'bot');
+      return;
+    }
 
     let reply;
     if (topic === 'greeting') {
