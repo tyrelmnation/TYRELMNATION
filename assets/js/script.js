@@ -208,13 +208,29 @@ function sendMsg() {
       reply = map.services;
     } else if (topic === 'merch') {
       addMsg(map.merch, 'bot');
-      showMerchCards([
-        { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set.' },
-        { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set.' },
-        { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set.' },
-        { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set.' },
-        { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set.' }
-      ]);
+      if (/\b(tee|t.?shirt|tshirt|shati)\b/.test(lower) && !/\b(hoodie|hood)\b/.test(lower)) {
+        showMerchCards([
+          { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set.' },
+          { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set.' }
+        ]);
+      } else if (/\b(hoodie|hood)\b/.test(lower) && !/\b(tee|t.?shirt|tshirt)\b/.test(lower)) {
+        showMerchCards([
+          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set.' },
+          { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set.' }
+        ]);
+      } else if (/\b(limited)\b/.test(lower)) {
+        showMerchCards([
+          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set.' }
+        ]);
+      } else {
+        showMerchCards([
+          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set.' },
+          { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set.' },
+          { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set.' },
+          { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set.' },
+          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set.' }
+        ]);
+      }
       return;
     } else if (topic === 'production' || topic === 'mixing' || topic === 'tracking' || topic === 'consultation') {
       reply = map[topic];
