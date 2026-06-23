@@ -15,6 +15,7 @@ const knowledge = {
   consultation: 'Audio Consultation: 2,500 KES per session (60 min). Mix feedback, arrangement review, pre-production advice. Send materials 12hrs before. Remote via Zoom/WhatsApp available.',
   releases: 'Latest releases: "Better Person" (Single, 2025) \u2014 https://youtu.be/aAjFKC2pdzw . "Ghost" (Single, 2026) \u2014 https://youtu.be/DX-zDYDqjMk . Full discography on YouTube: https://youtube.com/@Tyrelm',
   experience: 'Experience: 2026 \u2014 Session Diaspor.a (Matt Ngesa, Clerk Keeng, Mordecai Dex). 2024-26 \u2014 Wyatt Boyer (Chicago) mixing/mastering. 2025-26 \u2014 ARGO AR Game soundtrack (with WWF-Kenya). 2025 \u2014 "Time and Space" + "Broken Diary" albums (15 tracks). 2023 \u2014 Lowki The Great "Rise of Greatness", Dicemane "Resilient"/"Rudia" (radio airplay, Shoke Shoke Fest nom). 2018-25 \u2014 Voice over, theme songs, sync licensing.',
+  beats: 'Beat licensing: MP3 Lease 5,000 KES, WAV Lease 8,000 KES, Stems Lease (music/drum/bass stems) 10,000 KES, Exclusive (all separated multi-tracks) 70,000 KES. Order via WhatsApp +254 706 602 914.',
   stems: 'Send your stems via: 1) WhatsApp \u2014 quick voice notes/ideas. 2) Email tyrellmatekwa@gmail.com \u2014 full tracks. 3) Dropbox \u2014 large projects: https://www.dropbox.com/request/cq6xi9h8o504mm926l37 . Reviews within 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
   plugin: 'Free TYSONICS bundle includes TYROOM (analog reverb emulation) and TYMLAPSE (delay). Download from the Free Plugin section on the site.',
   tour: 'Sane Sessions \u2014 a live performance series blending raw performance, atmosphere, and sound. Coming soon. Dates TBA. Performances across the country.',
@@ -38,6 +39,7 @@ const sheng = {
   consultation: 'Audio Consultation: 2.5K KES per session (60min). Mix feedback, arrangement advice, pre-production. Remote via Zoom ama WhatsApp.',
   releases: 'Nyimbo mpya: "Better Person" (Single, 2025) na "Ghost" (Single, 2026). YouTube: https://youtube.com/@Tyrelm',
   experience: 'Experience: 2026 Session Diaspor.a, 2024-26 Wyatt Boyer, 2025-26 ARGO Game soundtrack, 2025 Albums "Time and Space" na "Broken Diary", 2023 Lowki The Great na Dicemane.',
+  beats: 'Beat licensing: MP3 Lease 5K KES, WAV Lease 8K KES, Stems Lease (music/drum/bass stems) 10K KES, Exclusive (all separated multi-tracks) 70K KES. Order via WhatsApp +254 706 602 914.',
   stems: 'Tuma stems zako via: 1) WhatsApp, 2) Email tyrellmatekwa@gmail.com, 3) Dropbox. Reviews 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
   plugin: 'Free TYSONICS bundle iko na TYROOM (reverb) na TYMLAPSE (delay). Download free from Free Plugin section.',
   tour: 'Sane Sessions \u2014 live performance series. Inakuja soon. Dates zitatangazwa.',
@@ -73,7 +75,8 @@ function bestFuzzyMatch(word, wordList) {
 // Topic keywords for exact + fuzzy matching
 const topicKeywords = {
   merch: ['merch', 'store', 'hoodie', 'tee', 'shirt', 'cargo', 'clothing', 'buy', 'order', 'limited', 'outfit', 'tisho', 'tshirt', 't-shirt', 'shati'],
-  production: ['production', 'produce', 'beat', 'instrumental', 'producer', 'producing', 'sanaa', 'ngoma'],
+  beats: ['beat', 'lease', 'leases', 'exclusive', 'licensing', 'wav lease', 'mp3 lease', 'stems lease'],
+  production: ['production', 'produce', 'instrumental', 'producer', 'producing', 'sanaa', 'ngoma'],
   mixing: ['mixing', 'mastering', 'mix', 'master', 'stereo', 'atmos', 'ambisonic', 'mastered', 'mixed', 'sauti'],
   tracking: ['tracking', 'recording', 'record', 'vocal', 'voiceover', 'engineering', 'track', 'studio', 'session', 'rekodi'],
   consultation: ['consultation', 'consult', 'feedback', 'pre-production', 'arrangement', 'ushauri'],
