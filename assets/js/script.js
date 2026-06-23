@@ -386,9 +386,17 @@ fadeEls.forEach(function(el) {
 var heroVideo = document.getElementById('heroVideo');
 var heroPoster = document.getElementById('heroPoster');
 if (heroVideo && heroPoster) {
-  heroVideo.addEventListener('canplay', function() {
+  heroVideo.addEventListener('loadeddata', function() {
+    heroVideo.style.transition = 'opacity 0.8s ease';
+    heroVideo.style.opacity = '1';
     heroPoster.style.transition = 'opacity 0.8s ease';
     heroPoster.style.opacity = '0';
+    heroVideo.play().catch(function() {});
   });
-  heroVideo.play().catch(function() {});
+  // If video loads fast enough, canplay might already have fired
+  if (heroVideo.readyState >= 2) {
+    heroVideo.style.opacity = '1';
+    heroPoster.style.opacity = '0';
+    heroVideo.play().catch(function() {});
+  }
 }
