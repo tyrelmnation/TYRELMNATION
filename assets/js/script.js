@@ -165,8 +165,9 @@ function sendMsg() {
     }
 
     // Session pricing question — ask what kind first
-    const sessionPricing = /\b(session|booking)\b.*\b(ngapi|bei|how much|price|cost|rate|fee|gharama|senti)\b|\b(ngapi|bei|how much|price|cost|rate|fee|gharama|senti)\b.*\b(session|booking)\b/;
-    if (sessionPricing.test(lower) && topic === 'tracking') {
+    const hasSession = /\b(session|booking)\b/.test(lower);
+    const hasPriceIntent = /\b(ngapi|bei|how|hoe|price|cost|rate|fee|gharama|senti|much|expensive)\b/.test(lower);
+    if (hasSession && hasPriceIntent && topic === 'tracking') {
       addMsg(shengMode ? 'Unataka session ya aina gani?\n1) Music production — kutengeneza beat na song\n2) Mixing & mastering — kusafisha sauti\n3) Tracking/recording — kurekodi\n4) Audio consultation — ushauri wa music' : 'What kind of session do you need?\n1) Music production — making beats & structuring songs\n2) Mixing & mastering — polishing your sound\n3) Tracking/recording — recording vocals or instruments\n4) Audio consultation — mix feedback & pre-production advice', 'bot');
       return;
     }
