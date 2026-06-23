@@ -3,14 +3,25 @@ const chatPanel = document.getElementById('chatPanel');
 const chatMsgs = document.getElementById('chatMsgs');
 const chatInput = document.getElementById('chatInput');
 
-const responses = {
-  pricing: 'Pricing: Music Production 20,000 KES/project, Mix & Master 15,000 KES/track, Mastering only 5,000 KES/track, Tracking 2,000 KES/hr, Consultation 2,500 KES/session.',
-  book: 'To book: WhatsApp +254 706 602 914 or email tyrellmatekwa@gmail.com. I\'ll confirm within 24hrs.',
-  services: 'Services: Music Production, Mixing & Mastering, Tracking/Recording, Audio Consultation. Check the Services section for rates.',
-  hours: 'Studio sessions typically run 10am\u20138pm EAT, flexible by arrangement.',
-  location: 'Based in Nairobi, Kenya. Remote sessions available worldwide.',
-  plugin: 'Download the free TYSONICS bundle (TYROOM reverb + TYMLAPSE delay) from the Free Plugin section.',
-  hello: 'Hey! Welcome to Tyrelm Studio. Ask me about services, pricing, booking, or the free plugin.',
+const knowledge = {
+  about: 'Tyrelm (Edwin Matekwa) is a recording, mixing, mastering, and production engineer based in Nairobi, Kenya. He founded Tyrelm Nation, a production company blending art, music, and science for talent discovery.',
+  services: 'Four services: 1) Music Production \u2014 20,000 KES/project, collab 50/50, perf track +2,000, stripped +3,000. 2) Mixing & Mastering \u2014 stereo 15,000/track, album 12,000/track, Dolby Atmos 25,000/track, mastering only 5,000/track, 2 revisions included. 3) Tracking/Recording \u2014 2,000 KES/hr engineering, studio 1,000-5,000/hr. 4) Audio Consultation \u2014 2,500 KES/session, 60min, send materials 12hrs before.',
+  production: 'Music Production: 20,000 KES per project. Includes custom instrumentals, vocal arrangement, full song structuring. Collab rate: 50/50 on composition & streaming. Performance track add: +2,000 KES. Stripped version add: +3,000 KES. One revision included, additional 3,000 KES/round. Delivery 7-14 business days.',
+  mixing: 'Mixing & Mastering: Stereo Mix & Master 15,000 KES/track. Album deal (5+ tracks) 12,000 KES/track. Dolby Atmos/Ambisonic 25,000 KES/track. Mastering only 5,000 KES/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Atmos requires min 5 business days.',
+  tracking: 'Tracking/Recording: Engineering 2,000 KES/hr. Studio space 1,000-5,000 KES/hr depending on location. Includes setup, recording, comping, file delivery. Send session materials 24hrs in advance.',
+  consultation: 'Audio Consultation: 2,500 KES per session (60 min). Mix feedback, arrangement review, pre-production advice. Send materials 12hrs before. Remote via Zoom/WhatsApp available.',
+  releases: 'Latest releases: "Better Person" (Single, 2025) \u2014 https://youtu.be/aAjFKC2pdzw . "Ghost" (Single, 2026) \u2014 https://youtu.be/DX-zDYDqjMk . Full discography on YouTube: https://youtube.com/@Tyrelm',
+  experience: 'Experience: 2026 \u2014 Session Diaspor.a (Matt Ngesa, Clerk Keeng, Mordecai Dex). 2024-26 \u2014 Wyatt Boyer (Chicago) mixing/mastering. 2025-26 \u2014 ARGO AR Game soundtrack (with WWF-Kenya). 2025 \u2014 "Time and Space" + "Broken Diary" albums (15 tracks). 2023 \u2014 Lowki The Great "Rise of Greatness", Dicemane "Resilient"/"Rudia" (radio airplay, Shoke Shoke Fest nom). 2018-25 \u2014 Voice over, theme songs, sync licensing.',
+  stems: 'Send your stems via: 1) WhatsApp \u2014 quick voice notes/ideas. 2) Email tyrellmatekwa@gmail.com \u2014 full tracks. 3) Dropbox \u2014 large projects: https://www.dropbox.com/request/cq6xi9h8o504mm926l37 . Reviews within 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
+  plugin: 'Free TYSONICS bundle includes TYROOM (analog reverb emulation) and TYMLAPSE (delay). Download from the Free Plugin section on the site, or direct link: TYSONIX BUNDLE.rar.',
+  tour: 'Sane Sessions \u2014 a live performance series blending raw performance, atmosphere, and sound. Coming soon. Dates TBA. Performances across the country.',
+  merch: 'Merch available (order via WhatsApp +254 706 602 914): 1) White Hoodie + White Cargo \u2014 KSh 2,500. 2) Black Hoodie + Black Cargo \u2014 KSh 2,500. 3) White Tee + Black Cargo \u2014 KSh 2,100. 4) Black Tee + White Cargo \u2014 KSh 2,100. 5) Limited Edition Set \u2014 KSh 4,000. Email for shipping.',
+  book: 'To book a session: WhatsApp +254 706 602 914 or email tyrellmatekwa@gmail.com. Direct line access: tyrellmatekwa@gmail.com | +254 706 602 914. Confirmation within 24hrs.',
+  hours: 'Studio sessions typically 10am-8pm EAT (East Africa Time). Flexible by arrangement. Remote sessions available worldwide.',
+  location: 'Based in Nairobi, Kenya. Remote sessions available worldwide for mixing, mastering, and consultation.',
+  newsletter: 'Join the mailing list for updates on new releases, Sane Sessions, merch drops, and studio news. Subscribe on the site. No spam, unsubscribe anytime.',
+  terms: 'Terms & Credits document available for download: Tyrelm_Nation_Terms_and_Credits.pdf',
+  contact: 'WhatsApp: +254 706 602 914. Email: tyrellmatekwa@gmail.com. Instagram: @ty_relm and @tyrelm_nation. YouTube: @Tyrelm.',
 };
 
 function toggleChat() {
@@ -18,7 +29,7 @@ function toggleChat() {
   if (chatPanel.classList.contains('open')) {
     chatInput.focus();
     if (!chatMsgs.querySelector('.msg.bot')) {
-      addMsg('Hey! Welcome to Tyrelm Studio. Ask me about services, pricing, booking, or the free plugin.', 'bot');
+      addMsg('Yo! Tyrelm Studio Assistant here. Ask me anything \u2014 services, pricing, releases, experience, merch, booking, stems, the free plugin \u2014 I know everything on the site.', 'bot');
     }
   }
 }
@@ -38,24 +49,93 @@ function sendMsg() {
   chatInput.value = '';
   setTimeout(() => {
     const lower = text.toLowerCase();
-    let reply = null;
-    if (lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('kes') || lower.includes('how much')) {
-      reply = responses.pricing;
-    } else if (lower.includes('book') || lower.includes('schedule') || lower.includes('appointment') || lower.includes('reserve')) {
-      reply = responses.book;
-    } else if (lower.includes('service') || lower.includes('offer') || lower.includes('do you')) {
-      reply = responses.services;
-    } else if (lower.includes('hour') || lower.includes('time') || lower.includes('when')) {
-      reply = responses.hours;
-    } else if (lower.includes('location') || lower.includes('where') || lower.includes('nairobi') || lower.includes('remote')) {
-      reply = responses.location;
-    } else if (lower.includes('plugin') || lower.includes('free') || lower.includes('download') || lower.includes('tyson')) {
-      reply = responses.plugin;
-    } else if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey') || lower.includes('yo')) {
-      reply = responses.hello;
-    } else {
-      reply = 'Check the Services section for details, or WhatsApp +254 706 602 914 for a quick answer.';
+    let reply;
+
+    // services general
+    if ((lower.includes('service') || lower.includes('offer') || lower.includes('do you') || lower.includes('what can you')) && !lower.includes('production') && !lower.includes('mix') && !lower.includes('master') && !lower.includes('track') && !lower.includes('consult')) {
+      reply = knowledge.services;
     }
+    // production
+    else if (lower.includes('production') || lower.includes('produce') || lower.includes('beat') || lower.includes('instrumental') || lower.includes('song')) {
+      reply = knowledge.production;
+    }
+    // mixing/mastering
+    else if ((lower.includes('mix') && lower.includes('master')) || lower.includes('mixing') || lower.includes('mastering') || lower.includes('stereo') || lower.includes('atmos') || lower.includes('ambisonic')) {
+      reply = knowledge.mixing;
+    }
+    // tracking / recording
+    else if (lower.includes('track') || lower.includes('recording') || lower.includes('record') || lower.includes('vocal') || lower.includes('voiceover') || lower.includes('voice over') || lower.includes('studio space') || lower.includes('engineering')) {
+      reply = knowledge.tracking;
+    }
+    // consultation
+    else if (lower.includes('consult') || lower.includes('feedback') || lower.includes('pre-production') || lower.includes('arrangement advice') || lower.includes('mix direction')) {
+      reply = knowledge.consultation;
+    }
+    // pricing general
+    else if (lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('kes') || lower.includes('how much') || lower.includes('fee') || lower.includes('charg')) {
+      reply = knowledge.services;
+    }
+    // book / schedule
+    else if (lower.includes('book') || lower.includes('schedule') || lower.includes('appointment') || lower.includes('reserve') || lower.includes('session')) {
+      reply = knowledge.book;
+    }
+    // releases / music / songs
+    else if (lower.includes('release') || lower.includes('music') || lower.includes('song') || lower.includes('single') || lower.includes('album') || lower.includes('listen') || lower.includes('discography') || lower.includes('track')) {
+      reply = knowledge.releases;
+    }
+    // experience / work / projects
+    else if (lower.includes('experience') || lower.includes('work') || lower.includes('project') || lower.includes('client') || lower.includes('portfolio') || lower.includes('career') || lower.includes('background')) {
+      reply = knowledge.experience;
+    }
+    // stems / send files
+    else if (lower.includes('stem') || lower.includes('send') || lower.includes('file') || lower.includes('upload') || lower.includes('track') || lower.includes('wav') || lower.includes('dropbox') || lower.includes('collaborate')) {
+      reply = knowledge.stems;
+    }
+    // plugin
+    else if (lower.includes('plugin') || lower.includes('free') || lower.includes('download') || lower.includes('tyson') || lower.includes('bundle') || lower.includes('tyroom') || lower.includes('tymlapse') || lower.includes('reverb') || lower.includes('delay')) {
+      reply = knowledge.plugin;
+    }
+    // tour / live / sane sessions
+    else if (lower.includes('tour') || lower.includes('live') || lower.includes('sane') || lower.includes('performance') || lower.includes('concert') || lower.includes('show')) {
+      reply = knowledge.tour;
+    }
+    // merch / store / hoodie / tee / cargo
+    else if (lower.includes('merch') || lower.includes('store') || lower.includes('hoodie') || lower.includes('tee') || lower.includes('shirt') || lower.includes('cargo') || lower.includes('clothing') || lower.includes('buy') || lower.includes('order') || lower.includes('limited')) {
+      reply = knowledge.merch;
+    }
+    // hours / time
+    else if (lower.includes('hour') || lower.includes('time') || lower.includes('when') || lower.includes('open') || lower.includes('available')) {
+      reply = knowledge.hours;
+    }
+    // location / where / nairobi
+    else if (lower.includes('location') || lower.includes('where') || lower.includes('nairobi') || lower.includes('remote') || lower.includes('address') || lower.includes('based')) {
+      reply = knowledge.location;
+    }
+    // newsletter / subscribe / mailing
+    else if (lower.includes('newsletter') || lower.includes('subscribe') || lower.includes('mailing') || lower.includes('email list') || lower.includes('stay connected')) {
+      reply = knowledge.newsletter;
+    }
+    // terms / credits
+    else if (lower.includes('term') || lower.includes('credit') || lower.includes('policy') || lower.includes('condition')) {
+      reply = knowledge.terms;
+    }
+    // contact / whatsapp / email / instagram
+    else if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('email') || lower.includes('instagram') || lower.includes('reach') || lower.includes('social') || lower.includes('phone') || lower.includes('number')) {
+      reply = knowledge.contact;
+    }
+    // about / who is
+    else if (lower.includes('who') || lower.includes('about') || lower.includes('tyrelm') || lower.includes('matekwa') || lower.includes('edwin') || lower.includes('story') || lower.includes('bio')) {
+      reply = knowledge.about;
+    }
+    // greeting
+    else if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey') || lower.includes('yo') || lower.includes('sup') || lower.includes('what\'s up') || lower.includes('good morning') || lower.includes('good evening')) {
+      reply = 'Yo! Welcome to Tyrelm Studio. I know everything on the site \u2014 services, rates, releases, experience, merch, stems, the free plugin, and more. What do you need?';
+    }
+    // fallback
+    else {
+      reply = 'I can answer about: services & pricing, music production, mixing/mastering, tracking/recording, consultation, releases, experience, sending stems, the free plugin, tour, merch, booking, hours, location, contact, newsletter, and terms. Or WhatsApp +254 706 602 914.';
+    }
+
     addMsg(reply, 'bot');
   }, 400);
 }
