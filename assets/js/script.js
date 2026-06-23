@@ -94,7 +94,7 @@ const allKeywords = Object.values(topicKeywords).flat();
 
 function detectTopic(lower) {
   // Check for greeting first
-  if (/\b(hi|hello|hey|yo|sup|niaje|what's up|good morning|good evening|morning|evening|sasa)\b/.test(lower)) {
+  if (/\b(hi|hello|hey|yo|sup|niaje|woza|what's up|good morning|good evening|morning|evening|sasa)\b/.test(lower)) {
     return 'greeting';
   }
   // Check each topic by exact substring match first
