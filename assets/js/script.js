@@ -262,10 +262,27 @@ function sendMsg() {
 // NEWSLETTER
 function handleNewsletter(form) {
   const email = form.email.value.trim();
-  if (email) {
-    alert('Thanks! You\'re on the list.');
-    form.reset();
-  }
+  if (!email) return false;
+  const btn = form.querySelector('button');
+  btn.textContent = 'Subscribing...';
+  btn.disabled = true;
+  fetch('https://formspree.io/f/xwvzqdpj', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ email: email, _subject: 'New Tyrelm newsletter subscriber' })
+  }).then(function(r) {
+    if (r.ok) {
+      form.innerHTML = '<p style="color:var(--gold);font-size:14px;">\u2705 You\'re on the list! Check your email to confirm.</p>';
+    } else {
+      btn.textContent = 'Subscribe';
+      btn.disabled = false;
+      alert('Something went wrong. Try again or WhatsApp +254 706 602 914.');
+    }
+  }).catch(function() {
+    btn.textContent = 'Subscribe';
+    btn.disabled = false;
+    alert('Network error. Try again.');
+  });
   return false;
 }
 
