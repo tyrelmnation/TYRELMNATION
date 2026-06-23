@@ -8,7 +8,9 @@ const knowledge = {
   about: 'Tyrelm (Edwin Matekwa) is a recording, mixing, mastering, and production engineer based in Nairobi, Kenya. He founded Tyrelm Nation, a production company blending art, music, and science for talent discovery.',
   services: 'Four services: 1) Music Production \u2014 20,000 KES/project, collab 50/50, perf track +2,000, stripped +3,000. 2) Mixing & Mastering \u2014 stereo 15,000/track, album 12,000/track, Dolby Atmos 25,000/track, mastering only 5,000/track, 2 revisions included. 3) Tracking/Recording \u2014 2,000 KES/hr engineering, studio 1,000-5,000/hr. 4) Audio Consultation \u2014 2,500 KES/session, 60min, send materials 12hrs before.',
   production: 'Music Production: 20,000 KES per project. Includes custom instrumentals, vocal arrangement, full song structuring. Collab rate: 50/50 on composition & streaming. Performance track add: +2,000 KES. Stripped version add: +3,000 KES. One revision included, additional 3,000 KES/round. Delivery 7-14 business days.',
-  mixing: 'Mixing & Mastering: Stereo Mix & Master 15,000 KES/track. Album deal (5+ tracks) 12,000 KES/track. Dolby Atmos/Ambisonic 25,000 KES/track. Mastering only 5,000 KES/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Atmos requires min 5 business days.',
+  mixing: 'Mixing: Stereo Mix 15,000 KES/track. Album deal (5+ tracks) 12,000 KES/track. Dolby Atmos/Ambisonic 25,000 KES/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Atmos requires min 5 business days.',
+  mastering: 'Mastering: 5,000 KES/track. Stereo mastering from mixed stems or stereo file. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Album deal available on request.',
+  mixmaster: 'Mixing & Mastering: Stereo Mix & Master 15,000 KES/track. Album deal (5+ tracks) 12,000 KES/track. Dolby Atmos/Ambisonic 25,000 KES/track. Mastering only 5,000 KES/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Atmos requires min 5 business days.',
   tracking: 'Studio session (tracking/recording): Engineering 2,000 KES/hr. Studio space 1,000-5,000 KES/hr depending on location. Includes setup, recording, comping, file delivery. Send materials 24hrs in advance.',
   consultation: 'Audio Consultation: 2,500 KES per session (60 min). Mix feedback, arrangement review, pre-production advice. Send materials 12hrs before. Remote via Zoom/WhatsApp available.',
   releases: 'Latest releases: "Better Person" (Single, 2025) \u2014 https://youtu.be/aAjFKC2pdzw . "Ghost" (Single, 2026) \u2014 https://youtu.be/DX-zDYDqjMk . Full discography on YouTube: https://youtube.com/@Tyrelm',
@@ -29,7 +31,9 @@ const sheng = {
   about: 'Huyu ni Tyrelm (Edwin Matekwa) \u2014 ni mtu wa recording, mixing, mastering na production based Nairobi. Alianzisha Tyrelm Nation, production company inachanga art, music na science.',
   services: 'Service ziko nne: 1) Music Production \u2014 20K KES per project, collab 50/50. 2) Mixing & Mastering \u2014 stereo 15K/track, album 12K/track, Dolby Atmos 25K/track, mastering tu 5K/track. 3) Tracking/Recording \u2014 2K KES/hr, studio 1K-5K/hr. 4) Audio Consultation \u2014 2.5K KES/session.',
   production: 'Music Production ni 20K KES per project. Una custom instrumentals, vocal arrangement, full song structuring. Collab rate 50/50. Performance track +2K, stripped version +3K.',
-  mixing: 'Mixing & Mastering: stereo 15K/track. Album deal 12K/track. Dolby Atmos 25K/track. Mastering tu 5K/track. Delivery 24-bit/48kHz WAV. Revision mbili included.',
+  mixing: 'Mixing: stereo mix 15K/track. Album deal 12K/track. Dolby Atmos 25K/track. Delivery 24-bit/48kHz WAV. Revision mbili included.',
+  mastering: 'Mastering tu: 5K KES/track. Unatumia mixed stems ama stereo file. Delivery 24-bit/48kHz WAV. Revision mbili included.',
+  mixmaster: 'Mixing & Mastering: stereo 15K/track. Album deal 12K/track. Dolby Atmos 25K/track. Mastering tu 5K/track. Delivery 24-bit/48kHz WAV. Revision mbili included.',
   tracking: 'Studio session: Engineering 2K KES/hr. Studio 1K-5K/hr. Inawekwa setup, recording, comping, file delivery.',
   consultation: 'Audio Consultation: 2.5K KES per session (60min). Mix feedback, arrangement advice, pre-production. Remote via Zoom ama WhatsApp.',
   releases: 'Nyimbo mpya: "Better Person" (Single, 2025) na "Ghost" (Single, 2026). YouTube: https://youtube.com/@Tyrelm',
@@ -233,7 +237,13 @@ function sendMsg() {
       }
       return;
     } else if (topic === 'production' || topic === 'mixing' || topic === 'tracking' || topic === 'consultation') {
-      reply = map[topic];
+      if (topic === 'mixing' && /\b(mastering|master)\b/.test(lower) && !/\b(mix|mixing)\b/.test(lower)) {
+        reply = map.mastering;
+      } else if (topic === 'mixing' && /\b(mix|mixing)\b/.test(lower) && /\b(mastering|master)\b/.test(lower)) {
+        reply = (shengMode ? sheng.mixmaster : knowledge.mixmaster);
+      } else {
+        reply = map[topic];
+      }
       addMsg(reply, 'bot');
       return;
     } else if (topic && map[topic]) {
