@@ -51,87 +51,69 @@ function sendMsg() {
     const lower = text.toLowerCase();
     let reply;
 
-    // services general
-    if ((lower.includes('service') || lower.includes('offer') || lower.includes('do you') || lower.includes('what can you')) && !lower.includes('production') && !lower.includes('mix') && !lower.includes('master') && !lower.includes('track') && !lower.includes('consult')) {
-      reply = knowledge.services;
+    // Greeting first
+    if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey') || lower.includes('yo') || lower.includes('sup') || lower.includes('what\'s up') || lower.includes('good morning') || lower.includes('good evening')) {
+      reply = 'Yo! Welcome to Tyrelm Studio. I know everything on the site \u2014 services, rates, releases, experience, merch, stems, the free plugin, and more. What do you need?';
     }
-    // production
-    else if (lower.includes('production') || lower.includes('produce') || lower.includes('beat') || lower.includes('instrumental') || lower.includes('song')) {
-      reply = knowledge.production;
-    }
-    // mixing/mastering
-    else if ((lower.includes('mix') && lower.includes('master')) || lower.includes('mixing') || lower.includes('mastering') || lower.includes('stereo') || lower.includes('atmos') || lower.includes('ambisonic')) {
-      reply = knowledge.mixing;
-    }
-    // tracking / recording
-    else if (lower.includes('track') || lower.includes('recording') || lower.includes('record') || lower.includes('vocal') || lower.includes('voiceover') || lower.includes('voice over') || lower.includes('studio space') || lower.includes('engineering')) {
-      reply = knowledge.tracking;
-    }
-    // consultation
-    else if (lower.includes('consult') || lower.includes('feedback') || lower.includes('pre-production') || lower.includes('arrangement advice') || lower.includes('mix direction')) {
-      reply = knowledge.consultation;
-    }
-    // pricing general
-    else if (lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('kes') || lower.includes('how much') || lower.includes('fee') || lower.includes('charg')) {
-      reply = knowledge.services;
-    }
-    // book / schedule
-    else if (lower.includes('book') || lower.includes('schedule') || lower.includes('appointment') || lower.includes('reserve') || lower.includes('session')) {
-      reply = knowledge.book;
-    }
-    // releases / music / songs
-    else if (lower.includes('release') || lower.includes('music') || lower.includes('song') || lower.includes('single') || lower.includes('album') || lower.includes('listen') || lower.includes('discography') || lower.includes('track')) {
-      reply = knowledge.releases;
-    }
-    // experience / work / projects
-    else if (lower.includes('experience') || lower.includes('work') || lower.includes('project') || lower.includes('client') || lower.includes('portfolio') || lower.includes('career') || lower.includes('background')) {
-      reply = knowledge.experience;
-    }
-    // stems / send files
-    else if (lower.includes('stem') || lower.includes('send') || lower.includes('file') || lower.includes('upload') || lower.includes('track') || lower.includes('wav') || lower.includes('dropbox') || lower.includes('collaborate')) {
-      reply = knowledge.stems;
-    }
-    // plugin
-    else if (lower.includes('plugin') || lower.includes('free') || lower.includes('download') || lower.includes('tyson') || lower.includes('bundle') || lower.includes('tyroom') || lower.includes('tymlapse') || lower.includes('reverb') || lower.includes('delay')) {
-      reply = knowledge.plugin;
-    }
-    // tour / live / sane sessions
-    else if (lower.includes('tour') || lower.includes('live') || lower.includes('sane') || lower.includes('performance') || lower.includes('concert') || lower.includes('show')) {
-      reply = knowledge.tour;
-    }
-    // merch / store / hoodie / tee / cargo
+    // Specific topics checked before generic pricing
     else if (lower.includes('merch') || lower.includes('store') || lower.includes('hoodie') || lower.includes('tee') || lower.includes('shirt') || lower.includes('cargo') || lower.includes('clothing') || lower.includes('buy') || lower.includes('order') || lower.includes('limited')) {
       reply = knowledge.merch;
     }
-    // hours / time
+    else if (lower.includes('production') || lower.includes('produce') || lower.includes('beat') || lower.includes('instrumental') || lower.includes('song')) {
+      reply = knowledge.production;
+    }
+    else if ((lower.includes('mix') && lower.includes('master')) || lower.includes('mixing') || lower.includes('mastering') || lower.includes('stereo') || lower.includes('atmos') || lower.includes('ambisonic')) {
+      reply = knowledge.mixing;
+    }
+    else if (lower.includes('track') || lower.includes('recording') || lower.includes('record') || lower.includes('vocal') || lower.includes('voiceover') || lower.includes('voice over') || lower.includes('studio space') || lower.includes('engineering')) {
+      reply = knowledge.tracking;
+    }
+    else if (lower.includes('consult') || lower.includes('feedback') || lower.includes('pre-production') || lower.includes('arrangement advice') || lower.includes('mix direction')) {
+      reply = knowledge.consultation;
+    }
+    else if (lower.includes('service') || lower.includes('offer') || lower.includes('do you') || lower.includes('what can you')) {
+      reply = knowledge.services;
+    }
+    // Pricing: only if no specific service matched above
+    else if (lower.includes('price') || lower.includes('cost') || lower.includes('rate') || lower.includes('kes') || lower.includes('how much') || lower.includes('fee') || lower.includes('charg')) {
+      reply = knowledge.services;
+    }
+    else if (lower.includes('release') || lower.includes('music') || lower.includes('single') || lower.includes('album') || lower.includes('listen') || lower.includes('discography')) {
+      reply = knowledge.releases;
+    }
+    else if (lower.includes('experience') || lower.includes('work') || lower.includes('project') || lower.includes('client') || lower.includes('portfolio') || lower.includes('career') || lower.includes('background')) {
+      reply = knowledge.experience;
+    }
+    else if (lower.includes('stem') || lower.includes('send') || lower.includes('file') || lower.includes('upload') || lower.includes('wav') || lower.includes('dropbox') || lower.includes('collaborate')) {
+      reply = knowledge.stems;
+    }
+    else if (lower.includes('plugin') || lower.includes('free') || lower.includes('download') || lower.includes('tyson') || lower.includes('bundle') || lower.includes('tyroom') || lower.includes('tymlapse') || lower.includes('reverb') || lower.includes('delay')) {
+      reply = knowledge.plugin;
+    }
+    else if (lower.includes('tour') || lower.includes('live') || lower.includes('sane') || lower.includes('performance') || lower.includes('concert') || lower.includes('show')) {
+      reply = knowledge.tour;
+    }
+    else if (lower.includes('book') || lower.includes('schedule') || lower.includes('appointment') || lower.includes('reserve') || lower.includes('session')) {
+      reply = knowledge.book;
+    }
     else if (lower.includes('hour') || lower.includes('time') || lower.includes('when') || lower.includes('open') || lower.includes('available')) {
       reply = knowledge.hours;
     }
-    // location / where / nairobi
     else if (lower.includes('location') || lower.includes('where') || lower.includes('nairobi') || lower.includes('remote') || lower.includes('address') || lower.includes('based')) {
       reply = knowledge.location;
     }
-    // newsletter / subscribe / mailing
     else if (lower.includes('newsletter') || lower.includes('subscribe') || lower.includes('mailing') || lower.includes('email list') || lower.includes('stay connected')) {
       reply = knowledge.newsletter;
     }
-    // terms / credits
     else if (lower.includes('term') || lower.includes('credit') || lower.includes('policy') || lower.includes('condition')) {
       reply = knowledge.terms;
     }
-    // contact / whatsapp / email / instagram
     else if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('email') || lower.includes('instagram') || lower.includes('reach') || lower.includes('social') || lower.includes('phone') || lower.includes('number')) {
       reply = knowledge.contact;
     }
-    // about / who is
     else if (lower.includes('who') || lower.includes('about') || lower.includes('tyrelm') || lower.includes('matekwa') || lower.includes('edwin') || lower.includes('story') || lower.includes('bio')) {
       reply = knowledge.about;
     }
-    // greeting
-    else if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey') || lower.includes('yo') || lower.includes('sup') || lower.includes('what\'s up') || lower.includes('good morning') || lower.includes('good evening')) {
-      reply = 'Yo! Welcome to Tyrelm Studio. I know everything on the site \u2014 services, rates, releases, experience, merch, stems, the free plugin, and more. What do you need?';
-    }
-    // fallback
     else {
       reply = 'I can answer about: services & pricing, music production, mixing/mastering, tracking/recording, consultation, releases, experience, sending stems, the free plugin, tour, merch, booking, hours, location, contact, newsletter, and terms. Or WhatsApp +254 706 602 914.';
     }
