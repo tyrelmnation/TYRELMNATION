@@ -449,6 +449,9 @@ if (heroVideo && heroPoster) {
 }
 
 // PORTFOLIO
+function encodePath(p) {
+  return p.split('/').map(function(s) { return encodeURIComponent(s); }).join('/');
+}
 function loadPortfolio() {
   var grid = document.getElementById('portfolioGrid');
   if (!grid) return;
@@ -456,7 +459,9 @@ function loadPortfolio() {
     tracks.forEach(function(t, i) {
       var card = document.createElement('div');
       card.className = 'portfolio-card';
-      card.innerHTML = '<div class="portfolio-card-art"><img src="' + t.art + '" alt="' + t.title + '" loading="lazy"></div><div class="portfolio-card-body"><div class="portfolio-card-title">' + t.title + '</div><div class="portfolio-card-artist">' + t.artist + '</div></div><div class="portfolio-card-versions"><audio id="audio-' + i + '" preload="none"><source src="' + t.raw + '" type="audio/mpeg"></audio><button class="portfolio-version version-raw" onclick="togglePortfolioAudio(' + i + ')"><span class="version-label">Raw</span><span class="version-icon">\u25B6</span></button><button class="portfolio-version version-final" onclick="playPortfolioFinal(\'' + t.final + '\')"><span class="version-label">Final</span><span class="version-icon">\u25B6</span></button></div>';
+      var artSrc = encodePath(t.art);
+      var rawSrc = encodePath(t.raw);
+      card.innerHTML = '<div class="portfolio-card-art"><img src="' + artSrc + '" alt="' + t.title + '" loading="lazy"></div><div class="portfolio-card-body"><div class="portfolio-card-title">' + t.title + '</div><div class="portfolio-card-artist">' + t.artist + '</div></div><div class="portfolio-card-versions"><audio id="audio-' + i + '" preload="none"><source src="' + rawSrc + '" type="audio/mpeg"></audio><button class="portfolio-version version-raw" onclick="togglePortfolioAudio(' + i + ')"><span class="version-label">Raw</span><span class="version-icon">\u25B6</span></button><button class="portfolio-version version-final" onclick="playPortfolioFinal(\'' + t.final + '\')"><span class="version-label">Final</span><span class="version-icon">\u25B6</span></button></div>';
       grid.appendChild(card);
     });
   }).catch(function() {});
