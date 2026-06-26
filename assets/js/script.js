@@ -6,20 +6,20 @@ let shengMode = false;
 
 const knowledge = {
   about: 'Tyrelm (Edwin Matekwa) is a recording, mixing, mastering, and production engineer based in Nairobi, Kenya. He founded Tyrelm Nation, a production company blending art, music, and science for talent discovery.',
-  services: 'Four services: 1) Music Production \u2014 20,000 KES/project, collab 50/50, perf track +2,000, stripped +3,000. 2) Mixing & Mastering \u2014 stereo 15,000/track, album 12,000/track, Dolby Atmos 25,000/track, mastering only 5,000/track, 2 revisions included. 3) Tracking/Recording \u2014 2,000 KES/hr engineering, studio 1,000-5,000/hr. 4) Audio Consultation \u2014 2,500 KES/session, 60min, send materials 12hrs before.',
-  production: 'Music Production: 20,000 KES per project. Includes custom instrumentals, vocal arrangement, full song structuring. Collab rate: 50/50 on composition & streaming. Performance track add: +2,000 KES. Stripped version add: +3,000 KES. One revision included, additional 3,000 KES/round. Delivery 7-14 business days.',
-  mixing: 'Mixing: Stereo Mix 15,000 KES/track. Album deal (5+ tracks) 12,000 KES/track. Dolby Atmos/Ambisonic 25,000 KES/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Atmos requires min 5 business days.',
-  mastering: 'Mastering: 5,000 KES/track. Stereo mastering from mixed stems or stereo file. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Album deal available on request.',
-  mixmaster: 'Mixing & Mastering: Stereo Mix & Master 15,000 KES/track. Album deal (5+ tracks) 12,000 KES/track. Dolby Atmos/Ambisonic 25,000 KES/track. Mastering only 5,000 KES/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES/pass. Atmos requires min 5 business days.',
-  tracking: 'Studio session (tracking/recording): Engineering 2,000 KES/hr. Studio space 1,000-5,000 KES/hr depending on location. Includes setup, recording, comping, file delivery. Send materials 24hrs in advance.',
-  consultation: 'Audio Consultation: 2,500 KES per session (60 min). Mix feedback, arrangement review, pre-production advice. Send materials 12hrs before. Remote via Zoom/WhatsApp available.',
+  services: 'Four services: 1) Music Production \u2014 20,000 KES ($154)/project, collab 50/50, perf track +2,000 ($15), stripped +3,000 ($23). 2) Mixing & Mastering \u2014 stereo 15,000 ($115)/track, album 12,000 ($92)/track, Dolby Atmos 25,000 ($192)/track, mastering only 5,000 ($38)/track, 2 revisions included. 3) Tracking/Recording \u2014 2,000 KES ($15)/hr engineering, studio 1,000-5,000 ($8-$38)/hr. 4) Audio Consultation \u2014 2,500 KES ($19)/session, 60min, send materials 12hrs before.',
+  production: 'Music Production: 20,000 KES ($154) per project. Includes custom instrumentals, vocal arrangement, full song structuring. Collab rate: 50/50 on composition & streaming. Performance track add: +2,000 KES ($15). Stripped version add: +3,000 KES ($23). One revision included, additional 3,000 KES ($23)/round. Delivery 7-14 business days.',
+  mixing: 'Mixing: Stereo Mix 15,000 KES ($115)/track. Album deal (5+ tracks) 12,000 KES ($92)/track. Dolby Atmos/Ambisonic 25,000 KES ($192)/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES ($19)/pass. Atmos requires min 5 business days.',
+  mastering: 'Mastering: 5,000 KES ($38)/track. Stereo mastering from mixed stems or stereo file. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES ($19)/pass. Album deal available on request.',
+  mixmaster: 'Mixing & Mastering: Stereo Mix & Master 15,000 KES ($115)/track. Album deal (5+ tracks) 12,000 KES ($92)/track. Dolby Atmos/Ambisonic 25,000 KES ($192)/track. Mastering only 5,000 KES ($38)/track. Delivered 24-bit/48kHz WAV. 2 revision passes included, additional 2,500 KES ($19)/pass. Atmos requires min 5 business days.',
+  tracking: 'Studio session (tracking/recording): Engineering 2,000 KES ($15)/hr. Studio space 1,000-5,000 KES ($8-$38)/hr depending on location. Includes setup, recording, comping, file delivery. Send materials 24hrs in advance.',
+  consultation: 'Audio Consultation: 2,500 KES ($19) per session (60 min). Mix feedback, arrangement review, pre-production advice. Send materials 12hrs before. Remote via Zoom/WhatsApp available.',
   releases: 'Latest releases: "Better Person" (Single, 2025) \u2014 https://youtu.be/aAjFKC2pdzw . "Ghost" (Single, 2026) \u2014 https://youtu.be/DX-zDYDqjMk . Full discography on YouTube: https://youtube.com/@Tyrelm',
   experience: 'Experience: 2026 \u2014 Session Diaspor.a (Matt Ngesa, Clerk Keeng, Mordecai Dex). 2024-26 \u2014 Wyatt Boyer (Chicago) mixing/mastering. 2025-26 \u2014 ARGO AR Game soundtrack (with WWF-Kenya). 2025 \u2014 "Time and Space" + "Broken Diary" albums (15 tracks). 2023 \u2014 Lowki The Great "Rise of Greatness", Dicemane "Resilient"/"Rudia" (radio airplay, Shoke Shoke Fest nom). 2018-25 \u2014 Voice over, theme songs, sync licensing.',
-  beats: 'Beat licensing: MP3 Lease 5,000 KES, WAV Lease 8,000 KES, Stems Lease (music/drum/bass stems) 10,000 KES, Exclusive (all separated multi-tracks) 70,000 KES. Order via WhatsApp +254 706 602 914.',
+  beats: 'Beat licensing: MP3 Lease 5,000 KES ($38), WAV Lease 8,000 KES ($62), Stems Lease (music/drum/bass stems) 10,000 KES ($77), Exclusive (all separated multi-tracks) 70,000 KES ($538). Order via WhatsApp +254 706 602 914.',
   stems: 'Send your stems via: 1) WhatsApp \u2014 quick voice notes/ideas. 2) Email tyrellmatekwa@gmail.com \u2014 full tracks. 3) Dropbox \u2014 large projects: https://www.dropbox.com/request/cq6xi9h8o504mm926l37 . Reviews within 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
   plugin: 'Free TYSONICS bundle includes TYROOM (analog reverb emulation) and TYMLAPSE (delay). Download from the Free Plugin section on the site.',
   tour: 'Sane Sessions \u2014 a live performance series blending raw performance, atmosphere, and sound. Coming soon. Dates TBA. Performances across the country.',
-  merch: 'T-shirt and cargo pants: 2,100 KES \u2014 they come as a pair. Hoodie and cargo: 2,500 KES. Great value! Options: White set 2,500, Black set 2,500, White Tee + Black Cargo 2,100, Black Tee + White Cargo 2,100, Limited Edition 4,000. Order via WhatsApp +254 706 602 914.',
+  merch: 'T-shirt and cargo pants: 2,100 KES ($16) \u2014 they come as a pair. Hoodie and cargo: 2,500 KES ($19). Great value! Options: White set 2,500 ($19), Black set 2,500 ($19), White Tee + Black Cargo 2,100 ($16), Black Tee + White Cargo 2,100 ($16), Limited Edition 4,000 ($31). Order via WhatsApp +254 706 602 914.',
   book: 'To book a session: WhatsApp +254 706 602 914 or email tyrellmatekwa@gmail.com. Direct line: tyrellmatekwa@gmail.com | +254 706 602 914. Confirmation within 24hrs.',
   hours: 'Studio sessions typically 10am-8pm EAT (East Africa Time). Flexible by arrangement. Remote sessions available worldwide.',
   location: 'Based in Nairobi, Kenya. Remote sessions available worldwide for mixing, mastering, and consultation.',
@@ -30,16 +30,16 @@ const knowledge = {
 
 const sheng = {
   about: 'Huyu ni Tyrelm (Edwin Matekwa) \u2014 ni mtu wa recording, mixing, mastering na production based Nairobi. Alianzisha Tyrelm Nation, production company inachanga art, music na science.',
-  services: 'Service ziko nne: 1) Music Production \u2014 20K KES per project, collab 50/50. 2) Mixing & Mastering \u2014 stereo 15K/track, album 12K/track, Dolby Atmos 25K/track, mastering tu 5K/track. 3) Tracking/Recording \u2014 2K KES/hr, studio 1K-5K/hr. 4) Audio Consultation \u2014 2.5K KES/session.',
-  production: 'Music Production ni 20K KES per project. Una custom instrumentals, vocal arrangement, full song structuring. Collab rate 50/50. Performance track +2K, stripped version +3K.',
-  mixing: 'Mixing: stereo mix 15K/track. Album deal 12K/track. Dolby Atmos 25K/track. Delivery 24-bit/48kHz WAV. Revision mbili included.',
-  mastering: 'Mastering tu: 5K KES/track. Unatumia mixed stems ama stereo file. Delivery 24-bit/48kHz WAV. Revision mbili included.',
-  mixmaster: 'Mixing & Mastering: stereo 15K/track. Album deal 12K/track. Dolby Atmos 25K/track. Mastering tu 5K/track. Delivery 24-bit/48kHz WAV. Revision mbili included.',
-  tracking: 'Studio session: Engineering 2K KES/hr. Studio 1K-5K/hr. Inawekwa setup, recording, comping, file delivery.',
-  consultation: 'Audio Consultation: 2.5K KES per session (60min). Mix feedback, arrangement advice, pre-production. Remote via Zoom ama WhatsApp.',
+  services: 'Service ziko nne: 1) Music Production \u2014 20K KES ($154) per project, collab 50/50. 2) Mixing & Mastering \u2014 stereo 15K ($115)/track, album 12K ($92)/track, Dolby Atmos 25K ($192)/track, mastering tu 5K ($38)/track. 3) Tracking/Recording \u2014 2K KES ($15)/hr, studio 1K-5K ($8-$38)/hr. 4) Audio Consultation \u2014 2.5K KES ($19)/session.',
+  production: 'Music Production ni 20K KES ($154) per project. Una custom instrumentals, vocal arrangement, full song structuring. Collab rate 50/50. Performance track +2K ($15), stripped version +3K ($23).',
+  mixing: 'Mixing: stereo mix 15K ($115)/track. Album deal 12K ($92)/track. Dolby Atmos 25K ($192)/track. Delivery 24-bit/48kHz WAV. Revision mbili included.',
+  mastering: 'Mastering tu: 5K KES ($38)/track. Unatumia mixed stems ama stereo file. Delivery 24-bit/48kHz WAV. Revision mbili included.',
+  mixmaster: 'Mixing & Mastering: stereo 15K ($115)/track. Album deal 12K ($92)/track. Dolby Atmos 25K ($192)/track. Mastering tu 5K ($38)/track. Delivery 24-bit/48kHz WAV. Revision mbili included.',
+  tracking: 'Studio session: Engineering 2K KES ($15)/hr. Studio 1K-5K ($8-$38)/hr. Inawekwa setup, recording, comping, file delivery.',
+  consultation: 'Audio Consultation: 2.5K KES ($19) per session (60min). Mix feedback, arrangement advice, pre-production. Remote via Zoom ama WhatsApp.',
   releases: 'Nyimbo mpya: "Better Person" (Single, 2025) na "Ghost" (Single, 2026). YouTube: https://youtube.com/@Tyrelm',
   experience: 'Experience: 2026 Session Diaspor.a, 2024-26 Wyatt Boyer, 2025-26 ARGO Game soundtrack, 2025 Albums "Time and Space" na "Broken Diary", 2023 Lowki The Great na Dicemane.',
-  beats: 'Beat licensing: MP3 Lease 5K KES, WAV Lease 8K KES, Stems Lease (music/drum/bass stems) 10K KES, Exclusive (all separated multi-tracks) 70K KES. Order via WhatsApp +254 706 602 914.',
+  beats: 'Beat licensing: MP3 Lease 5K KES ($38), WAV Lease 8K KES ($62), Stems Lease 10K KES ($77), Exclusive 70K KES ($538). Order via WhatsApp +254 706 602 914.',
   stems: 'Tuma stems zako via: 1) WhatsApp, 2) Email tyrellmatekwa@gmail.com, 3) Dropbox. Reviews 2-3 business days. Format: 24-bit/44k-48kHz WAV.',
   plugin: 'Free TYSONICS bundle iko na TYROOM (reverb) na TYMLAPSE (delay). Download free from Free Plugin section.',
   tour: 'Sane Sessions \u2014 live performance series. Inakuja soon. Dates zitatangazwa.',
@@ -194,7 +194,7 @@ function sendMsg() {
     // Price complaint handler
     const priceComplaints = /\b(expensive|ghali|too much|bei mbaya|expensive sana|too expensive|overpriced|pricey|costly|ni bei|sana hii bei|bei yote)\b/;
     if (priceComplaints.test(lower)) {
-      addMsg(shengMode ? '\uD83D\uDE02\uD83D\uDE02nakufanyia na bei fiti mali ni safi' : 'The prices are fair for the quality. A T-shirt and cargo set is 2,100 KES, hoodie and cargo set is 2,500 KES \u2014 good value.', 'bot');
+      addMsg(shengMode ? '\uD83D\uDE02\uD83D\uDE02nakufanyia na bei fiti mali ni safi' : 'The prices are fair for the quality. A T-shirt and cargo set is 2,100 KES ($16), hoodie and cargo set is 2,500 KES ($19) \u2014 good value.', 'bot');
       return;
     }
 
@@ -217,25 +217,25 @@ function sendMsg() {
       addMsg(map.merch, 'bot');
       if (/\b(tee|t.?shirt|tshirt|shati)\b/.test(lower) && !/\b(hoodie|hood)\b/.test(lower)) {
         showMerchCards([
-          { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set.' },
-          { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set.' }
+          { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100 ($16)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set.' },
+          { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100 ($16)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set.' }
         ]);
       } else if (/\b(hoodie|hood)\b/.test(lower) && !/\b(tee|t.?shirt|tshirt)\b/.test(lower)) {
         showMerchCards([
-          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set.' },
-          { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set.' }
+          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500 ($19)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set.' },
+          { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500 ($19)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set.' }
         ]);
       } else if (/\b(limited)\b/.test(lower)) {
         showMerchCards([
-          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set.' }
+          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000 ($31)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set.' }
         ]);
       } else {
         showMerchCards([
-          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set.' },
-          { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set.' },
-          { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set.' },
-          { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set.' },
-          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set.' }
+          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/white-cargo.webp', name: 'White Set', price: 'KSh 2,500 ($19)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set.' },
+          { top: 'PICS/black-hoodie.webp', bottom: 'PICS/black-cargo.webp', name: 'Black Set', price: 'KSh 2,500 ($19)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set.' },
+          { top: 'PICS/white-tee-front.webp', bottom: 'PICS/black-cargo.webp', name: 'White Tee + Black Cargo', price: 'KSh 2,100 ($16)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set.' },
+          { top: 'PICS/black-tee-front.webp', bottom: 'PICS/white-cargo.webp', name: 'Black Tee + White Cargo', price: 'KSh 2,100 ($16)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set.' },
+          { top: 'PICS/white-hoodie.webp', bottom: 'PICS/limited-cargo.webp', name: 'Limited Edition', price: 'KSh 4,000 ($31)', link: 'https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set.' }
         ]);
       }
       return;
@@ -321,7 +321,7 @@ const termsData = {
   production: [
     'Client provides reference tracks and creative brief.',
     'One revision round included in the base rate.',
-    'Additional revisions: 3,000 KES per round.',
+    'Additional revisions: 3,000 KES ($23) per round.',
     'Client receives 24-bit/48kHz WAV stems upon final payment.',
     'Producer retains 50% publishing credit on collab projects.',
     'Delivery within 7\u201314 business days.',
@@ -329,7 +329,7 @@ const termsData = {
   mixing: [
     'Client supplies recorded tracks as 24-bit/44.1kHz or 48kHz WAV.',
     'Up to 2 revision passes included.',
-    'Additional revisions: 2,500 KES per pass.',
+    'Additional revisions: 2,500 KES ($19) per pass.',
     'Delivered as 24-bit/48kHz stereo WAV + mp3 preview.',
     'Dolby Atmos mix requires minimum 5 business days.',
     'Album deal applies to 5+ tracks booked together.',
