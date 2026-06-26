@@ -190,26 +190,7 @@
         <h2>Latest <em>Work</em></h2>
         <p>Listen to recent releases.</p>
       </div>
-      <div class="showreel-grid fade-in">
-        <div class="showreel-card" onclick="playShowreel('https://www.youtube.com/embed/aAjFKC2pdzw?autoplay=1')">
-          <div class="showreel-thumb" style="background:var(--black-3);">
-            <span class="showreel-play-icon">&#9654;</span>
-          </div>
-          <div class="showreel-info">
-            <div class="showreel-title">Better Person</div>
-            <div class="showreel-artist">Tyrelm</div>
-          </div>
-        </div>
-        <div class="showreel-card" onclick="playShowreel('https://www.youtube.com/embed/DX-zDYDqjMk?autoplay=1')">
-          <div class="showreel-thumb" style="background:var(--black-3);">
-            <span class="showreel-play-icon">&#9654;</span>
-          </div>
-          <div class="showreel-info">
-            <div class="showreel-title">Ghost</div>
-            <div class="showreel-artist">Tyrelm</div>
-          </div>
-        </div>
-      </div>
+      <div class="portfolio-grid fade-in" id="portfolioGrid"></div>
     </div>
     <div class="showreel-player-overlay" id="showreelPlayer" style="display:none" onclick="closeShowreelPlayer()">
       <div class="showreel-player-inner" onclick="event.stopPropagation()">
@@ -596,6 +577,6 @@
     </div>
   </div>
 
-  <script src="assets/js/script.js?v=23"></script>
+  <script src="assets/js/script.js?v=24"></script>
 </body>
 </html>

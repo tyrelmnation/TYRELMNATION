@@ -448,8 +448,28 @@ if (heroVideo && heroPoster) {
   }
 }
 
-// SHOWREEL
-function playShowreel(src) {
+// PORTFOLIO
+function loadPortfolio() {
+  var grid = document.getElementById('portfolioGrid');
+  if (!grid) return;
+  fetch('portfolio/tracks.json').then(function(r) { return r.json(); }).then(function(tracks) {
+    tracks.forEach(function(t, i) {
+      var card = document.createElement('div');
+      card.className = 'portfolio-card';
+      card.innerHTML = '<div class="portfolio-info"><div class="portfolio-title">' + t.title + '</div><div class="portfolio-artist">' + t.artist + '</div></div><div class="portfolio-controls"><audio id="audio-' + i + '" preload="none"><source src="' + t.raw + '" type="audio/mpeg"></audio><button class="portfolio-btn" onclick="togglePortfolioAudio(' + i + ')">\u25B6 Raw</button><button class="portfolio-btn portfolio-btn-final" onclick="playPortfolioFinal(\'' + t.final + '\')">\u25B6 Final</button></div>';
+      grid.appendChild(card);
+    });
+  }).catch(function() {});
+}
+var portfolioAudio = null;
+function togglePortfolioAudio(i) {
+  var audio = document.getElementById('audio-' + i);
+  var btn = audio.parentNode.querySelector('.portfolio-btn');
+  if (portfolioAudio && portfolioAudio !== audio) { portfolioAudio.pause(); portfolioAudio.currentTime = 0; var b = portfolioAudio.parentNode.querySelector('.portfolio-btn'); if (b) b.textContent = '\u25B6 Raw'; }
+  if (audio.paused) { audio.play(); btn.textContent = '\u23F8 Raw'; portfolioAudio = audio; audio.onended = function() { btn.textContent = '\u25B6 Raw'; }; }
+  else { audio.pause(); btn.textContent = '\u25B6 Raw'; }
+}
+function playPortfolioFinal(src) {
   document.getElementById('showreelIframe').src = src;
   document.getElementById('showreelPlayer').style.display = 'flex';
 }
@@ -457,3 +477,4 @@ function closeShowreelPlayer() {
   document.getElementById('showreelIframe').src = '';
   document.getElementById('showreelPlayer').style.display = 'none';
 }
+if (document.getElementById('portfolioGrid')) { loadPortfolio(); }
