@@ -190,7 +190,34 @@
         <h2>Before <em>/</em> After</h2>
         <p>Raw vs mixed — hear the difference.</p>
       </div>
-      <div class="showreel-grid fade-in" id="showreelGrid"></div>
+      <div class="showreel-grid fade-in">
+        <div class="showreel-card" onclick="playShowreel('https://www.youtube.com/embed/aAjFKC2pdzw?autoplay=1')">
+          <div class="showreel-thumb" style="background:var(--black-3);">
+            <span class="showreel-play-icon">&#9654;</span>
+          </div>
+          <div class="showreel-info">
+            <div class="showreel-title">Better Person</div>
+            <div class="showreel-artist">Tyrelm</div>
+          </div>
+        </div>
+        <div class="showreel-card" onclick="playShowreel('https://www.youtube.com/embed/DX-zDYDqjMk?autoplay=1')">
+          <div class="showreel-thumb" style="background:var(--black-3);">
+            <span class="showreel-play-icon">&#9654;</span>
+          </div>
+          <div class="showreel-info">
+            <div class="showreel-title">Ghost</div>
+            <div class="showreel-artist">Tyrelm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="showreel-player-overlay" id="showreelPlayer" style="display:none" onclick="closeShowreelPlayer()">
+      <div class="showreel-player-inner" onclick="event.stopPropagation()">
+        <button class="showreel-player-close" onclick="closeShowreelPlayer()">&times;</button>
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
+          <iframe id="showreelIframe" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+        </div>
+      </div>
     </div>
   </section>
 

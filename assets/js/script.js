@@ -449,47 +449,11 @@ if (heroVideo && heroPoster) {
 }
 
 // SHOWREEL
-function loadShowreel() {
-  var grid = document.getElementById('showreelGrid');
-  if (!grid) return;
-  fetch('before-after/tracks.json').then(function(r) { return r.json(); }).then(function(tracks) {
-    tracks.forEach(function(t, i) {
-      var card = document.createElement('div');
-      card.className = 'showreel-card';
-      card.innerHTML = '<div class="showreel-info"><div class="showreel-title">' + t.title + '</div><div class="showreel-artist">' + t.artist + '</div></div><div class="showreel-controls"><button class="showreel-btn active" data-track="' + i + '" data-version="before">Raw</button><button class="showreel-btn" data-track="' + i + '" data-version="after">Mixed</button><button class="showreel-play" data-track="' + i + '">\u25B6</button></div>';
-      grid.appendChild(card);
-    });
-    setupShowreelPlayers(tracks);
-  }).catch(function() {});
+function playShowreel(src) {
+  document.getElementById('showreelIframe').src = src;
+  document.getElementById('showreelPlayer').style.display = 'flex';
 }
-function setupShowreelPlayers(tracks) {
-  var audio = new Audio();
-  var btns = document.querySelectorAll('.showreel-btn');
-  var playBtns = document.querySelectorAll('.showreel-play');
-  btns.forEach(function(b) {
-    b.addEventListener('click', function() {
-      var parent = this.parentNode;
-      parent.querySelectorAll('.showreel-btn').forEach(function(x) { x.classList.remove('active'); });
-      this.classList.add('active');
-    });
-  });
-  playBtns.forEach(function(b) {
-    b.addEventListener('click', function() {
-      var i = this.getAttribute('data-track');
-      var parent = this.parentNode;
-      var version = parent.querySelector('.showreel-btn.active').getAttribute('data-version');
-      var src = tracks[i][version];
-      if (audio.src && audio.src.indexOf(src) !== -1 && !audio.paused) {
-        audio.pause();
-        this.textContent = '\u25B6';
-      } else {
-        audio.src = src;
-        audio.play();
-        this.textContent = '\u23F8';
-        audio.onended = function() { b.textContent = '\u25B6'; };
-      }
-    });
-  });
+function closeShowreelPlayer() {
+  document.getElementById('showreelIframe').src = '';
+  document.getElementById('showreelPlayer').style.display = 'none';
 }
-// Init showreel
-if (document.getElementById('showreelGrid')) { loadShowreel(); }
