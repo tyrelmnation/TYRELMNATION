@@ -562,15 +562,7 @@
       <span class="section-label">Video</span>
       <h2>Gallery</h2>
     </div>
-    <div class="video-gallery-grid">
-      <div class="video-gallery-item" onclick="playVideo('VIDEOS/ghost%20tyrelm_001.mp4', 'PICS/ghost-thumb.webp')">
-        <div class="video-gallery-thumb" style="background:var(--black-3);padding:0;">
-          <img src="PICS/ghost-thumb.webp" alt="Ghost" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;">
-          <span class="video-gallery-play-icon" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px;">&#9654;</span>
-        </div>
-        <div class="video-gallery-item-title">Ghost</div>
-      </div>
-    </div>
+    <div class="video-gallery-grid" id="videoGalleryGrid"></div>
     <div class="video-gallery-player" id="videoPlayer" style="display:none;">
       <video controls preload="none" id="galleryVideo" style="width:100%;display:block;border-radius:12px;">
         <source src="" type="video/mp4">
@@ -578,6 +570,6 @@
     </div>
   </div>
 
-  <script src="assets/js/script.js?v=28"></script>
+  <script src="assets/js/script.js?v=29"></script>
 </body>
 </html>

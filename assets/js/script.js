@@ -364,6 +364,26 @@ document.getElementById('termsModal').addEventListener('click', function(e) {
 });
 
 // VIDEO GALLERY
+function loadGallery() {
+  var grid = document.getElementById('videoGalleryGrid');
+  if (!grid) return;
+  fetch('gallery/videos.json').then(function(r) { return r.json(); }).then(function(videos) {
+    videos.forEach(function(v) {
+      var item = document.createElement('div');
+      item.className = 'video-gallery-item';
+      var thumbSrc = v.thumb || guessThumb(v.video);
+      var videoEnc = encodePath(v.video);
+      var thumbEnc = encodePath(thumbSrc);
+      item.innerHTML = '<div class="video-gallery-thumb" style="background:var(--black-3);padding:0;"><img src="' + thumbEnc + '" alt="' + v.title + '" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';"><span class="video-gallery-play-icon" style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;font-size:40px;">&#9654;</span></div><div class="video-gallery-item-title">' + v.title + '</div>';
+      item.onclick = function() { playVideo(videoEnc, thumbEnc); };
+      grid.appendChild(item);
+    });
+  }).catch(function() {});
+}
+function guessThumb(videoPath) {
+  var name = videoPath.split('/').pop().replace(/\.\w+$/, '');
+  return 'PICS/' + name + '-thumb.webp';
+}
 function openVideoGallery() {
   document.getElementById('videoGallery').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -500,3 +520,4 @@ function showGalleryArt() {
   inner.appendChild(img);
 }
 if (document.getElementById('portfolioGrid')) { loadPortfolio(); }
+if (document.getElementById('videoGalleryGrid')) { loadGallery(); }
