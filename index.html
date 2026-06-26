@@ -349,15 +349,35 @@
   </section>
 
   <!-- FREE PLUGIN -->
-  <section class="section" id="plugin" style="padding:60px 0;">
+  <section class="section" id="plugin">
     <div class="container">
-      <div class="legacy-plugin fade-in" style="border:1px solid rgba(255,255,255,0.15);">
+      <div class="plugin-section fade-in">
         <span class="section-label">Free Plugin</span>
-        <h2>TY<em>ROOM &amp; TYMLAPSE</em></h2>
-        <p>TYSONICS — analog emulation reverb &amp; delay plugins. Free to download.</p>
-        <div class="plugin-download-form" style="display:flex;gap:8px;max-width:400px;margin:0 auto;flex-wrap:wrap;justify-content:center;">
-          <input type="email" id="pluginEmail" placeholder="Enter your email" required style="flex:1;min-width:180px;padding:14px 20px;background:var(--black);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-size:14px;outline:none;">
-          <button onclick="downloadPlugin()" class="btn" style="background:var(--white);color:var(--black);padding:14px 28px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;">Download Free Bundle</button>
+        <h2>TY<em>ROOM</em></h2>
+        <p class="sub">Algorithmic reverb — analog warmth, HISE-built</p>
+        <p class="desc">Free plate-style reverb with Room→Hall switching, 3-band EQ, analog preamp, and a Sheng/Swahili interface. Built to compete with premium plates at zero cost.</p>
+
+        <div class="plugin-features">
+          <div class="plugin-feature"><span class="icon">↔</span><span><strong>Room→Hall</strong><br><span class="tag">algorithm switch</span></span></div>
+          <div class="plugin-feature"><span class="icon">⏱</span><span><strong>Decay + Pre-delay</strong><br><span class="tag">tail time &amp; onset gap</span></span></div>
+          <div class="plugin-feature"><span class="icon">🎛</span><span><strong>3-band EQ</strong><br><span class="tag">cut mud &amp; shape tone</span></span></div>
+          <div class="plugin-feature"><span class="icon">⚡</span><span><strong>Analog Preamp</strong><br><span class="tag">warmth &amp; saturation</span></span></div>
+          <div class="plugin-feature"><span class="icon">✨</span><span><strong>Animated UI</strong><br><span class="tag">smooth parameter transitions</span></span></div>
+          <div class="plugin-feature"><span class="icon">🌍</span><span><strong>Sheng / Swahili</strong><br><span class="tag">localized interface</span></span></div>
+        </div>
+
+        <div class="plugin-badges">
+          <span class="plugin-badge hise">HISE</span>
+          <span class="plugin-badge vst3">VST3</span>
+          <span class="plugin-badge au">AU</span>
+          <span class="plugin-badge aax">AAX</span>
+        </div>
+
+        <p class="sub" style="margin-bottom:12px;">Also includes <strong>TYMLAPSE</strong> — analog delay plugin</p>
+
+        <div class="plugin-download-form">
+          <input type="email" id="pluginEmail" placeholder="Enter your email" required class="plugin-email-input">
+          <button onclick="downloadPlugin()" class="btn plugin-dl-btn">Download Free Bundle</button>
         </div>
       </div>
     </div>
@@ -570,6 +590,6 @@
     </div>
   </div>
 
-  <script src="assets/js/script.js?v=29"></script>
+  <script src="assets/js/script.js?v=30"></script>
 </body>
 </html>
