@@ -456,7 +456,7 @@ function loadPortfolio() {
     tracks.forEach(function(t, i) {
       var card = document.createElement('div');
       card.className = 'portfolio-card';
-      card.innerHTML = '<div class="portfolio-info"><div class="portfolio-title">' + t.title + '</div><div class="portfolio-artist">' + t.artist + '</div></div><div class="portfolio-controls"><audio id="audio-' + i + '" preload="none"><source src="' + t.raw + '" type="audio/mpeg"></audio><button class="portfolio-btn" onclick="togglePortfolioAudio(' + i + ')">\u25B6 Raw</button><button class="portfolio-btn portfolio-btn-final" onclick="playPortfolioFinal(\'' + t.final + '\')">\u25B6 Final</button></div>';
+      card.innerHTML = '<div class="portfolio-card-art"><img src="' + t.art + '" alt="' + t.title + '" loading="lazy"></div><div class="portfolio-card-body"><div class="portfolio-card-title">' + t.title + '</div><div class="portfolio-card-artist">' + t.artist + '</div></div><div class="portfolio-card-versions"><audio id="audio-' + i + '" preload="none"><source src="' + t.raw + '" type="audio/mpeg"></audio><button class="portfolio-version version-raw" onclick="togglePortfolioAudio(' + i + ')"><span class="version-label">Raw</span><span class="version-icon">\u25B6</span></button><button class="portfolio-version version-final" onclick="playPortfolioFinal(\'' + t.final + '\')"><span class="version-label">Final</span><span class="version-icon">\u25B6</span></button></div>';
       grid.appendChild(card);
     });
   }).catch(function() {});
@@ -464,10 +464,12 @@ function loadPortfolio() {
 var portfolioAudio = null;
 function togglePortfolioAudio(i) {
   var audio = document.getElementById('audio-' + i);
-  var btn = audio.parentNode.querySelector('.portfolio-btn');
-  if (portfolioAudio && portfolioAudio !== audio) { portfolioAudio.pause(); portfolioAudio.currentTime = 0; var b = portfolioAudio.parentNode.querySelector('.portfolio-btn'); if (b) b.textContent = '\u25B6 Raw'; }
-  if (audio.paused) { audio.play(); btn.textContent = '\u23F8 Raw'; portfolioAudio = audio; audio.onended = function() { btn.textContent = '\u25B6 Raw'; }; }
-  else { audio.pause(); btn.textContent = '\u25B6 Raw'; }
+  if (!audio) return;
+  var rawBtn = audio.parentNode.querySelector('.version-raw');
+  var icon = rawBtn.querySelector('.version-icon');
+  if (portfolioAudio && portfolioAudio !== audio) { portfolioAudio.pause(); portfolioAudio.currentTime = 0; var b = portfolioAudio.parentNode.querySelector('.version-raw'); if (b) { b.classList.remove('playing'); b.querySelector('.version-icon').textContent = '\u25B6'; } }
+  if (audio.paused) { audio.play(); rawBtn.classList.add('playing'); icon.textContent = '\u23F8'; portfolioAudio = audio; audio.onended = function() { rawBtn.classList.remove('playing'); icon.textContent = '\u25B6'; }; }
+  else { audio.pause(); rawBtn.classList.remove('playing'); icon.textContent = '\u25B6'; }
 }
 function playPortfolioFinal(src) {
   document.getElementById('showreelIframe').src = src;

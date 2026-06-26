@@ -2,12 +2,14 @@
   {
     "title": "Better Person",
     "artist": "Tyrelm",
+    "art": "ALBUM ARTS/Time-Cover-Art-Progress-Raw.webp",
     "raw": "portfolio/better-person-raw.mp3",
     "final": "https://www.youtube.com/embed/aAjFKC2pdzw?autoplay=1"
   },
   {
     "title": "Ghost",
     "artist": "Tyrelm",
+    "art": "ALBUM ARTS/ARTWORK.webp",
     "raw": "portfolio/ghost-raw.mp3",
     "final": "https://www.youtube.com/embed/DX-zDYDqjMk?autoplay=1"
   }
