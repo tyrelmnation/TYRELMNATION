@@ -483,5 +483,20 @@ function playPortfolioFinal(src) {
 function closeShowreelPlayer() {
   document.getElementById('showreelIframe').src = '';
   document.getElementById('showreelPlayer').style.display = 'none';
+  var ga = document.getElementById('galleryArt');
+  if (ga) { ga.style.display = 'none'; }
+}
+function showGalleryArt() {
+  closeVideoGallery();
+  var ov = document.getElementById('showreelPlayer');
+  ov.style.display = 'flex';
+  var inner = ov.querySelector('.showreel-player-inner');
+  var existing = document.getElementById('galleryArt');
+  if (existing) { existing.style.display = 'block'; return; }
+  var img = document.createElement('img');
+  img.id = 'galleryArt';
+  img.src = 'ALBUM%20ARTS/ARTWORK.webp';
+  img.style.cssText = 'width:100%;max-width:600px;border-radius:12px;display:block;margin:0 auto;';
+  inner.appendChild(img);
 }
 if (document.getElementById('portfolioGrid')) { loadPortfolio(); }
