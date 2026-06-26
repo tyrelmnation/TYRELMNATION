@@ -335,7 +335,10 @@
         <span class="section-label">Free Plugin</span>
         <h2>TY<em>ROOM &amp; TYMLAPSE</em></h2>
         <p>TYSONICS — analog emulation reverb &amp; delay plugins. Free to download.</p>
-        <a href="TYSONIX%20BUNDLE.rar" download class="btn" style="background:var(--white);color:var(--black);padding:16px 40px;font-size:14px;">Download Free Bundle</a>
+        <div class="plugin-download-form" style="display:flex;gap:8px;max-width:400px;margin:0 auto;flex-wrap:wrap;justify-content:center;">
+          <input type="email" id="pluginEmail" placeholder="Enter your email" required style="flex:1;min-width:180px;padding:14px 20px;background:var(--black);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-size:14px;outline:none;">
+          <button onclick="downloadPlugin()" class="btn" style="background:var(--white);color:var(--black);padding:14px 28px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border:none;border-radius:6px;cursor:pointer;">Download Free Bundle</button>
+        </div>
       </div>
     </div>
   </section>
@@ -554,6 +557,6 @@
     </div>
   </div>
 
-  <script src="assets/js/script.js?v=17"></script>
+  <script src="assets/js/script.js?v=18"></script>
 </body>
 </html>
