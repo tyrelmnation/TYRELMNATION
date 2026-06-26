@@ -625,7 +625,7 @@ nav:not(:hover) ~ footer {
   margin-top: 4px;
 }
 
-/* SHOWREEL */
+/* PORTFOLIO */
 .showreel-grid {
   display: flex;
   flex-direction: column;
