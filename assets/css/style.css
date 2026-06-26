@@ -625,6 +625,64 @@ nav:not(:hover) ~ footer {
   margin-top: 4px;
 }
 
+/* SHOWREEL */
+.showreel-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.showreel-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  transition: var(--transition);
+}
+.showreel-card:hover { background: rgba(255,255,255,0.06); }
+.showreel-info { flex: 1; min-width: 0; }
+.showreel-title { font-weight: 600; font-size: 14px; color: var(--white); }
+.showreel-artist { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+.showreel-controls { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.showreel-btn {
+  padding: 6px 14px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--gray-400);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+}
+.showreel-btn.active {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+.showreel-btn:hover:not(.active) { color: var(--white); border-color: var(--gray-400); }
+.showreel-play {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.showreel-play:hover { background: var(--gold); color: var(--black); }
+
 /* ABOUT */
 .about-content {
   display: grid;
