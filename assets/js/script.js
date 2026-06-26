@@ -295,30 +295,25 @@ function downloadPlugin() {
   var btn = document.querySelector('#pluginEmail + button');
   btn.textContent = 'Processing...';
   btn.disabled = true;
-  var data = new URLSearchParams();
-  data.append('field_0', email);
-  data.append('hpc4b27b6e-eb38-11e9-be00-06b4694bee2a', '');
-  fetch('https://eocampaign1.com/form/313feece-6ed4-11f1-98dc-69ffe802ccb0', {
+  fetch('https://formspree.io/f/xwvzqdpj', {
     method: 'POST',
-    body: data
-  }).then(function(r) {
-    var a = document.createElement('a');
-    a.href = 'TYSONIX%20BUNDLE.rar';
-    a.download = 'TYSONIX_BUNDLE.rar';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    btn.textContent = 'Downloaded! Check your email.';
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ email: email, _subject: 'TYSONIX Plugin Download' })
+  }).then(function() {
+    doDownload(btn);
   }).catch(function() {
-    var a = document.createElement('a');
-    a.href = 'TYSONIX%20BUNDLE.rar';
-    a.download = 'TYSONIX_BUNDLE.rar';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    btn.textContent = 'Downloaded!';
-    btn.disabled = false;
+    doDownload(btn);
   });
+}
+function doDownload(btn) {
+  var a = document.createElement('a');
+  a.href = 'TYSONIX%20BUNDLE.rar';
+  a.download = 'TYSONIX_BUNDLE.rar';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  btn.textContent = 'Download started!';
+  btn.disabled = false;
 }
 
 // TERMS MODAL
