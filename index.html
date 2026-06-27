@@ -1,595 +1,727 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tyrelm Nation — Recording, Mixing, Mastering &amp; Production | Nairobi</title>
-  <meta name="description" content="Tyrelm (Edwin Matekwa) — Recording, Mixing, Mastering, and Production engineer based in Nairobi, Kenya. Book studio sessions, beat licensing, and merch.">
-  <meta name="keywords" content="Tyrelm, music production Nairobi, recording studio Kenya, mixing mastering, beat licensing, Edwin Matekwa">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://tyrelmnation.github.io/TYRELMNATION/">
-  <meta property="og:title" content="Tyrelm Nation — Recording, Mixing, Mastering &amp; Production">
-  <meta property="og:description" content="Recording, Mixing, Mastering, and Production engineer based in Nairobi, Kenya.">
-  <meta property="og:url" content="https://tyrelmnation.github.io/TYRELMNATION/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://tyrelmnation.github.io/TYRELMNATION/LOGO/LOGO.webp">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" type="image/webp" href="LOGO/LOGO.webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=2">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tyrelm Nation — Design B: Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:  #090909;
+    --gold:   #C8A44A;
+    --gold2:  #8B6E2E;
+    --cream:  #F0EBE1;
+    --grey:   #2A2A2A;
+    --muted:  #6A6A6A;
+    --rule:   rgba(200,164,74,0.15);
+    --ff-ser: 'Cormorant Garamond', serif;
+    --ff-san: 'Instrument Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: var(--ff-san);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem clamp(1.5rem, 4vw, 3rem);
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(9,9,9,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--ff-ser);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-family: var(--ff-san); font-size: 0.75rem;
+    color: var(--muted); text-decoration: none; letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+
+  /* HERO — EDITORIAL SPLIT */
+  .hero {
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+    position: relative;
+  }
+
+  /* Left: oversized rotated label — the signature element */
+  .hero-left {
+    display: flex; align-items: flex-end; padding: clamp(2rem, 6vw, 5rem);
+    position: relative; overflow: hidden;
+    border-right: 1px solid var(--rule);
+  }
+  .hero-rotate {
+    position: absolute;
+    top: 50%; left: -4rem;
+    transform: translateY(-50%) rotate(-90deg);
+    font-family: var(--ff-ser); font-size: clamp(5rem, 18vw, 16rem);
+    font-weight: 300; font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(200,164,74,0.3);
+    white-space: nowrap;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .hero-left-content {
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-family: var(--ff-san); font-size: 0.68rem;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: block;
+  }
+  .hero-h1 {
+    font-family: var(--ff-ser);
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 600; line-height: 0.92;
+    letter-spacing: -0.01em;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-desc {
+    margin-top: 2.5rem;
+    font-size: 0.9rem; color: var(--muted);
+    max-width: 32ch; line-height: 1.7;
+  }
+  .hero-cta { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+
+  .btn {
+    font-family: var(--ff-san); font-size: 0.72rem;
+    font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 0.8rem 2rem;
+    display: inline-block; transition: all 0.25s;
+  }
+  .btn-fill { background: var(--gold); color: var(--black); }
+  .btn-fill:hover { background: #dbb85a; }
+  .btn-ghost { border: 1px solid rgba(200,164,74,0.4); color: var(--cream); }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Right: hero image */
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(40%) contrast(1.05);
+  }
+  .hero-right::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--black) 0%, transparent 30%),
+                linear-gradient(to top, var(--black) 0%, transparent 40%);
+  }
+  /* Editorial issue number */
+  .hero-issue {
+    position: absolute; bottom: 2rem; right: 2rem; z-index: 2;
+    font-family: var(--ff-ser); font-size: 0.75rem; font-style: italic;
+    color: rgba(200,164,74,0.6); letter-spacing: 0.08em;
+  }
+
+  /* SECTION BASE */
+  section {
+    border-top: 1px solid var(--rule);
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+    max-width: 1300px; margin: 0 auto;
+  }
+
+  .label {
+    font-family: var(--ff-san); font-size: 0.65rem;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-family: var(--ff-ser);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300; line-height: 1.05;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+  h2 strong { font-weight: 600; }
+
+  .sub { color: var(--muted); font-size: 0.95rem; max-width: 46ch; margin-top: 1rem; line-height: 1.7; }
+
+  /* RELEASES — MAGAZINE SPREAD */
+  .releases-header { margin-bottom: 3rem; }
+  .releases-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5px; background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .release-featured, .release-secondary {
+    background: var(--grey);
+    position: relative; overflow: hidden;
+    cursor: pointer; text-decoration: none; color: inherit;
+    display: block;
+  }
+  .release-featured { aspect-ratio: 4/3; }
+  .release-secondary { border-top: 1.5px solid var(--rule); }
+  .release-secondary:first-child { border-top: none; }
+  .release-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease; display: block;
+  }
+  .release-featured:hover .release-img,
+  .release-secondary:hover .release-img { transform: scale(1.04); }
+  .release-caption {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(9,9,9,0.9) 0%, transparent 60%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 2rem;
+  }
+  .release-title {
+    font-family: var(--ff-ser); font-size: 1.8rem;
+    font-weight: 600; line-height: 1.1;
+  }
+  .release-meta-tag {
+    font-family: var(--ff-san); font-size: 0.62rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .release-secondary { aspect-ratio: 16/9; }
+  .release-secondary .release-title { font-size: 1.2rem; }
+  .release-play {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    width: 36px; height: 36px; border: 1px solid rgba(200,164,74,0.5);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 0.7rem;
+    transition: background 0.2s;
+  }
+  .release-featured:hover .release-play,
+  .release-secondary:hover .release-play { background: var(--gold); color: var(--black); }
+
+  /* SERVICES — 2-column with typographic price */
+  .services-list { margin-top: 3rem; }
+  .service-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .service-row:last-child { border-bottom: 1px solid var(--rule); }
+  .service-col { padding: 2.5rem 0 2.5rem 0; }
+  .service-col:first-child { padding-right: 4rem; border-right: 1px solid var(--rule); }
+  .service-col:last-child { padding-left: 4rem; }
+  .service-name {
+    font-family: var(--ff-ser);
+    font-size: 2rem; font-weight: 300; font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+  .service-tag-sm {
+    font-family: var(--ff-san); font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 1rem;
+  }
+  .service-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .service-price-big {
+    font-family: var(--ff-ser); font-size: 1.5rem;
+    font-weight: 600; color: var(--cream);
+    margin-bottom: 1.2rem;
+  }
+  .service-price-big em { color: var(--gold); font-style: normal; }
+  .service-cta {
+    font-family: var(--ff-san); font-size: 0.68rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .service-cta:hover { color: var(--cream); }
+  .service-cta::after { content: ' →'; }
+
+  /* ABOUT — OFFSET */
+  .about-wrap {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 5rem; align-items: start;
+  }
+  .about-img {
+    aspect-ratio: 2/3;
+    overflow: hidden;
+    position: sticky; top: 100px;
+  }
+  .about-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); }
+  .about-body { padding-top: 2rem; }
+  .about-body p { color: var(--muted); font-size: 1rem; line-height: 1.85; margin-bottom: 1.5rem; }
+
+  /* EXPERIENCE — LEFT COLUMN STACKED */
+  .exp-grid { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
+  .exp-entry {
+    display: grid; grid-template-columns: 120px 1fr;
+    gap: 3rem; padding: 2rem 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .exp-entry:last-child { border-bottom: 1px solid var(--rule); }
+  .exp-yr {
+    font-family: var(--ff-ser); font-size: 1rem;
+    font-style: italic; color: var(--gold);
+  }
+  .exp-entry-title {
+    font-family: var(--ff-ser); font-size: 1.25rem;
+    font-weight: 600; margin-bottom: 0.3rem;
+  }
+  .exp-entry-role {
+    font-family: var(--ff-san); font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.6rem;
+  }
+  .exp-entry-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+
+  /* PLUGIN */
+  .plugin-hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .plugin-title {
+    font-family: var(--ff-ser);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 300; line-height: 0.9;
+  }
+  .plugin-title em { font-style: italic; color: var(--gold); }
+  .plugin-right p { color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+  .plugin-feats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; border: 1px solid var(--rule);
+    margin-bottom: 2rem;
+  }
+  .pf {
+    padding: 1rem 1.2rem; border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .pf:nth-child(even) { border-right: none; }
+  .pf:nth-last-child(-n+2) { border-bottom: none; }
+  .pf strong { display: block; font-size: 0.85rem; margin-bottom: 0.2rem; }
+  .pf span { font-size: 0.72rem; color: var(--muted); }
+  .plugin-badges { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .pbadge {
+    font-family: var(--ff-san); font-size: 0.6rem;
+    letter-spacing: 0.14em; padding: 0.25rem 0.65rem;
+    border: 1px solid var(--gold); color: var(--gold);
+  }
+  .plugin-dl { display: flex; gap: 0; }
+  .plugin-dl input {
+    flex: 1; background: transparent;
+    border: 1px solid var(--rule); border-right: none;
+    color: var(--cream); padding: 0.75rem 1rem;
+    font-family: var(--ff-san); font-size: 0.88rem; outline: none;
+  }
+  .plugin-dl input:focus { border-color: var(--gold); }
+  .plugin-dl button {
+    background: var(--gold); color: var(--black);
+    border: none; padding: 0.75rem 1.4rem;
+    font-family: var(--ff-san); font-size: 0.7rem;
+    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .plugin-dl button:hover { background: #dbb85a; }
+
+  /* MERCH — editorial layout */
+  .merch-ed {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px; background: var(--rule);
+    border: 1px solid var(--rule); margin-top: 3rem;
+  }
+  .merch-item { background: var(--grey); }
+  .merch-item-img { aspect-ratio: 2/3; overflow: hidden; }
+  .merch-item-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .merch-item:hover .merch-item-img img { transform: scale(1.04); }
+  .merch-item-info { padding: 1rem 1.2rem 1.4rem; }
+  .merch-item-name { font-family: var(--ff-ser); font-size: 1.05rem; margin-bottom: 0.3rem; }
+  .merch-item-price { font-size: 0.72rem; color: var(--gold); margin-bottom: 1rem; }
+  .merch-item-btn {
+    display: block; text-align: center;
+    padding: 0.55rem; font-family: var(--ff-san); font-size: 0.62rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid rgba(200,164,74,0.4); color: var(--cream);
+    text-decoration: none; transition: all 0.2s;
+  }
+  .merch-item-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+
+  /* BOOK — centered, editorial pull quote style */
+  .book-section {
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    padding: clamp(5rem, 12vw, 10rem) clamp(1.5rem, 5vw, 4rem);
+  }
+  .book-section .label { margin-bottom: 2rem; }
+  .book-section h2 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    margin-bottom: 2.5rem;
+  }
+  .book-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .book-contact { font-size: 0.8rem; color: var(--muted); }
+  .book-contact a { color: var(--gold); text-decoration: none; }
+
+  /* NEWSLETTER */
+  .nl-section { text-align: center; }
+  .nl-box { max-width: 500px; margin: 0 auto; }
+  .nl-box h2 { margin-bottom: 1rem; }
+  .nl-box p { color: var(--muted); margin-bottom: 2rem; }
+  .nl-row { display: flex; gap: 0; }
+  .nl-row input {
+    flex: 1; background: transparent; border: 1px solid var(--rule);
+    border-right: none; color: var(--cream);
+    padding: 0.8rem 1rem; font-family: var(--ff-san); font-size: 0.9rem; outline: none;
+  }
+  .nl-row input:focus { border-color: var(--gold); }
+  .nl-row button {
+    background: var(--gold); color: var(--black); border: none;
+    padding: 0.8rem 1.5rem; font-family: var(--ff-san); font-size: 0.7rem;
+    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .nl-row button:hover { background: #dbb85a; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    max-width: 1300px; margin: 0 auto;
+  }
+  .footer-name { font-family: var(--ff-ser); font-size: 1rem; font-style: italic; color: var(--gold); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.72rem; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-copy { font-size: 0.68rem; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: clamp(3rem, 8vw, 5rem) 1.5rem 4rem; }
+    .hero-rotate { display: none; }
+    .releases-row { grid-template-columns: 1fr; }
+    .service-row { grid-template-columns: 1fr; }
+    .service-col:first-child { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); }
+    .service-col:last-child { padding-left: 0; }
+    .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .about-img { position: static; aspect-ratio: 3/2; }
+    .exp-entry { grid-template-columns: 80px 1fr; gap: 1.5rem; }
+    .plugin-hero { grid-template-columns: 1fr; }
+    .merch-ed { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .merch-ed { grid-template-columns: 1fr; }
+    .plugin-dl { flex-direction: column; }
+    .plugin-dl input { border-right: 1px solid var(--rule); border-bottom: none; }
+    .nl-row { flex-direction: column; }
+    .nl-row input { border-right: 1px solid var(--rule); border-bottom: none; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <img src="LOGO/LOGO.webp" alt="Tyrelm Nation">
-      Tyrelm*Nation
+<nav>
+  <a href="#" class="nav-logo">Tyrelm<span>·</span>Nation</a>
+  <div class="nav-links">
+    <a href="#releases">Releases</a>
+    <a href="#services">Services</a>
+    <a href="#experience">Experience</a>
+    <a href="#plugin">Plugin</a>
+    <a href="#merch">Merch</a>
+    <a href="#book">Book</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home" style="border:none;padding:0;max-width:none">
+  <div class="hero-left">
+    <div class="hero-rotate" aria-hidden="true">Tyrelm</div>
+    <div class="hero-left-content">
+      <span class="hero-eyebrow">Nairobi, Kenya · Est. 2018</span>
+      <h1 class="hero-h1">
+        Sound<br>
+        by <em>Tyrelm</em>
+      </h1>
+      <p class="hero-desc">Recording, mixing, mastering and production. Based in Nairobi — working everywhere.</p>
+      <div class="hero-cta">
+        <a href="#releases" class="btn btn-fill">Listen Now</a>
+        <a href="#services" class="btn btn-ghost">Book Studio</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/edwin%20matekwa.webp" alt="Edwin Matekwa">
+    <span class="hero-issue">Edwin Matekwa, Nairobi 2026</span>
+  </div>
+</section>
+
+<!-- RELEASES -->
+<section id="releases">
+  <div class="releases-header">
+    <span class="label">Music</span>
+    <h2>Latest <em>Releases</em></h2>
+  </div>
+  <div class="releases-row">
+    <a href="https://youtu.be/aAjFKC2pdzw" target="_blank" class="release-featured">
+      <img class="release-img" src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/Time-Cover-Art-Progress-Raw.webp" alt="Better Person">
+      <div class="release-caption">
+        <div class="release-meta-tag">Single · 2025</div>
+        <div class="release-title">Better Person</div>
+      </div>
+      <div class="release-play">▶</div>
     </a>
-    <div class="nav-links">
-      <a href="#" onclick="openVideoGallery(); return false;">Video</a>
-      <a href="#releases">Releases</a>
-      <a href="#services">Services</a>
-      <a href="#experience">Experience</a>
-      <a href="#about">About</a>
-      <a href="#tour">Tour</a>
-      <a href="#merch">Merch</a>
-      <a href="#newsletter">Newsletter</a>
-      <a href="#book">Book</a>
-      <a href="#plugin">Free Plugin</a>
-    </div>
-    <button class="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <img src="PICS/background.webp" class="hero-video" id="heroPoster" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
-    <video class="hero-video" id="heroVideo" muted loop playsinline preload="metadata" style="z-index:1;opacity:0;">
-      <source src="Live%20Background/Better%20Person-web.mp4" type="video/mp4">
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Tyrelm</h1>
-      <p>Recording &bull; Mixing &bull; Mastering &bull; Production &bull; Nairobi</p>
-      <div class="hero-actions">
-        <a href="#releases" class="btn btn-gold">Listen Now</a>
-        <a href="#services" class="btn btn-outline">Book Studio</a>
-      </div>
-    </div>
-    <a href="#releases" class="hero-scroll">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
-    </a>
-  </section>
-
-  <!-- FIXED PAGE BACKGROUND -->
-  <div id="page-bg"></div>
-
-  <!-- MY LATEST RELEASES -->
-  <section class="section" id="releases">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Music</span>
-        <h2>My Latest Releases</h2>
-      </div>
-      <div class="releases-grid">
-        <div class="release-card fade-in">
-          <a href="https://youtu.be/aAjFKC2pdzw" target="_blank" class="release-art">
-            <img src="ALBUM%20ARTS/Time-Cover-Art-Progress-Raw.webp" alt="Better Person">
-            <div class="release-overlay">
-              <span class="play-btn">&#9654;</span>
-            </div>
-          </a>
-          <div class="release-info">
-            <h3>Better Person</h3>
-            <div class="release-meta">
-              <span>Single &middot; 2025</span>
-            </div>
-          </div>
+    <div>
+      <a href="https://youtu.be/DX-zDYDqjMk" target="_blank" class="release-secondary">
+        <img class="release-img" src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/ARTWORK.webp" alt="Ghost">
+        <div class="release-caption">
+          <div class="release-meta-tag">Single · 2026</div>
+          <div class="release-title">Ghost</div>
         </div>
-        <div class="release-card fade-in">
-          <a href="https://youtu.be/DX-zDYDqjMk" target="_blank" class="release-art">
-            <img src="ALBUM%20ARTS/ARTWORK.webp" alt="Ghost">
-            <div class="release-overlay">
-              <span class="play-btn">&#9654;</span>
-            </div>
-          </a>
-          <div class="release-info">
-            <h3>Ghost</h3>
-            <div class="release-meta">
-              <span>Single &middot; 2026</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section" id="services">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Capabilities</span>
-        <h2>Studio Services</h2>
-        <p>Book directly via WhatsApp.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon">&#9835;</div>
-          <h3>Music Production</h3>
-          <p>Beat creation, full song production, arrangement, and creative direction.</p>
-          <ul>
-            <li>Custom exclusive instrumentals</li>
-            <li>Vocal arrangement & guidance</li>
-            <li>Full commercial song structuring</li>
-            <li>Rate: 20,000 KES ($154) per project</li>
-            <li>Collab rate: 50/50 on composition & streaming</li>
-            <li>Performance track: +2,000 KES ($15)</li>
-            <li>Stripped version: +3,000 KES ($23)</li>
-          </ul>
-          <div class="service-btn-container">
-            <button class="service-action-btn terms" onclick="openTerms('production')">View Terms & Credits</button>
-            <a class="service-action-btn whatsapp" href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20book%20a%20Music%20Production%20session." target="_blank">Book via WhatsApp</a>
-          </div>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">&#9835;&#9835;</div>
-          <h3>Mixing & Mastering</h3>
-          <p>Mixing and mastering to make your record sound right on every speaker.</p>
-          <ul>
-            <li>Stereo Mix & Master: 15,000 KES ($115) per track</li>
-            <li>Album deal: 12,000 KES ($92) per track</li>
-            <li>Dolby Atmos / Ambisonic mix: 25,000 KES ($192) per track</li>
-            <li>Mastering only: 5,000 KES ($38) per track</li>
-            <li>Delivered at 24-bit/48kHz WAV</li>
-            <li>Up to 2 revision passes included</li>
-          </ul>
-          <div class="service-btn-container">
-            <button class="service-action-btn terms" onclick="openTerms('mixing')">View Terms & Credits</button>
-            <a class="service-action-btn whatsapp" href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20book%20a%20Mixing%20%26%20Mastering%20session." target="_blank">Book via WhatsApp</a>
-          </div>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">&#9685;</div>
-          <h3>Tracking / Recording</h3>
-          <p>Vocals, acoustic guitar, voiceover, and instrument recording.</p>
-          <ul>
-            <li>Engineering fee: 2,000 KES ($15) per hour</li>
-            <li>Studio space: from 1,000 KES ($8)/hr to 5,000 KES ($38)/hr</li>
-            <li>Studio options for any budget</li>
-            <li>Full session comping & file delivery</li>
-          </ul>
-          <div class="service-btn-container">
-            <button class="service-action-btn terms" onclick="openTerms('tracking')">View Terms & Credits</button>
-            <a class="service-action-btn whatsapp" href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20book%20a%20Tracking%20session." target="_blank">Book via WhatsApp</a>
-          </div>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">&#9998;</div>
-          <h3>Audio Consultation</h3>
-          <p>Pre-production feedback, arrangement advice, and mix direction.</p>
-          <ul>
-            <li>Rate: 2,500 KES ($19) per session</li>
-            <li>Mix feedback, arrangement review</li>
-            <li>Send materials 12hrs before</li>
-            <li>Remote or in-person sessions</li>
-          </ul>
-          <div class="service-btn-container">
-            <button class="service-action-btn terms" onclick="openTerms('consultation')">View Terms & Credits</button>
-            <a class="service-action-btn whatsapp" href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20book%20an%20Audio%20Consultation%20session." target="_blank">Book via WhatsApp</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PORTFOLIO -->
-  <section class="section" id="portfolio">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Portfolio</span>
-        <h2>Latest <em>Work</em></h2>
-        <p>Listen to recent releases.</p>
-      </div>
-      <div class="portfolio-grid fade-in" id="portfolioGrid"></div>
-    </div>
-    <div class="showreel-player-overlay" id="showreelPlayer" style="display:none" onclick="closeShowreelPlayer()">
-      <div class="showreel-player-inner" onclick="event.stopPropagation()">
-        <button class="showreel-player-close" onclick="closeShowreelPlayer()">&times;</button>
-        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
-          <iframe id="showreelIframe" style="position:absolute;top:0;left:0;width:100%;height:100%;" src="" frameborder="0" allowfullscreen allow="autoplay"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="about-content fade-in">
-        <div class="about-image">
-          <img src="PICS/edwin%20matekwa.webp" alt="Tyrelm - Edwin Matekwa" loading="lazy">
-        </div>
-        <div class="about-text">
-          <span class="section-label">About</span>
-          <h2>Edwin <em>Matekwa</em></h2>
-          <p><strong>Tyrelm Nation</strong> — a production company I founded for talent discovery, blending art, music, and science.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOUR / SANE SESSIONS -->
-  <section class="section" id="tour">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Live</span>
-        <h2>Sane Sessions</h2>
-        <p>A series blending raw performance, atmosphere, and sound. Coming soon.</p>
-      </div>
-      <div class="tour-cards fade-in">
-        <div class="tour-card">
-          <div class="tour-card-badge">Coming Soon</div>
-          <img src="PICS/sane%20sessions%20.webp" alt="Sane Sessions" class="tour-card-img">
-          <h3>Live Tour</h3>
-          <p>Performing across the country &mdash; dates announced soon.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="experience">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Experience</span>
-        <h2>Work Experience</h2>
-      </div>
-      <div class="exp-timeline fade-in">
-        <div class="exp-item">
-          <div class="exp-year">2026</div>
-          <div class="exp-details">
-            <h3>Session Diaspor.a</h3>
-            <div class="exp-role">Live Recording, Mixing &amp; Mastering in Post</div>
-            <div class="exp-links">
-              <a href="https://youtu.be/gc5NF-eq4n8" target="_blank">Matt Ngesa</a> &bull;
-              <a href="https://youtu.be/C-8oT-nuBZc" target="_blank">Clerk Keeng</a> &bull;
-              <a href="https://youtu.be/HNqdYoYU8xg" target="_blank">Mordecai Dex</a>
-            </div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2024&ndash;26</div>
-          <div class="exp-details">
-            <h3>Wyatt Boyer &mdash; Chicago, USA</h3>
-            <div class="exp-role">Mixing &amp; Mastering Engineer</div>
-            <p class="exp-desc">Mixed and mastered <strong>Paradise</strong>, <strong>Signs of the Times</strong>, <strong>Into Her Balands</strong>, <strong>Fast and Furious</strong>, and <strong>United</strong>.</p>
-            <div class="exp-links"><a href="https://youtu.be/9fddmNl1b5Q" target="_blank">Signs of the Times</a></div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2025&ndash;26</div>
-          <div class="exp-details">
-            <h3>ARGO &mdash; Augmented Reality Game</h3>
-            <div class="exp-role">Co-Producer &mdash; Original Soundtrack (Fallohide Africa)</div>
-            <p class="exp-desc">Co-produced, mixed, and mastered the original soundtrack for <strong>Africa's first public environmental AR game</strong>, created by Joanna Oluoch. Launched with WWF-Kenya, Electric South, Ford Foundation.</p>
-            <div class="exp-links"><a href="https://play.google.com/store/apps/details?id=com.ARGO.ArGO" target="_blank">Download on Google Play</a></div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2025</div>
-          <div class="exp-details">
-            <h3>Tyrelm &mdash; &ldquo;Time and Space&rdquo; / &ldquo;Broken Diary&rdquo;</h3>
-            <div class="exp-role">Producer, Mixing &amp; Mastering Engineer &mdash; 2 Albums</div>
-            <p class="exp-desc"><strong>15 tracks</strong> produced, mixed, and mastered end-to-end (12 + 3).</p>
-            <div class="exp-links"><a href="https://tyrelmnation.github.io/gamechanger/" target="_blank">Listen</a> &bull; <a href="https://www.youtube.com/@Tyrelm" target="_blank">YouTube</a></div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2023</div>
-          <div class="exp-details">
-            <h3>&ldquo;Rise of Greatness&rdquo; &mdash; Lowki The Great</h3>
-            <div class="exp-role">Recording, Mixing &amp; Mastering</div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2023</div>
-          <div class="exp-details">
-            <h3>Dicemane &mdash; &ldquo;Resilient&rdquo; / &ldquo;Rudia&rdquo;</h3>
-            <div class="exp-role">Produced, Mixed &amp; Mastered</div>
-            <p class="exp-desc">Radio airplay, Shoke Shoke Fest nomination.</p>
-            <div class="exp-links">
-              <a href="https://youtu.be/kYM18jA1yPs" target="_blank">Resilient</a> &bull;
-              <a href="https://youtu.be/yJ91ZY_iciM" target="_blank">Rudia</a>
-            </div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-year">2018&ndash;25</div>
-          <div class="exp-details">
-            <h3>Additional Projects</h3>
-            <div class="exp-role">Theme songs, voice over &amp; sync licensing</div>
-            <ul>
-              <li>Theme song for Brian Intrigued storytelling series (rising Kenyan actor)</li>
-              <li>Voice over production &mdash; Churchill Laugh Festival, Bet Nare</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEND STEMS -->
-  <section class="section" id="stems">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Collaborate</span>
-        <h2>Send Stems</h2>
-        <p>Submit your tracks via WhatsApp, email, or Dropbox. Reviews within 2-3 business days. Format: 24-bit / 44kHz to 48kHz WAV.</p>
-      </div>
-      <div class="stems-methods">
-        <div class="stems-method fade-in">
-          <div class="method-icon">&#9993;</div>
-          <h3>WhatsApp</h3>
-          <p>Quick voice notes, ideas, or short clips.</p>
-          <a href="https://wa.me/254706602914" class="btn-method" target="_blank">Send via WhatsApp</a>
-        </div>
-        <div class="stems-method fade-in">
-          <div class="method-icon">&#9993;</div>
-          <h3>Email</h3>
-          <p>For full tracks, sessions, and attachments.</p>
-          <a href="mailto:tyrellmatekwa@gmail.com" class="btn-method">Send via Email</a>
-        </div>
-        <div class="stems-method fade-in">
-          <div class="method-icon">&#9729;</div>
-          <h3>Dropbox</h3>
-          <p>For large projects and multi-track sessions.</p>
-          <a href="https://www.dropbox.com/request/cq6xi9h8o504mm926l37" class="btn-method" target="_blank">Upload to Dropbox</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FREE PLUGIN -->
-  <section class="section" id="plugin">
-    <div class="container">
-      <div class="plugin-section fade-in">
-        <span class="section-label">Free Plugin</span>
-        <h2>TY<em>ROOM</em></h2>
-        <p class="sub">Algorithmic reverb — analog warmth, HISE-built</p>
-        <p class="desc">Free plate-style reverb with Room→Hall switching, 3-band EQ, analog preamp, and a Sheng/Swahili interface. Built to compete with premium plates at zero cost.</p>
-
-        <div class="plugin-features">
-          <div class="plugin-feature"><span class="icon">↔</span><span><strong>Room→Hall</strong><br><span class="tag">algorithm switch</span></span></div>
-          <div class="plugin-feature"><span class="icon">⏱</span><span><strong>Decay + Pre-delay</strong><br><span class="tag">tail time &amp; onset gap</span></span></div>
-          <div class="plugin-feature"><span class="icon">🎛</span><span><strong>3-band EQ</strong><br><span class="tag">cut mud &amp; shape tone</span></span></div>
-          <div class="plugin-feature"><span class="icon">⚡</span><span><strong>Analog Preamp</strong><br><span class="tag">warmth &amp; saturation</span></span></div>
-          <div class="plugin-feature"><span class="icon">✨</span><span><strong>Animated UI</strong><br><span class="tag">smooth parameter transitions</span></span></div>
-          <div class="plugin-feature"><span class="icon">🌍</span><span><strong>Sheng / Swahili</strong><br><span class="tag">localized interface</span></span></div>
-        </div>
-
-        <div class="plugin-badges">
-          <span class="plugin-badge hise">HISE</span>
-          <span class="plugin-badge vst3">VST3</span>
-          <span class="plugin-badge au">AU</span>
-          <span class="plugin-badge aax">AAX</span>
-        </div>
-
-        <p class="sub" style="margin-bottom:12px;">Also includes <strong>TYMLAPSE</strong> — analog delay plugin</p>
-
-        <div class="plugin-download-form">
-          <input type="email" id="pluginEmail" placeholder="Enter your email" required class="plugin-email-input">
-          <button onclick="downloadPlugin()" class="btn plugin-dl-btn">Download Free Bundle</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MAILING LIST -->
-  <section class="section" id="newsletter">
-    <div class="container">
-      <div class="newsletter-box fade-in">
-        <span class="section-label">Stay Connected</span>
-        <h2>Join the <em>Mailing List</em></h2>
-        <p>Get updates on new releases, Sane Sessions, merch drops, and studio news.</p>
-        <script src="https://eocampaign1.com/form/313feece-6ed4-11f1-98dc-69ffe802ccb0.js" data-form="313feece-6ed4-11f1-98dc-69ffe802ccb0"></script>
-        <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- MERCH -->
-  <section class="section" id="merch">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-label">Store</span>
-        <h2>Merch</h2>
-        <p>Curated looks — contrast your style.</p>
-      </div>
-      <div class="merch-grid fade-in">
-
-        <div class="merch-card">
-          <div class="outfit-visual">
-            <div class="outfit-item top-item">
-              <img src="PICS/white-hoodie.webp" alt="White Hoodie">
-            </div>
-            <div class="outfit-item bottom-item">
-              <img src="PICS/white-cargo.webp" alt="White Cargo Pants">
-            </div>
-          </div>
-          <div class="merch-info">
-            <h3>White</h3>
-            <span class="merch-price">KSh 2,500 ($19)</span>
-          </div>
-          <div class="merch-actions">
-            <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Hoodie%20%2B%20White%20Cargo%20set." target="_blank" class="merch-btn">Order via WhatsApp</a>
-            <a href="mailto:tyrellmatekwa@gmail.com?subject=White%20Hoodie%20%2B%20White%20Cargo%20Order" class="merch-btn merch-btn-email">Email for Shipping</a>
-          </div>
-        </div>
-
-        <div class="merch-card">
-          <div class="outfit-visual">
-            <div class="outfit-item top-item">
-              <img src="PICS/black-hoodie.webp" alt="Black Hoodie">
-            </div>
-            <div class="outfit-item bottom-item">
-              <img src="PICS/black-cargo.webp" alt="Black Cargo Pants">
-            </div>
-          </div>
-          <div class="merch-info">
-            <h3>Black</h3>
-            <span class="merch-price">KSh 2,500 ($19)</span>
-          </div>
-          <div class="merch-actions">
-            <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Hoodie%20%2B%20Black%20Cargo%20set." target="_blank" class="merch-btn">Order via WhatsApp</a>
-            <a href="mailto:tyrellmatekwa@gmail.com?subject=Black%20Hoodie%20%2B%20Black%20Cargo%20Order" class="merch-btn merch-btn-email">Email for Shipping</a>
-          </div>
-        </div>
-
-        <div class="merch-card">
-          <div class="outfit-visual">
-            <div class="outfit-tee-views">
-              <div class="outfit-item top-item">
-                <div class="tee-pair">
-                  <img src="PICS/white-tee-front.webp" alt="White Tee Front">
-                  <span class="tee-side-label">Front</span>
-                </div>
-                <div class="tee-pair">
-                  <img src="PICS/white-tee-back.webp" alt="White Tee Back">
-                  <span class="tee-side-label">Back</span>
-                </div>
-              </div>
-            </div>
-            <div class="outfit-item bottom-item">
-              <img src="PICS/black-cargo.webp" alt="Black Cargo Pants">
-            </div>
-          </div>
-          <div class="merch-info">
-            <h3>White Tee + Black Cargo</h3>
-            <span class="merch-price">KSh 2,100 ($16)</span>
-          </div>
-          <div class="merch-actions">
-            <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20White%20Tee%20%2B%20Black%20Cargo%20set." target="_blank" class="merch-btn">Order via WhatsApp</a>
-            <a href="mailto:tyrellmatekwa@gmail.com?subject=White%20Tee%20%2B%20Black%20Cargo%20Order" class="merch-btn merch-btn-email">Email for Shipping</a>
-          </div>
-        </div>
-
-        <div class="merch-card">
-          <div class="outfit-visual">
-            <div class="outfit-tee-views">
-              <div class="outfit-item top-item">
-                <div class="tee-pair">
-                  <img src="PICS/black-tee-front.webp" alt="Black Tee Front">
-                  <span class="tee-side-label">Front</span>
-                </div>
-                <div class="tee-pair">
-                  <img src="PICS/black-tee-back.webp" alt="Black Tee Back">
-                  <span class="tee-side-label">Back</span>
-                </div>
-              </div>
-            </div>
-            <div class="outfit-item bottom-item">
-              <img src="PICS/white-cargo.webp" alt="White Cargo Pants">
-            </div>
-          </div>
-          <div class="merch-info">
-            <h3>Black Tee + White Cargo</h3>
-            <span class="merch-price">KSh 2,100 ($16)</span>
-          </div>
-          <div class="merch-actions">
-            <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Black%20Tee%20%2B%20White%20Cargo%20set." target="_blank" class="merch-btn">Order via WhatsApp</a>
-            <a href="mailto:tyrellmatekwa@gmail.com?subject=Black%20Tee%20%2B%20White%20Cargo%20Order" class="merch-btn merch-btn-email">Email for Shipping</a>
-          </div>
-        </div>
-
-        <div class="merch-card limited-card">
-          <div class="outfit-visual">
-            <div class="outfit-item top-item">
-              <img src="PICS/white-hoodie.webp" alt="Limited Edition Hoodie">
-            </div>
-            <div class="outfit-item bottom-item">
-              <img src="PICS/limited-cargo.webp" alt="Limited Edition Cargo">
-            </div>
-          </div>
-          <div class="merch-info">
-            <h3>Limited Edition Set</h3>
-            <span class="merch-price">KSh 4,000 ($31)</span>
-          </div>
-          <div class="merch-actions">
-            <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20order%20the%20Limited%20Edition%20Set." target="_blank" class="merch-btn">Order via WhatsApp</a>
-            <a href="mailto:tyrellmatekwa@gmail.com?subject=Limited%20Edition%20Set%20Order" class="merch-btn merch-btn-email">Email for Shipping</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section booking" id="book">
-    <div class="container">
-      <h2 class="fade-in">Book a <em>Session</em></h2>
-      <p class="fade-in">Hit us on WhatsApp or email to book a session.</p>
-      <div class="booking-actions fade-in">
-        <a href="https://wa.me/254706602914" class="btn btn-gold" target="_blank">WhatsApp Studio</a>
-        <a href="mailto:tyrellmatekwa@gmail.com" class="btn btn-outline">Email Tyrelm</a>
-      </div>
-      <div class="contact-line fade-in">
-        Direct Line Access Points: <a href="mailto:tyrellmatekwa@gmail.com">tyrellmatekwa@gmail.com</a> | +254 706 602 914
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-social">
-      <a href="https://wa.me/254706602914" target="_blank" aria-label="WhatsApp">&#9993;</a>
-      <a href="mailto:tyrellmatekwa@gmail.com" aria-label="Email">&#9993;</a>
-      <a href="https://www.instagram.com/ty_relm" target="_blank" aria-label="Instagram @ty_relm">&#9642; @ty_relm</a>
-      <a href="https://www.instagram.com/tyrelm_nation" target="_blank" aria-label="Instagram @tyrelm_nation">&#9642; @tyrelm_nation</a>
-      <a href="https://tyrelmnation.github.io/gamechanger/" target="_blank" aria-label="Website">&#9671;</a>
-    </div>
-    <p>&copy; 2026 Tyrelm.</p>
-    <a href="Tyrelm_Nation_Terms_and_Credits.pdf" download class="footer-link">Download Terms &amp; Conditions</a>
-  </footer>
-
-  <!-- CHAT TOGGLE BUTTON -->
-  <button class="chat-toggle-btn" id="chatInlineBtn" onclick="toggleChat()" aria-label="Open chat">&#9679;</button>
-
-  <!-- CHAT PANEL -->
-  <div class="chat-panel" id="chatPanel">
-    <div class="chat-header">
-      <span>Studio Assistant</span>
-      <button class="chat-close" onclick="toggleChat()">&times;</button>
-    </div>
-    <div class="chat-msgs" id="chatMsgs"></div>
-    <div class="chat-input-wrap">
-      <input type="text" id="chatInput" placeholder="Ask about services, pricing..." onkeydown="if(event.key==='Enter')sendMsg()">
-      <button onclick="sendMsg()">Send</button>
+        <div class="release-play">▶</div>
+      </a>
     </div>
   </div>
+</section>
 
-  <!-- TERMS MODAL -->
-  <div class="modal-overlay" id="termsModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeTerms()">&times;</button>
-      <h3 class="modal-title" id="modalTitle">Terms & Credits</h3>
-      <div class="modal-body" id="modalBody"></div>
+<!-- SERVICES -->
+<section id="services">
+  <span class="label">Capabilities</span>
+  <h2>Studio <em>Services</em></h2>
+  <p class="sub">All sessions booked via WhatsApp. Response within 24hrs.</p>
+  <div class="services-list">
+    <div class="service-row">
+      <div class="service-col">
+        <span class="service-tag-sm">Production</span>
+        <div class="service-name">Music Production</div>
+        <p class="service-desc">Beat creation, full song production, arrangement, and creative direction from concept to master.</p>
+        <div class="service-price-big">From <em>KES 20,000</em></div>
+        <a href="https://wa.me/254706602914?text=Music%20Production%20booking" target="_blank" class="service-cta">Book via WhatsApp</a>
+      </div>
+      <div class="service-col">
+        <span class="service-tag-sm">Post Production</span>
+        <div class="service-name">Mixing & Mastering</div>
+        <p class="service-desc">Stereo, album, and Dolby Atmos. 24-bit/48kHz WAV delivery. Up to 2 revisions included.</p>
+        <div class="service-price-big">From <em>KES 5,000</em></div>
+        <a href="https://wa.me/254706602914?text=Mixing%20Mastering%20booking" target="_blank" class="service-cta">Book via WhatsApp</a>
+      </div>
+    </div>
+    <div class="service-row">
+      <div class="service-col">
+        <span class="service-tag-sm">Tracking</span>
+        <div class="service-name">Recording</div>
+        <p class="service-desc">Vocals, acoustic instruments, and voice-over. Multiple studio tiers for every budget.</p>
+        <div class="service-price-big">From <em>KES 2,000 /hr</em></div>
+        <a href="https://wa.me/254706602914?text=Recording%20session%20booking" target="_blank" class="service-cta">Book via WhatsApp</a>
+      </div>
+      <div class="service-col">
+        <span class="service-tag-sm">Consult</span>
+        <div class="service-name">Audio Consultation</div>
+        <p class="service-desc">Mix feedback, arrangement review, and pre-production planning. Remote or in-person.</p>
+        <div class="service-price-big"><em>KES 2,500</em> per session</div>
+        <a href="https://wa.me/254706602914?text=Audio%20Consultation%20booking" target="_blank" class="service-cta">Book via WhatsApp</a>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- VIDEO GALLERY OVERLAY -->
-  <div class="video-gallery-overlay" id="videoGallery">
-    <button class="video-gallery-close" onclick="closeVideoGallery()">&times;</button>
-    <div class="video-gallery-header">
-      <span class="section-label">Video</span>
-      <h2>Gallery</h2>
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-img">
+      <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/edwin%20matekwa.webp" alt="Edwin Matekwa">
     </div>
-    <div class="video-gallery-grid" id="videoGalleryGrid"></div>
-    <div class="video-gallery-player" id="videoPlayer" style="display:none;">
-      <video controls preload="none" id="galleryVideo" style="width:100%;display:block;border-radius:12px;">
-        <source src="" type="video/mp4">
-      </video>
+    <div class="about-body">
+      <span class="label">About</span>
+      <h2>Edwin <em>Matekwa</em></h2>
+      <p>Tyrelm Nation is a production company founded for talent discovery, blending art, music, and science. The work crosses genres and borders — from Nairobi to Chicago to AR games launched with WWF-Kenya.</p>
+      <p>The studio's approach is simple: get the sound right, and make sure the credit is right too.</p>
     </div>
   </div>
+</section>
 
-  <script src="assets/js/script.js?v=30"></script>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <span class="label">Experience</span>
+  <h2>Selected <em>Work</em></h2>
+  <div class="exp-grid">
+    <div class="exp-entry">
+      <div class="exp-yr">2026</div>
+      <div>
+        <div class="exp-entry-title">Session Diaspor.a</div>
+        <div class="exp-entry-role">Live Recording, Mixing & Mastering in Post</div>
+        <p class="exp-entry-desc">Matt Ngesa · Clerk Keeng · Mordecai Dex</p>
+      </div>
+    </div>
+    <div class="exp-entry">
+      <div class="exp-yr">2024–26</div>
+      <div>
+        <div class="exp-entry-title">Wyatt Boyer — Chicago, USA</div>
+        <div class="exp-entry-role">Mixing & Mastering Engineer</div>
+        <p class="exp-entry-desc">Paradise, Signs of the Times, Into Her Balands, Fast and Furious, United.</p>
+      </div>
+    </div>
+    <div class="exp-entry">
+      <div class="exp-yr">2025–26</div>
+      <div>
+        <div class="exp-entry-title">ARGO — Africa's First Public AR Game</div>
+        <div class="exp-entry-role">Co-Producer, Original Soundtrack · Fallohide Africa</div>
+        <p class="exp-entry-desc">Launched with WWF-Kenya, Electric South, Ford Foundation.</p>
+      </div>
+    </div>
+    <div class="exp-entry">
+      <div class="exp-yr">2025</div>
+      <div>
+        <div class="exp-entry-title">Tyrelm — "Time and Space" / "Broken Diary"</div>
+        <div class="exp-entry-role">Producer, Mix & Mastering Engineer — 2 Albums, 15 tracks</div>
+      </div>
+    </div>
+    <div class="exp-entry">
+      <div class="exp-yr">2023</div>
+      <div>
+        <div class="exp-entry-title">Dicemane — "Resilient" / "Rudia"</div>
+        <div class="exp-entry-role">Produced, Mixed & Mastered</div>
+        <p class="exp-entry-desc">Radio airplay · Shoke Shoke Fest nomination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLUGIN -->
+<section id="plugin">
+  <div class="plugin-hero">
+    <div>
+      <span class="label">Free Plugin</span>
+      <h2 class="plugin-title">TY<em>ROOM</em></h2>
+      <p class="sub" style="margin-top:1.5rem">Algorithmic reverb — analog warmth, HISE-built. Also includes TYMLAPSE delay.</p>
+    </div>
+    <div class="plugin-right">
+      <p>Plate-style reverb with Room→Hall switching, 3-band EQ, analog preamp saturation, and a Sheng/Swahili interface. Built to compete with premium plates at zero cost.</p>
+      <div class="plugin-feats">
+        <div class="pf"><strong>Room→Hall</strong><span>Algorithm switch</span></div>
+        <div class="pf"><strong>Decay + Pre-delay</strong><span>Tail time & onset gap</span></div>
+        <div class="pf"><strong>3-band EQ</strong><span>Cut mud & shape tone</span></div>
+        <div class="pf"><strong>Analog Preamp</strong><span>Warmth & saturation</span></div>
+        <div class="pf"><strong>Animated UI</strong><span>Smooth transitions</span></div>
+        <div class="pf"><strong>Sheng / Swahili</strong><span>Localized interface</span></div>
+      </div>
+      <div class="plugin-badges">
+        <span class="pbadge">HISE</span>
+        <span class="pbadge">VST3</span>
+        <span class="pbadge">AU</span>
+        <span class="pbadge">AAX</span>
+      </div>
+      <div class="plugin-dl">
+        <input type="email" placeholder="Enter your email">
+        <button>Download Free</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MERCH -->
+<section id="merch">
+  <span class="label">Store</span>
+  <h2>Merch</h2>
+  <p class="sub">Curated looks. Contrast your style.</p>
+  <div class="merch-ed">
+    <div class="merch-item">
+      <div class="merch-item-img">
+        <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/white-hoodie.webp" alt="White Hoodie">
+      </div>
+      <div class="merch-item-info">
+        <div class="merch-item-name">White Hoodie Set</div>
+        <div class="merch-item-price">KSh 2,500 · $19</div>
+        <a href="https://wa.me/254706602914?text=White%20Set%20order" class="merch-item-btn" target="_blank">Order</a>
+      </div>
+    </div>
+    <div class="merch-item">
+      <div class="merch-item-img">
+        <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/black-hoodie.webp" alt="Black Hoodie">
+      </div>
+      <div class="merch-item-info">
+        <div class="merch-item-name">Black Hoodie Set</div>
+        <div class="merch-item-price">KSh 2,500 · $19</div>
+        <a href="https://wa.me/254706602914?text=Black%20Set%20order" class="merch-item-btn" target="_blank">Order</a>
+      </div>
+    </div>
+    <div class="merch-item">
+      <div class="merch-item-img">
+        <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/white-tee-front.webp" alt="White Tee">
+      </div>
+      <div class="merch-item-info">
+        <div class="merch-item-name">White Tee + Black Cargo</div>
+        <div class="merch-item-price">KSh 2,100 · $16</div>
+        <a href="https://wa.me/254706602914?text=White%20Tee%20order" class="merch-item-btn" target="_blank">Order</a>
+      </div>
+    </div>
+    <div class="merch-item">
+      <div class="merch-item-img" style="position:relative">
+        <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/black-tee-front.webp" alt="Black Tee">
+        <span style="position:absolute;top:0.8rem;left:0.8rem;background:var(--gold);color:var(--black);font-family:var(--ff-san);font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.2rem 0.5rem;font-weight:600">Limited</span>
+      </div>
+      <div class="merch-item-info">
+        <div class="merch-item-name">Black Tee + White Cargo</div>
+        <div class="merch-item-price">KSh 2,100 · $16</div>
+        <a href="https://wa.me/254706602914?text=Black%20Tee%20order" class="merch-item-btn" target="_blank">Order</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter" class="nl-section">
+  <div class="nl-box">
+    <span class="label">Stay Connected</span>
+    <h2>Join the <em>List</em></h2>
+    <p>New releases, Sane Sessions, merch drops, and studio news.</p>
+    <div class="nl-row">
+      <input type="email" placeholder="Your email">
+      <button>Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<div class="book-section" id="book">
+  <span class="label">Book</span>
+  <h2>Book a <em>Session</em></h2>
+  <div class="book-actions">
+    <a href="https://wa.me/254706602914" class="btn btn-fill" target="_blank">WhatsApp Studio</a>
+    <a href="mailto:tyrellmatekwa@gmail.com" class="btn btn-ghost">Email Tyrelm</a>
+  </div>
+  <p class="book-contact">tyrellmatekwa@gmail.com · <a href="tel:+254706602914">+254 706 602 914</a></p>
+</div>
+
+<footer>
+  <span class="footer-name">Tyrelm Nation</span>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/ty_relm" target="_blank">@ty_relm</a>
+    <a href="https://www.instagram.com/tyrelm_nation" target="_blank">@tyrelm_nation</a>
+    <a href="mailto:tyrellmatekwa@gmail.com">Email</a>
+    <a href="https://wa.me/254706602914" target="_blank">WhatsApp</a>
+  </div>
+  <span class="footer-copy">© 2026 Tyrelm</span>
+</footer>
+
 </body>
 </html>
