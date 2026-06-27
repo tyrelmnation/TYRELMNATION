@@ -3,445 +3,604 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tyrelm Nation — Design B: Editorial</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+<title>Tyrelm Nation — Design C: Kinetic+</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,700;0,900;1,700&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black:  #090909;
-    --gold:   #C8A44A;
-    --gold2:  #8B6E2E;
-    --cream:  #F0EBE1;
-    --grey:   #2A2A2A;
-    --muted:  #6A6A6A;
-    --rule:   rgba(200,164,74,0.15);
-    --ff-ser: 'Cormorant Garamond', serif;
-    --ff-san: 'Instrument Sans', sans-serif;
-  }
+:root {
+  --black:  #050505;
+  --gold:   #C9A84C;
+  --gold-d: #7A6430;
+  --white:  #EFEFEF;
+  --muted:  #777;
+  --rule:   rgba(201,168,76,0.12);
+  --ff-cnd: 'Barlow Condensed', sans-serif;
+  --ff-bdy: 'Inter', sans-serif;
+  --ff-mono:'Space Mono', monospace;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--ff-bdy);
+  overflow-x: hidden;
+}
 
-  body {
-    background: var(--black);
-    color: var(--cream);
-    font-family: var(--ff-san);
-    font-size: 16px;
-    line-height: 1.5;
-    overflow-x: hidden;
-  }
+/* ─── ANIMATIONS ─────────────────────────────────── */
+@keyframes stencil-drift {
+  0%,100% { transform: translateX(-0.8%) translateY(0); }
+  50%      { transform: translateX(0.8%) translateY(-0.4%); }
+}
+@keyframes hero-glitch {
+  0%,88%,100% { clip-path:none; transform:none; }
+  89% { clip-path:inset(28% 0 55% 0); transform:translateX(-3px); color:var(--gold); }
+  90% { clip-path:inset(58% 0 8% 0);  transform:translateX(3px); }
+  91% { clip-path:none; transform:none; color:var(--white); }
+}
+@keyframes gold-glitch {
+  0%,88%,100% { text-shadow:none; }
+  89% { text-shadow: 3px 0 rgba(201,168,76,.7), -3px 0 rgba(255,255,255,.2); transform:translateX(-2px); }
+  90% { text-shadow:-3px 0 rgba(201,168,76,.7),  3px 0 rgba(255,255,255,.2); transform:translateX(2px); }
+  91% { text-shadow:none; transform:none; }
+}
+@keyframes scan-move {
+  0%   { top:-4%; }
+  100% { top:110%; }
+}
+@keyframes wf-pulse {
+  from { opacity:.12; transform:scaleY(.5); }
+  to   { opacity:.6;  transform:scaleY(1); }
+}
+@keyframes nav-sweep {
+  0%   { background-position:0% 50%; }
+  100% { background-position:200% 50%; }
+}
+@keyframes modal-in {
+  from { opacity:0; transform:scale(.96) translateY(14px); }
+  to   { opacity:1; transform:scale(1) translateY(0); }
+}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 1.2rem clamp(1.5rem, 4vw, 3rem);
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(9,9,9,0.88);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--rule);
-  }
-  .nav-logo {
-    font-family: var(--ff-ser);
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--cream);
-    text-decoration: none;
-  }
-  .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 2.5rem; }
-  .nav-links a {
-    font-family: var(--ff-san); font-size: 0.75rem;
-    color: var(--muted); text-decoration: none; letter-spacing: 0.06em;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--cream); }
+/* ─── NAV ─────────────────────────────────────────── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  height:56px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 clamp(1rem,4vw,2.5rem);
+  background:rgba(5,5,5,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--rule);
+}
+nav::after {
+  content:''; position:absolute; bottom:-1px; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent 0%,var(--gold) 40%,var(--gold) 60%,transparent 100%);
+  background-size:200% 100%;
+  animation:nav-sweep 5s linear infinite;
+  opacity:.35;
+}
+.nav-logo {
+  font-family:var(--ff-cnd); font-size:1.2rem;
+  font-weight:900; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--white); text-decoration:none;
+  display:flex; align-items:center; gap:.6rem;
+}
+.nav-logo b { color:var(--gold); }
+.nav-status {
+  font-family:var(--ff-mono); font-size:.5rem;
+  color:var(--gold); letter-spacing:.18em;
+  opacity:.65; display:flex; align-items:center; gap:.35rem;
+}
+.nav-status::before {
+  content:''; width:5px; height:5px; border-radius:50%;
+  background:var(--gold); display:block;
+  box-shadow:0 0 6px var(--gold);
+}
+.nav-links { display:flex; gap:1.8rem; }
+.nav-links a {
+  font-family:var(--ff-bdy); font-size:.72rem;
+  color:var(--muted); text-decoration:none;
+  transition:color .15s; letter-spacing:.04em;
+}
+.nav-links a:hover { color:var(--gold); }
 
-  /* HERO — EDITORIAL SPLIT */
-  .hero {
-    min-height: 100svh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 64px;
-    position: relative;
-  }
+/* ─── HERO ────────────────────────────────────────── */
+.hero {
+  min-height:100svh; padding-top:56px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  position:relative; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,#0a0a0a 0%,#111 50%,#080808 100%);
+}
+/* CRT scanlines */
+.hero-scan {
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:repeating-linear-gradient(
+    180deg,transparent 0px,transparent 3px,
+    rgba(0,0,0,.07) 3px,rgba(0,0,0,.07) 4px
+  );
+}
+/* Moving sweep line */
+.hero-scan::after {
+  content:''; position:absolute; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,.12),transparent);
+  animation:scan-move 8s linear infinite; top:0;
+}
+.hero-stencil {
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; pointer-events:none;
+  animation:stencil-drift 22s ease-in-out infinite;
+}
+.hero-stencil-text {
+  font-family:var(--ff-cnd);
+  font-size:clamp(12rem,28vw,26rem);
+  font-weight:900; font-style:italic;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(201,168,76,.07);
+  letter-spacing:-.02em; white-space:nowrap;
+  user-select:none; line-height:1;
+}
+.hero-content {
+  position:relative; z-index:4;
+  padding:clamp(2rem,6vw,4rem);
+  padding-bottom:clamp(3rem,8vw,6rem);
+}
+.hero-tag {
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-family:var(--ff-mono); font-size:.6rem;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--black); background:var(--gold);
+  padding:.28rem .7rem; margin-bottom:1.5rem;
+}
+.hero-tag::before { content:'> '; opacity:.6; }
+.hero-h1 {
+  font-family:var(--ff-cnd);
+  font-size:clamp(5rem,18vw,16rem);
+  font-weight:900; font-style:italic;
+  line-height:.88; letter-spacing:-.01em;
+  margin-bottom:2rem;
+  animation:hero-glitch 11s infinite;
+}
+.hero-h1 .line-gold {
+  color:var(--gold); display:block;
+  animation:gold-glitch 11s .7s infinite;
+}
+.hero-bottom { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+.hero-bottom p {
+  font-family:var(--ff-bdy); font-size:.85rem;
+  color:var(--muted); line-height:1.6; max-width:32ch;
+}
+.hero-cta { display:flex; gap:.75rem; }
 
-  /* Left: oversized rotated label — the signature element */
-  .hero-left {
-    display: flex; align-items: flex-end; padding: clamp(2rem, 6vw, 5rem);
-    position: relative; overflow: hidden;
-    border-right: 1px solid var(--rule);
-  }
-  .hero-rotate {
-    position: absolute;
-    top: 50%; left: -4rem;
-    transform: translateY(-50%) rotate(-90deg);
-    font-family: var(--ff-ser); font-size: clamp(5rem, 18vw, 16rem);
-    font-weight: 300; font-style: italic;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(200,164,74,0.3);
-    white-space: nowrap;
-    pointer-events: none;
-    line-height: 1;
-  }
-  .hero-left-content {
-    position: relative; z-index: 2;
-  }
-  .hero-eyebrow {
-    font-family: var(--ff-san); font-size: 0.68rem;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.5rem;
-    display: block;
-  }
-  .hero-h1 {
-    font-family: var(--ff-ser);
-    font-size: clamp(4rem, 10vw, 9rem);
-    font-weight: 600; line-height: 0.92;
-    letter-spacing: -0.01em;
-  }
-  .hero-h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .hero-desc {
-    margin-top: 2.5rem;
-    font-size: 0.9rem; color: var(--muted);
-    max-width: 32ch; line-height: 1.7;
-  }
-  .hero-cta { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+/* ─── BUTTONS ─────────────────────────────────────── */
+.btn {
+  font-family:var(--ff-bdy); font-size:.72rem;
+  font-weight:500; letter-spacing:.08em;
+  text-decoration:none; text-transform:uppercase;
+  padding:.85rem 2rem; display:inline-block;
+  transition:all .2s;
+}
+.btn-gold { background:var(--gold); color:var(--black); font-weight:600; }
+.btn-gold:hover { background:#dbb85a; box-shadow:0 0 28px rgba(201,168,76,.35); }
+.btn-line { border:1px solid rgba(201,168,76,.4); color:var(--white); }
+.btn-line:hover { border-color:var(--gold); color:var(--gold); box-shadow:0 0 16px rgba(201,168,76,.15); }
 
-  .btn {
-    font-family: var(--ff-san); font-size: 0.72rem;
-    font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; text-decoration: none;
-    padding: 0.8rem 2rem;
-    display: inline-block; transition: all 0.25s;
-  }
-  .btn-fill { background: var(--gold); color: var(--black); }
-  .btn-fill:hover { background: #dbb85a; }
-  .btn-ghost { border: 1px solid rgba(200,164,74,0.4); color: var(--cream); }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+/* ─── WAVEFORM DIVIDER ────────────────────────────── */
+.wf-divider {
+  width:100%; height:44px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  gap:2px; padding:0 clamp(1rem,4vw,2.5rem);
+  background:var(--black); position:relative;
+}
+.wf-divider::before,.wf-divider::after {
+  content:''; position:absolute; top:50%;
+  height:1px; background:var(--rule); width:clamp(40px,8vw,120px);
+}
+.wf-divider::before { left:clamp(1rem,4vw,2.5rem); }
+.wf-divider::after  { right:clamp(1rem,4vw,2.5rem); }
+.wf-b {
+  width:2px; background:var(--gold); border-radius:1px;
+  animation:wf-pulse 1.4s ease-in-out infinite alternate;
+  flex-shrink:0;
+}
 
-  /* Right: hero image */
-  .hero-right {
-    position: relative; overflow: hidden;
-  }
-  .hero-right img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%; object-fit: cover;
-    filter: grayscale(40%) contrast(1.05);
-  }
-  .hero-right::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, var(--black) 0%, transparent 30%),
-                linear-gradient(to top, var(--black) 0%, transparent 40%);
-  }
-  /* Editorial issue number */
-  .hero-issue {
-    position: absolute; bottom: 2rem; right: 2rem; z-index: 2;
-    font-family: var(--ff-ser); font-size: 0.75rem; font-style: italic;
-    color: rgba(200,164,74,0.6); letter-spacing: 0.08em;
-  }
+/* ─── HUD CORNERS ─────────────────────────────────── */
+.hud { position:relative; }
+.hud::before,.hud::after,.hud .hc-bl,.hud .hc-br {
+  content:''; position:absolute;
+  width:14px; height:14px;
+  border-color:rgba(201,168,76,.28);
+  border-style:solid; pointer-events:none;
+  transition:border-color .3s, width .25s, height .25s;
+}
+.hud::before { top:0;    left:0;  border-width:1px 0 0 1px; }
+.hud::after  { top:0;    right:0; border-width:1px 1px 0 0; }
+.hud .hc-bl  { bottom:0; left:0;  border-width:0 0 1px 1px; }
+.hud .hc-br  { bottom:0; right:0; border-width:0 1px 1px 0; }
+.hud:hover::before,.hud:hover::after,.hud:hover .hc-bl,.hud:hover .hc-br {
+  border-color:rgba(201,168,76,.9); width:22px; height:22px;
+}
 
-  /* SECTION BASE */
-  section {
-    border-top: 1px solid var(--rule);
-    padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
-    max-width: 1300px; margin: 0 auto;
-  }
+/* ─── SECTIONS ────────────────────────────────────── */
+.s {
+  padding:clamp(4rem,8vw,7rem) clamp(1rem,4vw,2.5rem);
+  border-top:1px solid var(--rule);
+  max-width:1280px; margin:0 auto;
+}
+.s-eyebrow {
+  font-family:var(--ff-mono); font-size:.57rem;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:var(--gold); display:block; margin-bottom:1rem;
+}
+.s-eyebrow::before { content:'> '; opacity:.45; }
+h2 {
+  font-family:var(--ff-cnd);
+  font-size:clamp(3rem,8vw,7rem);
+  font-weight:900; font-style:italic;
+  line-height:.9; letter-spacing:-.01em;
+  margin-bottom:1rem;
+}
+h2 .g { color:var(--gold); }
+h2 .w { color:transparent; -webkit-text-stroke:1px var(--white); }
+.s-sub { color:var(--muted); font-size:.9rem; max-width:44ch; line-height:1.7; margin-bottom:3rem; }
 
-  .label {
-    font-family: var(--ff-san); font-size: 0.65rem;
-    letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); display: block; margin-bottom: 1.5rem;
-  }
+/* ─── RELEASES ────────────────────────────────────── */
+.rel-grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:2px; background:var(--rule); border:1px solid var(--rule);
+}
+.rel-card {
+  position:relative; aspect-ratio:4/3; overflow:hidden;
+  background:#111; text-decoration:none; color:inherit; display:block;
+}
+.rel-card img { width:100%; height:100%; object-fit:cover; transition:transform .5s; filter:grayscale(20%); }
+.rel-card:hover img { transform:scale(1.06); }
+.rel-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(5,5,5,.95) 0%,transparent 55%);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:2rem;
+}
+.rel-label {
+  font-family:var(--ff-mono); font-size:.57rem;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:.4rem;
+}
+.rel-title {
+  font-family:var(--ff-cnd); font-size:2.2rem;
+  font-weight:900; font-style:italic; line-height:1;
+}
+.rel-play {
+  position:absolute; top:1.5rem; right:1.5rem;
+  width:44px; height:44px;
+  background:var(--gold); color:var(--black);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem; opacity:0;
+  transition:opacity .2s, transform .2s;
+}
+.rel-card:hover .rel-play { opacity:1; transform:scale(1.08); }
 
-  h2 {
-    font-family: var(--ff-ser);
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 300; line-height: 1.05;
-  }
-  h2 em { font-style: italic; color: var(--gold); }
-  h2 strong { font-weight: 600; }
+/* ─── SERVICES ────────────────────────────────────── */
+.svc-list { display:flex; flex-direction:column; gap:0; margin-top:2.5rem; }
+.svc-item {
+  display:grid; grid-template-columns:72px 1fr auto;
+  gap:2rem; align-items:start;
+  padding:2.2rem 0;
+  border-top:1px solid var(--rule);
+}
+.svc-item:last-child { border-bottom:1px solid var(--rule); }
+.svc-num {
+  font-family:var(--ff-mono); font-size:.68rem;
+  font-weight:700; color:rgba(201,168,76,.28);
+  letter-spacing:.05em; padding-top:.3rem; line-height:1;
+}
+.svc-name {
+  font-family:var(--ff-cnd); font-size:1.8rem;
+  font-weight:700; font-style:italic;
+  line-height:1; margin-bottom:.4rem;
+}
+.svc-desc { font-size:.82rem; color:var(--muted); margin-bottom:.9rem; line-height:1.55; }
+.svc-rates {
+  display:flex; flex-wrap:wrap; gap:.3rem .9rem; margin-bottom:1rem;
+}
+.svc-rate-item {
+  font-family:var(--ff-mono); font-size:.62rem;
+  color:rgba(255,255,255,.35); letter-spacing:.03em;
+}
+.svc-rate-item b { color:var(--gold); font-weight:700; }
+.svc-actions { display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; }
+.svc-btn {
+  font-family:var(--ff-mono); font-size:.6rem;
+  font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  text-decoration:none; padding:.45rem .9rem;
+  transition:all .2s; white-space:nowrap;
+  display:inline-block; cursor:pointer; background:transparent;
+  border:1px solid;
+}
+.svc-btn-book { color:var(--gold); border-color:rgba(201,168,76,.4); }
+.svc-btn-book:hover { background:var(--gold); color:var(--black); box-shadow:0 0 20px rgba(201,168,76,.3); }
+.svc-btn-terms { color:var(--muted); border-color:rgba(255,255,255,.1); }
+.svc-btn-terms:hover { border-color:rgba(201,168,76,.35); color:var(--white); }
+.svc-price { text-align:right; min-width:130px; }
+.svc-price-num {
+  font-family:var(--ff-mono); font-size:1.15rem;
+  font-weight:700; color:var(--gold); line-height:1;
+  display:block; white-space:nowrap;
+}
+.svc-price-unit {
+  font-family:var(--ff-mono); font-size:.56rem; color:var(--muted);
+  letter-spacing:.06em; text-transform:uppercase;
+  display:block; margin-bottom:1rem;
+}
 
-  .sub { color: var(--muted); font-size: 0.95rem; max-width: 46ch; margin-top: 1rem; line-height: 1.7; }
+/* ─── ABOUT ───────────────────────────────────────── */
+.about-split {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:0; border:1px solid var(--rule);
+}
+.about-photo { overflow:hidden; }
+.about-photo img {
+  width:100%; height:100%; min-height:400px;
+  object-fit:cover; filter:grayscale(30%) contrast(1.05);
+  display:block; transition:transform .5s;
+}
+.about-split:hover .about-photo img { transform:scale(1.03); }
+.about-text-col {
+  padding:clamp(2rem,5vw,4rem);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  background:#0c0c0c; border-left:1px solid var(--rule);
+}
+.about-text-col h3 {
+  font-family:var(--ff-cnd);
+  font-size:clamp(3rem,7vw,5.5rem);
+  font-weight:900; font-style:italic;
+  line-height:.9; margin-bottom:1.5rem;
+}
+.about-text-col h3 span { color:var(--gold); }
+.about-text-col p { color:var(--muted); font-size:.9rem; line-height:1.75; }
 
-  /* RELEASES — MAGAZINE SPREAD */
-  .releases-header { margin-bottom: 3rem; }
-  .releases-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1.5px; background: var(--rule);
-    border: 1px solid var(--rule);
-  }
-  .release-featured, .release-secondary {
-    background: var(--grey);
-    position: relative; overflow: hidden;
-    cursor: pointer; text-decoration: none; color: inherit;
-    display: block;
-  }
-  .release-featured { aspect-ratio: 4/3; }
-  .release-secondary { border-top: 1.5px solid var(--rule); }
-  .release-secondary:first-child { border-top: none; }
-  .release-img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s ease; display: block;
-  }
-  .release-featured:hover .release-img,
-  .release-secondary:hover .release-img { transform: scale(1.04); }
-  .release-caption {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(9,9,9,0.9) 0%, transparent 60%);
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 2rem;
-  }
-  .release-title {
-    font-family: var(--ff-ser); font-size: 1.8rem;
-    font-weight: 600; line-height: 1.1;
-  }
-  .release-meta-tag {
-    font-family: var(--ff-san); font-size: 0.62rem;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 0.5rem;
-  }
-  .release-secondary { aspect-ratio: 16/9; }
-  .release-secondary .release-title { font-size: 1.2rem; }
-  .release-play {
-    position: absolute; top: 1.2rem; right: 1.2rem;
-    width: 36px; height: 36px; border: 1px solid rgba(200,164,74,0.5);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--gold); font-size: 0.7rem;
-    transition: background 0.2s;
-  }
-  .release-featured:hover .release-play,
-  .release-secondary:hover .release-play { background: var(--gold); color: var(--black); }
+/* ─── EXPERIENCE ──────────────────────────────────── */
+.exp-table { margin-top:2.5rem; }
+.exp-row {
+  display:grid; grid-template-columns:110px 1fr 220px;
+  gap:2rem; padding:1.5rem 0;
+  border-top:1px solid var(--rule); align-items:baseline;
+}
+.exp-row:last-child { border-bottom:1px solid var(--rule); }
+.exp-yr {
+  font-family:var(--ff-mono); font-size:.95rem;
+  font-weight:700; color:var(--gold);
+}
+.exp-project { font-weight:500; font-size:.95rem; margin-bottom:.2rem; }
+.exp-r { font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
+.exp-link-col { text-align:right; }
+.exp-link-col a {
+  font-family:var(--ff-mono); font-size:.6rem; color:var(--gold);
+  text-decoration:none; letter-spacing:.06em; text-transform:uppercase;
+}
+.exp-link-col a:hover { text-decoration:underline; }
 
-  /* SERVICES — 2-column with typographic price */
-  .services-list { margin-top: 3rem; }
-  .service-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border-top: 1px solid var(--rule);
-  }
-  .service-row:last-child { border-bottom: 1px solid var(--rule); }
-  .service-col { padding: 2.5rem 0 2.5rem 0; }
-  .service-col:first-child { padding-right: 4rem; border-right: 1px solid var(--rule); }
-  .service-col:last-child { padding-left: 4rem; }
-  .service-name {
-    font-family: var(--ff-ser);
-    font-size: 2rem; font-weight: 300; font-style: italic;
-    margin-bottom: 0.8rem;
-  }
-  .service-tag-sm {
-    font-family: var(--ff-san); font-size: 0.6rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); display: block; margin-bottom: 1rem;
-  }
-  .service-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.5rem; }
-  .service-price-big {
-    font-family: var(--ff-ser); font-size: 1.5rem;
-    font-weight: 600; color: var(--cream);
-    margin-bottom: 1.2rem;
-  }
-  .service-price-big em { color: var(--gold); font-style: normal; }
-  .service-cta {
-    font-family: var(--ff-san); font-size: 0.68rem;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--gold); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .service-cta:hover { color: var(--cream); }
-  .service-cta::after { content: ' →'; }
+/* ─── PLUGIN BAND ─────────────────────────────────── */
+.plugin-band {
+  background:var(--gold); color:var(--black);
+  padding:clamp(3rem,7vw,6rem) clamp(1rem,4vw,2.5rem);
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:4rem; align-items:center;
+}
+.plugin-band h2 {
+  font-family:var(--ff-cnd); font-size:clamp(4rem,10vw,8rem);
+  font-weight:900; font-style:italic;
+  line-height:.88; color:var(--black);
+}
+.plugin-band h2 .stroke { color:transparent; -webkit-text-stroke:2px var(--black); }
+.plugin-band p { color:#3a2f00; font-size:.9rem; line-height:1.7; margin-bottom:2rem; }
+.plugin-band .feats {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:0; margin-bottom:2rem;
+  border:1px solid rgba(0,0,0,.15);
+}
+.plugin-band .feat {
+  padding:.85rem 1rem; border-bottom:1px solid rgba(0,0,0,.1);
+  border-right:1px solid rgba(0,0,0,.1);
+}
+.plugin-band .feat:nth-child(even) { border-right:none; }
+.plugin-band .feat:nth-last-child(-n+2) { border-bottom:none; }
+.plugin-band .feat strong { display:block; font-size:.82rem; margin-bottom:.15rem; }
+.plugin-band .feat span { font-size:.68rem; color:rgba(0,0,0,.5); }
+.plugin-band .badges { display:flex; gap:.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+.plugin-band .badge {
+  font-family:var(--ff-mono); font-size:.56rem; letter-spacing:.14em;
+  padding:.2rem .6rem; border:1px solid rgba(0,0,0,.3);
+  text-transform:uppercase; font-weight:700;
+}
+.plugin-band .dl { display:flex; gap:0; }
+.plugin-band .dl input {
+  flex:1; background:rgba(0,0,0,.08); border:1px solid rgba(0,0,0,.2);
+  border-right:none; color:var(--black); padding:.75rem 1rem;
+  font-family:var(--ff-mono); font-size:.82rem; outline:none;
+}
+.plugin-band .dl input::placeholder { color:rgba(0,0,0,.4); }
+.plugin-band .dl button {
+  background:var(--black); color:var(--gold); border:none;
+  padding:.75rem 1.4rem; font-family:var(--ff-mono); font-size:.65rem;
+  font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  cursor:pointer; transition:background .2s;
+}
+.plugin-band .dl button:hover { background:#1a1a1a; }
 
-  /* ABOUT — OFFSET */
-  .about-wrap {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 5rem; align-items: start;
-  }
-  .about-img {
-    aspect-ratio: 2/3;
-    overflow: hidden;
-    position: sticky; top: 100px;
-  }
-  .about-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); }
-  .about-body { padding-top: 2rem; }
-  .about-body p { color: var(--muted); font-size: 1rem; line-height: 1.85; margin-bottom: 1.5rem; }
+/* ─── MERCH ───────────────────────────────────────── */
+.merch-strip {
+  display:grid; grid-template-columns:repeat(5,1fr);
+  gap:2px; background:var(--rule); border:1px solid var(--rule);
+  margin-top:2.5rem;
+}
+.mc { background:#0e0e0e; overflow:hidden; position:relative; }
+.mc-img { aspect-ratio:2/3; overflow:hidden; }
+.mc-img img { width:100%; height:100%; object-fit:cover; transition:transform .4s; }
+.mc:hover .mc-img img { transform:scale(1.06); }
+.mc-info { padding:1rem; }
+.mc-name { font-family:var(--ff-cnd); font-size:1rem; font-weight:700; font-style:italic; margin-bottom:.2rem; }
+.mc-price { font-family:var(--ff-mono); font-size:.62rem; color:var(--gold); margin-bottom:.8rem; }
+.mc-btn {
+  display:block; text-align:center; padding:.5rem;
+  font-family:var(--ff-mono); font-size:.56rem; font-weight:700; letter-spacing:.1em;
+  text-transform:uppercase; text-decoration:none;
+  background:transparent; border:1px solid rgba(201,168,76,.3);
+  color:var(--white); transition:all .2s;
+}
+.mc-btn:hover { background:var(--gold); border-color:var(--gold); color:var(--black); box-shadow:0 0 16px rgba(201,168,76,.28); }
+.mc-limited {
+  position:absolute; top:0; right:0;
+  font-family:var(--ff-mono); font-size:.5rem; letter-spacing:.14em;
+  font-weight:700; text-transform:uppercase;
+  background:var(--gold); color:var(--black); padding:.2rem .5rem;
+}
 
-  /* EXPERIENCE — LEFT COLUMN STACKED */
-  .exp-grid { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; }
-  .exp-entry {
-    display: grid; grid-template-columns: 120px 1fr;
-    gap: 3rem; padding: 2rem 0;
-    border-top: 1px solid var(--rule);
-    align-items: baseline;
-  }
-  .exp-entry:last-child { border-bottom: 1px solid var(--rule); }
-  .exp-yr {
-    font-family: var(--ff-ser); font-size: 1rem;
-    font-style: italic; color: var(--gold);
-  }
-  .exp-entry-title {
-    font-family: var(--ff-ser); font-size: 1.25rem;
-    font-weight: 600; margin-bottom: 0.3rem;
-  }
-  .exp-entry-role {
-    font-family: var(--ff-san); font-size: 0.7rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 0.6rem;
-  }
-  .exp-entry-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+/* ─── NEWSLETTER ──────────────────────────────────── */
+.nl-band {
+  background:#0c0c0c; border-top:1px solid var(--rule);
+  padding:clamp(4rem,8vw,6rem) clamp(1rem,4vw,2.5rem);
+  text-align:center;
+}
+.nl-band .s-eyebrow { margin-bottom:.75rem; }
+.nl-band h2 { margin-bottom:1rem; }
+.nl-band p { color:var(--muted); margin-bottom:2.5rem; }
+.nl-form { display:flex; gap:0; max-width:480px; margin:0 auto; }
+.nl-form input {
+  flex:1; background:transparent; border:1px solid var(--rule);
+  border-right:none; color:var(--white);
+  padding:.85rem 1.1rem; font-family:var(--ff-mono); font-size:.8rem; outline:none;
+}
+.nl-form input:focus { border-color:var(--gold); }
+.nl-form button {
+  background:var(--gold); color:var(--black); border:none;
+  padding:.85rem 1.6rem; font-family:var(--ff-mono); font-size:.65rem;
+  font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  cursor:pointer; transition:background .2s;
+}
+.nl-form button:hover { background:#dbb85a; }
 
-  /* PLUGIN */
-  .plugin-hero {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4rem; align-items: center;
-  }
-  .plugin-title {
-    font-family: var(--ff-ser);
-    font-size: clamp(3rem, 8vw, 7rem);
-    font-weight: 300; line-height: 0.9;
-  }
-  .plugin-title em { font-style: italic; color: var(--gold); }
-  .plugin-right p { color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
-  .plugin-feats {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 0; border: 1px solid var(--rule);
-    margin-bottom: 2rem;
-  }
-  .pf {
-    padding: 1rem 1.2rem; border-bottom: 1px solid var(--rule);
-    border-right: 1px solid var(--rule);
-  }
-  .pf:nth-child(even) { border-right: none; }
-  .pf:nth-last-child(-n+2) { border-bottom: none; }
-  .pf strong { display: block; font-size: 0.85rem; margin-bottom: 0.2rem; }
-  .pf span { font-size: 0.72rem; color: var(--muted); }
-  .plugin-badges { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-  .pbadge {
-    font-family: var(--ff-san); font-size: 0.6rem;
-    letter-spacing: 0.14em; padding: 0.25rem 0.65rem;
-    border: 1px solid var(--gold); color: var(--gold);
-  }
-  .plugin-dl { display: flex; gap: 0; }
-  .plugin-dl input {
-    flex: 1; background: transparent;
-    border: 1px solid var(--rule); border-right: none;
-    color: var(--cream); padding: 0.75rem 1rem;
-    font-family: var(--ff-san); font-size: 0.88rem; outline: none;
-  }
-  .plugin-dl input:focus { border-color: var(--gold); }
-  .plugin-dl button {
-    background: var(--gold); color: var(--black);
-    border: none; padding: 0.75rem 1.4rem;
-    font-family: var(--ff-san); font-size: 0.7rem;
-    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    cursor: pointer;
-  }
-  .plugin-dl button:hover { background: #dbb85a; }
+/* ─── BOOK ────────────────────────────────────────── */
+.book-band {
+  border-top:1px solid var(--rule);
+  padding:clamp(5rem,12vw,10rem) clamp(1rem,4vw,2.5rem);
+  text-align:center;
+}
+.book-band .s-eyebrow { margin-bottom:1rem; }
+.book-band h2 { font-size:clamp(4rem,12vw,10rem); margin-bottom:2.5rem; }
+.book-band .btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem; }
+.book-band .contact { font-family:var(--ff-mono); font-size:.72rem; color:var(--muted); }
+.book-band .contact a { color:var(--gold); text-decoration:none; }
 
-  /* MERCH — editorial layout */
-  .merch-ed {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5px; background: var(--rule);
-    border: 1px solid var(--rule); margin-top: 3rem;
-  }
-  .merch-item { background: var(--grey); }
-  .merch-item-img { aspect-ratio: 2/3; overflow: hidden; }
-  .merch-item-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-  .merch-item:hover .merch-item-img img { transform: scale(1.04); }
-  .merch-item-info { padding: 1rem 1.2rem 1.4rem; }
-  .merch-item-name { font-family: var(--ff-ser); font-size: 1.05rem; margin-bottom: 0.3rem; }
-  .merch-item-price { font-size: 0.72rem; color: var(--gold); margin-bottom: 1rem; }
-  .merch-item-btn {
-    display: block; text-align: center;
-    padding: 0.55rem; font-family: var(--ff-san); font-size: 0.62rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    border: 1px solid rgba(200,164,74,0.4); color: var(--cream);
-    text-decoration: none; transition: all 0.2s;
-  }
-  .merch-item-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+/* ─── FOOTER ──────────────────────────────────────── */
+footer {
+  border-top:1px solid var(--rule);
+  padding:2rem clamp(1rem,4vw,2.5rem);
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.2rem;
+}
+.footer-brand {
+  font-family:var(--ff-cnd); font-size:1rem;
+  font-weight:900; font-style:italic;
+  letter-spacing:.06em; text-transform:uppercase;
+}
+.footer-brand b { color:var(--gold); }
+.footer-links { display:flex; gap:1.5rem; }
+.footer-links a { font-family:var(--ff-mono); font-size:.6rem; color:var(--muted); text-decoration:none; transition:color .2s; }
+.footer-links a:hover { color:var(--gold); }
+.footer-copy { font-family:var(--ff-mono); font-size:.6rem; color:var(--muted); }
 
-  /* BOOK — centered, editorial pull quote style */
-  .book-section {
-    border-top: 1px solid var(--rule);
-    text-align: center;
-    padding: clamp(5rem, 12vw, 10rem) clamp(1.5rem, 5vw, 4rem);
-  }
-  .book-section .label { margin-bottom: 2rem; }
-  .book-section h2 {
-    font-size: clamp(3rem, 8vw, 7rem);
-    margin-bottom: 2.5rem;
-  }
-  .book-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
-  .book-contact { font-size: 0.8rem; color: var(--muted); }
-  .book-contact a { color: var(--gold); text-decoration: none; }
+/* ─── TERMS MODAL ─────────────────────────────────── */
+.modal-overlay {
+  display:none; position:fixed; inset:0; z-index:999;
+  background:rgba(5,5,5,.85);
+  backdrop-filter:blur(14px);
+  align-items:center; justify-content:center;
+  padding:1.5rem;
+}
+.modal-overlay.active { display:flex; }
+.modal-box {
+  background:#0d0d0d; border:1px solid var(--rule);
+  max-width:580px; width:100%; max-height:88vh; overflow-y:auto;
+  animation:modal-in .22s ease-out both;
+  position:relative;
+}
+/* HUD corners on modal */
+.modal-box::before { content:''; position:absolute; top:0;    left:0;  width:18px; height:18px; border:1px solid rgba(201,168,76,.7); border-right:none; border-bottom:none; }
+.modal-box::after  { content:''; position:absolute; bottom:0; right:0; width:18px; height:18px; border:1px solid rgba(201,168,76,.7); border-left:none;  border-top:none; }
+.modal-head {
+  padding:1.5rem 2rem 1.2rem;
+  border-bottom:1px solid var(--rule);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.modal-title {
+  font-family:var(--ff-cnd); font-size:1.6rem;
+  font-weight:900; font-style:italic; color:var(--white);
+}
+.modal-title .g { color:var(--gold); }
+.modal-close {
+  background:none; border:1px solid var(--rule);
+  color:var(--muted); cursor:pointer;
+  width:30px; height:30px; display:flex; align-items:center; justify-content:center;
+  font-size:.9rem; transition:all .2s; flex-shrink:0;
+}
+.modal-close:hover { border-color:var(--gold); color:var(--white); }
+.modal-body { padding:2rem; }
+.modal-body h4 {
+  font-family:var(--ff-mono); font-size:.57rem;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:.75rem; margin-top:1.6rem;
+}
+.modal-body h4:first-child { margin-top:0; }
+.modal-body ul { list-style:none; display:flex; flex-direction:column; gap:.4rem; margin-bottom:.5rem; }
+.modal-body li {
+  font-family:var(--ff-mono); font-size:.74rem; color:var(--muted);
+  padding-left:1rem; position:relative; line-height:1.6;
+}
+.modal-body li::before { content:'—'; position:absolute; left:0; color:var(--gold); opacity:.45; }
+.modal-body p { font-size:.84rem; color:var(--muted); line-height:1.75; }
+.modal-body b { color:var(--white); }
+.modal-footer {
+  padding:1.2rem 2rem 1.6rem;
+  border-top:1px solid var(--rule);
+  display:flex; gap:.75rem; justify-content:flex-end; flex-wrap:wrap;
+}
 
-  /* NEWSLETTER */
-  .nl-section { text-align: center; }
-  .nl-box { max-width: 500px; margin: 0 auto; }
-  .nl-box h2 { margin-bottom: 1rem; }
-  .nl-box p { color: var(--muted); margin-bottom: 2rem; }
-  .nl-row { display: flex; gap: 0; }
-  .nl-row input {
-    flex: 1; background: transparent; border: 1px solid var(--rule);
-    border-right: none; color: var(--cream);
-    padding: 0.8rem 1rem; font-family: var(--ff-san); font-size: 0.9rem; outline: none;
-  }
-  .nl-row input:focus { border-color: var(--gold); }
-  .nl-row button {
-    background: var(--gold); color: var(--black); border: none;
-    padding: 0.8rem 1.5rem; font-family: var(--ff-san); font-size: 0.7rem;
-    font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-    cursor: pointer;
-  }
-  .nl-row button:hover { background: #dbb85a; }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--rule);
-    padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-    max-width: 1300px; margin: 0 auto;
-  }
-  .footer-name { font-family: var(--ff-ser); font-size: 1rem; font-style: italic; color: var(--gold); }
-  .footer-links { display: flex; gap: 2rem; }
-  .footer-links a { font-size: 0.72rem; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--cream); }
-  .footer-copy { font-size: 0.68rem; color: var(--muted); }
-
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: clamp(3rem, 8vw, 5rem) 1.5rem 4rem; }
-    .hero-rotate { display: none; }
-    .releases-row { grid-template-columns: 1fr; }
-    .service-row { grid-template-columns: 1fr; }
-    .service-col:first-child { padding-right: 0; border-right: none; border-bottom: 1px solid var(--rule); }
-    .service-col:last-child { padding-left: 0; }
-    .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
-    .about-img { position: static; aspect-ratio: 3/2; }
-    .exp-entry { grid-template-columns: 80px 1fr; gap: 1.5rem; }
-    .plugin-hero { grid-template-columns: 1fr; }
-    .merch-ed { grid-template-columns: 1fr 1fr; }
-    .nav-links { display: none; }
-  }
-
-  @media (max-width: 480px) {
-    .merch-ed { grid-template-columns: 1fr; }
-    .plugin-dl { flex-direction: column; }
-    .plugin-dl input { border-right: 1px solid var(--rule); border-bottom: none; }
-    .nl-row { flex-direction: column; }
-    .nl-row input { border-right: 1px solid var(--rule); border-bottom: none; }
-  }
+/* ─── RESPONSIVE ──────────────────────────────────── */
+@media (max-width:900px) {
+  .nav-links,.nav-status { display:none; }
+  .rel-grid { grid-template-columns:1fr; }
+  .svc-item { grid-template-columns:52px 1fr; }
+  .svc-price { display:none; }
+  .about-split { grid-template-columns:1fr; }
+  .about-photo img { min-height:280px; }
+  .exp-row { grid-template-columns:80px 1fr; }
+  .exp-link-col { display:none; }
+  .plugin-band { grid-template-columns:1fr; gap:2rem; }
+  .merch-strip { grid-template-columns:repeat(2,1fr); }
+  footer { flex-direction:column; align-items:flex-start; }
+}
+@media (max-width:480px) {
+  .merch-strip { grid-template-columns:1fr; }
+  .plugin-band .dl { flex-direction:column; }
+  .plugin-band .dl input { border-right:1px solid rgba(0,0,0,.2); border-bottom:none; }
+  .nl-form { flex-direction:column; }
+  .nl-form input { border-right:1px solid var(--rule); border-bottom:none; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation:none !important; transition:none !important; }
+}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Tyrelm<span>·</span>Nation</a>
+  <div style="display:flex;align-items:center;gap:.8rem">
+    <a href="#" class="nav-logo">Tyrelm<b>*</b>Nation</a>
+    <span class="nav-status">STUDIO ONLINE</span>
+  </div>
   <div class="nav-links">
     <a href="#releases">Releases</a>
     <a href="#services">Services</a>
@@ -453,275 +612,482 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home" style="border:none;padding:0;max-width:none">
-  <div class="hero-left">
-    <div class="hero-rotate" aria-hidden="true">Tyrelm</div>
-    <div class="hero-left-content">
-      <span class="hero-eyebrow">Nairobi, Kenya · Est. 2018</span>
-      <h1 class="hero-h1">
-        Sound<br>
-        by <em>Tyrelm</em>
-      </h1>
-      <p class="hero-desc">Recording, mixing, mastering and production. Based in Nairobi — working everywhere.</p>
+<section class="hero" id="home" style="border:none">
+  <div class="hero-bg"></div>
+  <div class="hero-scan"></div>
+  <div class="hero-stencil" aria-hidden="true">
+    <span class="hero-stencil-text">TYRELM</span>
+  </div>
+  <div class="hero-content">
+    <span class="hero-tag">Nairobi · Est. 2018</span>
+    <h1 class="hero-h1">
+      Rec.<br>
+      Mix.<br>
+      <span class="line-gold">Master.</span>
+    </h1>
+    <div class="hero-bottom">
+      <p>Recording, mixing, mastering and production. Nairobi-based — working everywhere.</p>
       <div class="hero-cta">
-        <a href="#releases" class="btn btn-fill">Listen Now</a>
-        <a href="#services" class="btn btn-ghost">Book Studio</a>
+        <a href="#releases" class="btn btn-gold">Listen</a>
+        <a href="#services" class="btn btn-line">Book Studio</a>
       </div>
     </div>
   </div>
-  <div class="hero-right">
-    <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/edwin%20matekwa.webp" alt="Edwin Matekwa">
-    <span class="hero-issue">Edwin Matekwa, Nairobi 2026</span>
-  </div>
 </section>
+
+<!-- WAVEFORM DIVIDER -->
+<div class="wf-divider" aria-hidden="true" id="wf-main"></div>
 
 <!-- RELEASES -->
-<section id="releases">
-  <div class="releases-header">
-    <span class="label">Music</span>
-    <h2>Latest <em>Releases</em></h2>
-  </div>
-  <div class="releases-row">
-    <a href="https://youtu.be/aAjFKC2pdzw" target="_blank" class="release-featured">
-      <img class="release-img" src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/Time-Cover-Art-Progress-Raw.webp" alt="Better Person">
-      <div class="release-caption">
-        <div class="release-meta-tag">Single · 2025</div>
-        <div class="release-title">Better Person</div>
+<div style="border-top:1px solid var(--rule)">
+<section class="s" id="releases">
+  <span class="s-eyebrow">Music</span>
+  <h2>Latest <span class="g">Drops</span></h2>
+  <p class="s-sub">Fresh out of the session.</p>
+  <div class="rel-grid">
+    <a href="https://youtu.be/aAjFKC2pdzw" target="_blank" class="rel-card hud">
+      <img src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/Time-Cover-Art-Progress-Raw.webp" alt="Better Person">
+      <div class="rel-overlay">
+        <div class="rel-label">Single · 2025</div>
+        <div class="rel-title">Better Person</div>
       </div>
-      <div class="release-play">▶</div>
+      <div class="rel-play">▶</div>
+      <span class="hc-bl"></span><span class="hc-br"></span>
     </a>
-    <div>
-      <a href="https://youtu.be/DX-zDYDqjMk" target="_blank" class="release-secondary">
-        <img class="release-img" src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/ARTWORK.webp" alt="Ghost">
-        <div class="release-caption">
-          <div class="release-meta-tag">Single · 2026</div>
-          <div class="release-title">Ghost</div>
-        </div>
-        <div class="release-play">▶</div>
-      </a>
-    </div>
+    <a href="https://youtu.be/DX-zDYDqjMk" target="_blank" class="rel-card hud">
+      <img src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/ARTWORK.webp" alt="Ghost">
+      <div class="rel-overlay">
+        <div class="rel-label">Single · 2026</div>
+        <div class="rel-title">Ghost</div>
+      </div>
+      <div class="rel-play">▶</div>
+      <span class="hc-bl"></span><span class="hc-br"></span>
+    </a>
   </div>
 </section>
+</div>
 
 <!-- SERVICES -->
-<section id="services">
-  <span class="label">Capabilities</span>
-  <h2>Studio <em>Services</em></h2>
-  <p class="sub">All sessions booked via WhatsApp. Response within 24hrs.</p>
-  <div class="services-list">
-    <div class="service-row">
-      <div class="service-col">
-        <span class="service-tag-sm">Production</span>
-        <div class="service-name">Music Production</div>
-        <p class="service-desc">Beat creation, full song production, arrangement, and creative direction from concept to master.</p>
-        <div class="service-price-big">From <em>KES 20,000</em></div>
-        <a href="https://wa.me/254706602914?text=Music%20Production%20booking" target="_blank" class="service-cta">Book via WhatsApp</a>
+<div style="border-top:1px solid var(--rule)">
+<section class="s" id="services">
+  <span class="s-eyebrow">Capabilities</span>
+  <h2>What <span class="g">We</span> Do</h2>
+  <p class="s-sub">Hit WhatsApp to book. Confirmed within 24 hrs.</p>
+  <div class="svc-list">
+
+    <!-- 01 -->
+    <div class="svc-item">
+      <div class="svc-num">01</div>
+      <div>
+        <div class="svc-name">Music Production</div>
+        <div class="svc-desc">Beat creation, full song production, arrangement, and creative direction.</div>
+        <div class="svc-rates">
+          <span class="svc-rate-item">Base: <b>KES 20,000</b> / project</span>
+          <span class="svc-rate-item">Collab: <b>50/50</b> split</span>
+          <span class="svc-rate-item">Performance track: <b>+KES 2,000</b></span>
+          <span class="svc-rate-item">Stripped version: <b>+KES 3,000</b></span>
+        </div>
+        <div class="svc-actions">
+          <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20book%20Music%20Production." target="_blank" class="svc-btn svc-btn-book">Book via WhatsApp →</a>
+          <button class="svc-btn svc-btn-terms" onclick="openTerms('production')">View Terms & Credits</button>
+        </div>
       </div>
-      <div class="service-col">
-        <span class="service-tag-sm">Post Production</span>
-        <div class="service-name">Mixing & Mastering</div>
-        <p class="service-desc">Stereo, album, and Dolby Atmos. 24-bit/48kHz WAV delivery. Up to 2 revisions included.</p>
-        <div class="service-price-big">From <em>KES 5,000</em></div>
-        <a href="https://wa.me/254706602914?text=Mixing%20Mastering%20booking" target="_blank" class="service-cta">Book via WhatsApp</a>
-      </div>
-    </div>
-    <div class="service-row">
-      <div class="service-col">
-        <span class="service-tag-sm">Tracking</span>
-        <div class="service-name">Recording</div>
-        <p class="service-desc">Vocals, acoustic instruments, and voice-over. Multiple studio tiers for every budget.</p>
-        <div class="service-price-big">From <em>KES 2,000 /hr</em></div>
-        <a href="https://wa.me/254706602914?text=Recording%20session%20booking" target="_blank" class="service-cta">Book via WhatsApp</a>
-      </div>
-      <div class="service-col">
-        <span class="service-tag-sm">Consult</span>
-        <div class="service-name">Audio Consultation</div>
-        <p class="service-desc">Mix feedback, arrangement review, and pre-production planning. Remote or in-person.</p>
-        <div class="service-price-big"><em>KES 2,500</em> per session</div>
-        <a href="https://wa.me/254706602914?text=Audio%20Consultation%20booking" target="_blank" class="service-cta">Book via WhatsApp</a>
+      <div class="svc-price">
+        <span class="svc-price-num">KES 20,000</span>
+        <span class="svc-price-unit">per project</span>
       </div>
     </div>
+
+    <!-- 02 -->
+    <div class="svc-item">
+      <div class="svc-num">02</div>
+      <div>
+        <div class="svc-name">Mixing & Mastering</div>
+        <div class="svc-desc">Stereo, album, and Dolby Atmos. 24-bit / 48kHz WAV. 2 revisions included.</div>
+        <div class="svc-rates">
+          <span class="svc-rate-item">Stereo Mix & Master: <b>KES 15,000</b> / track</span>
+          <span class="svc-rate-item">Album deal: <b>KES 12,000</b> / track</span>
+          <span class="svc-rate-item">Dolby Atmos: <b>KES 25,000</b> / track</span>
+          <span class="svc-rate-item">Mastering only: <b>KES 5,000</b> / track</span>
+        </div>
+        <div class="svc-actions">
+          <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20book%20Mixing%20%26%20Mastering." target="_blank" class="svc-btn svc-btn-book">Book via WhatsApp →</a>
+          <button class="svc-btn svc-btn-terms" onclick="openTerms('mixing')">View Terms & Credits</button>
+        </div>
+      </div>
+      <div class="svc-price">
+        <span class="svc-price-num">KES 5,000</span>
+        <span class="svc-price-unit">mastering only / track</span>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="svc-item">
+      <div class="svc-num">03</div>
+      <div>
+        <div class="svc-name">Recording</div>
+        <div class="svc-desc">Vocals, acoustic instruments, voice-over. Multiple studio tiers for every budget.</div>
+        <div class="svc-rates">
+          <span class="svc-rate-item">Engineering: <b>KES 2,000</b> / hr</span>
+          <span class="svc-rate-item">Studio space: <b>KES 1,000–5,000</b> / hr</span>
+        </div>
+        <div class="svc-actions">
+          <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20book%20a%20Recording%20session." target="_blank" class="svc-btn svc-btn-book">Book via WhatsApp →</a>
+          <button class="svc-btn svc-btn-terms" onclick="openTerms('tracking')">View Terms & Credits</button>
+        </div>
+      </div>
+      <div class="svc-price">
+        <span class="svc-price-num">KES 2,000</span>
+        <span class="svc-price-unit">engineering / hr</span>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="svc-item">
+      <div class="svc-num">04</div>
+      <div>
+        <div class="svc-name">Audio Consultation</div>
+        <div class="svc-desc">Mix feedback, arrangement review, pre-production planning. Remote or in-person.</div>
+        <div class="svc-rates">
+          <span class="svc-rate-item">Rate: <b>KES 2,500</b> / session</span>
+          <span class="svc-rate-item">Submit materials: <b>12 hrs before</b></span>
+          <span class="svc-rate-item">Remote or in-person</span>
+        </div>
+        <div class="svc-actions">
+          <a href="https://wa.me/254706602914?text=Hi%20Tyrelm%2C%20I%20want%20to%20book%20an%20Audio%20Consultation." target="_blank" class="svc-btn svc-btn-book">Book via WhatsApp →</a>
+          <button class="svc-btn svc-btn-terms" onclick="openTerms('consultation')">View Terms & Credits</button>
+        </div>
+      </div>
+      <div class="svc-price">
+        <span class="svc-price-num">KES 2,500</span>
+        <span class="svc-price-unit">per session</span>
+      </div>
+    </div>
+
   </div>
 </section>
+</div>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="about-wrap">
-    <div class="about-img">
+<div style="border-top:1px solid var(--rule)">
+<section class="s" id="about">
+  <span class="s-eyebrow">About</span>
+  <h2>Edwin <span class="g">Matekwa</span></h2>
+  <div class="about-split" style="margin-top:2.5rem">
+    <div class="about-photo">
       <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/edwin%20matekwa.webp" alt="Edwin Matekwa">
     </div>
-    <div class="about-body">
-      <span class="label">About</span>
-      <h2>Edwin <em>Matekwa</em></h2>
-      <p>Tyrelm Nation is a production company founded for talent discovery, blending art, music, and science. The work crosses genres and borders — from Nairobi to Chicago to AR games launched with WWF-Kenya.</p>
-      <p>The studio's approach is simple: get the sound right, and make sure the credit is right too.</p>
+    <div class="about-text-col">
+      <h3>Tyrelm<span> Nation</span></h3>
+      <p>A production company founded for talent discovery — blending art, music, and science. From Nairobi to Chicago, from AR games to radio-played records, the work crosses every border.</p>
     </div>
   </div>
 </section>
+</div>
 
 <!-- EXPERIENCE -->
-<section id="experience">
-  <span class="label">Experience</span>
-  <h2>Selected <em>Work</em></h2>
-  <div class="exp-grid">
-    <div class="exp-entry">
+<div style="border-top:1px solid var(--rule)">
+<section class="s" id="experience">
+  <span class="s-eyebrow">Experience</span>
+  <h2>Selected <span class="w">Work</span></h2>
+  <div class="exp-table">
+    <div class="exp-row">
       <div class="exp-yr">2026</div>
       <div>
-        <div class="exp-entry-title">Session Diaspor.a</div>
-        <div class="exp-entry-role">Live Recording, Mixing & Mastering in Post</div>
-        <p class="exp-entry-desc">Matt Ngesa · Clerk Keeng · Mordecai Dex</p>
+        <div class="exp-project">Session Diaspor.a</div>
+        <div class="exp-r">Live Recording, Mixing & Mastering in Post — Matt Ngesa · Clerk Keeng · Mordecai Dex</div>
       </div>
+      <div class="exp-link-col"></div>
     </div>
-    <div class="exp-entry">
+    <div class="exp-row">
       <div class="exp-yr">2024–26</div>
       <div>
-        <div class="exp-entry-title">Wyatt Boyer — Chicago, USA</div>
-        <div class="exp-entry-role">Mixing & Mastering Engineer</div>
-        <p class="exp-entry-desc">Paradise, Signs of the Times, Into Her Balands, Fast and Furious, United.</p>
+        <div class="exp-project">Wyatt Boyer — Chicago, USA</div>
+        <div class="exp-r">Mixing & Mastering Engineer — Paradise, Signs of the Times, Into Her Balands, and more</div>
       </div>
+      <div class="exp-link-col"><a href="https://youtu.be/9fddmNl1b5Q" target="_blank">Watch →</a></div>
     </div>
-    <div class="exp-entry">
+    <div class="exp-row">
       <div class="exp-yr">2025–26</div>
       <div>
-        <div class="exp-entry-title">ARGO — Africa's First Public AR Game</div>
-        <div class="exp-entry-role">Co-Producer, Original Soundtrack · Fallohide Africa</div>
-        <p class="exp-entry-desc">Launched with WWF-Kenya, Electric South, Ford Foundation.</p>
+        <div class="exp-project">ARGO — Africa's First Public AR Game</div>
+        <div class="exp-r">Co-Producer, Original Soundtrack · WWF-Kenya · Electric South · Ford Foundation</div>
       </div>
+      <div class="exp-link-col"><a href="https://play.google.com/store/apps/details?id=com.ARGO.ArGO" target="_blank">Play Store →</a></div>
     </div>
-    <div class="exp-entry">
+    <div class="exp-row">
       <div class="exp-yr">2025</div>
       <div>
-        <div class="exp-entry-title">Tyrelm — "Time and Space" / "Broken Diary"</div>
-        <div class="exp-entry-role">Producer, Mix & Mastering Engineer — 2 Albums, 15 tracks</div>
+        <div class="exp-project">Tyrelm — "Time and Space" / "Broken Diary"</div>
+        <div class="exp-r">Producer, Mix & Mastering Engineer — 2 Albums, 15 tracks</div>
       </div>
+      <div class="exp-link-col"><a href="https://tyrelmnation.github.io/gamechanger/" target="_blank">Listen →</a></div>
     </div>
-    <div class="exp-entry">
+    <div class="exp-row">
       <div class="exp-yr">2023</div>
       <div>
-        <div class="exp-entry-title">Dicemane — "Resilient" / "Rudia"</div>
-        <div class="exp-entry-role">Produced, Mixed & Mastered</div>
-        <p class="exp-entry-desc">Radio airplay · Shoke Shoke Fest nomination.</p>
+        <div class="exp-project">Dicemane — "Resilient" / "Rudia"</div>
+        <div class="exp-r">Produced, Mixed & Mastered — Radio airplay · Shoke Shoke Fest nomination</div>
       </div>
+      <div class="exp-link-col"><a href="https://youtu.be/kYM18jA1yPs" target="_blank">Watch →</a></div>
     </div>
   </div>
 </section>
+</div>
 
-<!-- PLUGIN -->
-<section id="plugin">
-  <div class="plugin-hero">
-    <div>
-      <span class="label">Free Plugin</span>
-      <h2 class="plugin-title">TY<em>ROOM</em></h2>
-      <p class="sub" style="margin-top:1.5rem">Algorithmic reverb — analog warmth, HISE-built. Also includes TYMLAPSE delay.</p>
+<!-- PLUGIN BAND -->
+<div class="plugin-band" id="plugin">
+  <div>
+    <span class="s-eyebrow" style="color:var(--black);opacity:.45">Free Plugin</span>
+    <h2>TY<span class="stroke">ROOM</span><br>+ TY<span class="stroke">MLAPSE</span></h2>
+  </div>
+  <div>
+    <p>Plate-style algorithmic reverb with Room→Hall switching, 3-band EQ, and an analog preamp. Plus TYMLAPSE delay. HISE-built. Sheng/Swahili interface. Free.</p>
+    <div class="feats">
+      <div class="feat"><strong>Room→Hall</strong><span>Algorithm switch</span></div>
+      <div class="feat"><strong>Decay + Pre-delay</strong><span>Tail & onset</span></div>
+      <div class="feat"><strong>3-band EQ</strong><span>Cut mud, shape tone</span></div>
+      <div class="feat"><strong>Analog Preamp</strong><span>Warmth & saturation</span></div>
+      <div class="feat"><strong>Animated UI</strong><span>Smooth transitions</span></div>
+      <div class="feat"><strong>Sheng / Swahili</strong><span>Localized interface</span></div>
     </div>
-    <div class="plugin-right">
-      <p>Plate-style reverb with Room→Hall switching, 3-band EQ, analog preamp saturation, and a Sheng/Swahili interface. Built to compete with premium plates at zero cost.</p>
-      <div class="plugin-feats">
-        <div class="pf"><strong>Room→Hall</strong><span>Algorithm switch</span></div>
-        <div class="pf"><strong>Decay + Pre-delay</strong><span>Tail time & onset gap</span></div>
-        <div class="pf"><strong>3-band EQ</strong><span>Cut mud & shape tone</span></div>
-        <div class="pf"><strong>Analog Preamp</strong><span>Warmth & saturation</span></div>
-        <div class="pf"><strong>Animated UI</strong><span>Smooth transitions</span></div>
-        <div class="pf"><strong>Sheng / Swahili</strong><span>Localized interface</span></div>
-      </div>
-      <div class="plugin-badges">
-        <span class="pbadge">HISE</span>
-        <span class="pbadge">VST3</span>
-        <span class="pbadge">AU</span>
-        <span class="pbadge">AAX</span>
-      </div>
-      <div class="plugin-dl">
-        <input type="email" placeholder="Enter your email">
-        <button>Download Free</button>
-      </div>
+    <div class="badges">
+      <span class="badge">HISE</span>
+      <span class="badge">VST3</span>
+      <span class="badge">AU</span>
+      <span class="badge">AAX</span>
+    </div>
+    <div class="dl">
+      <input type="email" placeholder="Enter your email">
+      <button>Download Free</button>
     </div>
   </div>
-</section>
+</div>
 
 <!-- MERCH -->
-<section id="merch">
-  <span class="label">Store</span>
+<div style="border-top:1px solid var(--rule)">
+<section class="s" id="merch">
+  <span class="s-eyebrow">Store</span>
   <h2>Merch</h2>
-  <p class="sub">Curated looks. Contrast your style.</p>
-  <div class="merch-ed">
-    <div class="merch-item">
-      <div class="merch-item-img">
-        <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/white-hoodie.webp" alt="White Hoodie">
-      </div>
-      <div class="merch-item-info">
-        <div class="merch-item-name">White Hoodie Set</div>
-        <div class="merch-item-price">KSh 2,500 · $19</div>
-        <a href="https://wa.me/254706602914?text=White%20Set%20order" class="merch-item-btn" target="_blank">Order</a>
+  <p class="s-sub">Curated looks. Contrast your style.</p>
+  <div class="merch-strip">
+    <div class="mc">
+      <div class="mc-img"><img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/white-hoodie.webp" alt="White Hoodie"></div>
+      <div class="mc-info">
+        <div class="mc-name">White Hoodie Set</div>
+        <div class="mc-price">KSh 2,500 · $19</div>
+        <a href="https://wa.me/254706602914?text=White%20Set" class="mc-btn" target="_blank">Order</a>
       </div>
     </div>
-    <div class="merch-item">
-      <div class="merch-item-img">
-        <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/black-hoodie.webp" alt="Black Hoodie">
-      </div>
-      <div class="merch-item-info">
-        <div class="merch-item-name">Black Hoodie Set</div>
-        <div class="merch-item-price">KSh 2,500 · $19</div>
-        <a href="https://wa.me/254706602914?text=Black%20Set%20order" class="merch-item-btn" target="_blank">Order</a>
+    <div class="mc">
+      <div class="mc-img"><img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/black-hoodie.webp" alt="Black Hoodie"></div>
+      <div class="mc-info">
+        <div class="mc-name">Black Hoodie Set</div>
+        <div class="mc-price">KSh 2,500 · $19</div>
+        <a href="https://wa.me/254706602914?text=Black%20Set" class="mc-btn" target="_blank">Order</a>
       </div>
     </div>
-    <div class="merch-item">
-      <div class="merch-item-img">
-        <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/white-tee-front.webp" alt="White Tee">
-      </div>
-      <div class="merch-item-info">
-        <div class="merch-item-name">White Tee + Black Cargo</div>
-        <div class="merch-item-price">KSh 2,100 · $16</div>
-        <a href="https://wa.me/254706602914?text=White%20Tee%20order" class="merch-item-btn" target="_blank">Order</a>
+    <div class="mc">
+      <div class="mc-img"><img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/white-tee-front.webp" alt="White Tee"></div>
+      <div class="mc-info">
+        <div class="mc-name">White Tee + Black Cargo</div>
+        <div class="mc-price">KSh 2,100 · $16</div>
+        <a href="https://wa.me/254706602914?text=White%20Tee%20order" class="mc-btn" target="_blank">Order</a>
       </div>
     </div>
-    <div class="merch-item">
-      <div class="merch-item-img" style="position:relative">
-        <img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/black-tee-front.webp" alt="Black Tee">
-        <span style="position:absolute;top:0.8rem;left:0.8rem;background:var(--gold);color:var(--black);font-family:var(--ff-san);font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.2rem 0.5rem;font-weight:600">Limited</span>
+    <div class="mc">
+      <div class="mc-img"><img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/black-tee-front.webp" alt="Black Tee"></div>
+      <div class="mc-info">
+        <div class="mc-name">Black Tee + White Cargo</div>
+        <div class="mc-price">KSh 2,100 · $16</div>
+        <a href="https://wa.me/254706602914?text=Black%20Tee%20order" class="mc-btn" target="_blank">Order</a>
       </div>
-      <div class="merch-item-info">
-        <div class="merch-item-name">Black Tee + White Cargo</div>
-        <div class="merch-item-price">KSh 2,100 · $16</div>
-        <a href="https://wa.me/254706602914?text=Black%20Tee%20order" class="merch-item-btn" target="_blank">Order</a>
+    </div>
+    <div class="mc" style="position:relative">
+      <span class="mc-limited">Limited</span>
+      <div class="mc-img"><img src="https://tyrelmnation.github.io/TYRELMNATION/PICS/white-hoodie.webp" alt="Limited Edition"></div>
+      <div class="mc-info">
+        <div class="mc-name">Limited Edition Set</div>
+        <div class="mc-price">KSh 4,000 · $31</div>
+        <a href="https://wa.me/254706602914?text=Limited%20Edition%20order" class="mc-btn" target="_blank">Order</a>
       </div>
     </div>
   </div>
 </section>
+</div>
 
 <!-- NEWSLETTER -->
-<section id="newsletter" class="nl-section">
-  <div class="nl-box">
-    <span class="label">Stay Connected</span>
-    <h2>Join the <em>List</em></h2>
-    <p>New releases, Sane Sessions, merch drops, and studio news.</p>
-    <div class="nl-row">
-      <input type="email" placeholder="Your email">
-      <button>Subscribe</button>
-    </div>
+<div class="nl-band" id="newsletter">
+  <span class="s-eyebrow">Stay Connected</span>
+  <h2>Join the <span class="g">List</span></h2>
+  <p>New releases, Sane Sessions, merch drops, studio news.</p>
+  <div class="nl-form">
+    <input type="email" placeholder="your.email@domain.com">
+    <button>Subscribe</button>
   </div>
-</section>
+</div>
 
 <!-- BOOK -->
-<div class="book-section" id="book">
-  <span class="label">Book</span>
-  <h2>Book a <em>Session</em></h2>
-  <div class="book-actions">
-    <a href="https://wa.me/254706602914" class="btn btn-fill" target="_blank">WhatsApp Studio</a>
-    <a href="mailto:tyrellmatekwa@gmail.com" class="btn btn-ghost">Email Tyrelm</a>
+<div class="book-band" id="book">
+  <span class="s-eyebrow">Book</span>
+  <h2>Book a <span class="g">Session</span></h2>
+  <div class="btns">
+    <a href="https://wa.me/254706602914" class="btn btn-gold" target="_blank">WhatsApp Studio</a>
+    <a href="mailto:tyrellmatekwa@gmail.com" class="btn btn-line">Email Tyrelm</a>
   </div>
-  <p class="book-contact">tyrellmatekwa@gmail.com · <a href="tel:+254706602914">+254 706 602 914</a></p>
+  <p class="contact">tyrellmatekwa@gmail.com · <a href="tel:+254706602914">+254 706 602 914</a></p>
 </div>
 
 <footer>
-  <span class="footer-name">Tyrelm Nation</span>
+  <span class="footer-brand">Tyrelm<b>*</b>Nation</span>
   <div class="footer-links">
     <a href="https://www.instagram.com/ty_relm" target="_blank">@ty_relm</a>
     <a href="https://www.instagram.com/tyrelm_nation" target="_blank">@tyrelm_nation</a>
     <a href="mailto:tyrellmatekwa@gmail.com">Email</a>
     <a href="https://wa.me/254706602914" target="_blank">WhatsApp</a>
   </div>
-  <span class="footer-copy">© 2026 Tyrelm</span>
+  <span class="footer-copy">© 2026 Tyrelm Nation · Nairobi</span>
 </footer>
+
+<!-- TERMS MODAL -->
+<div class="modal-overlay" id="termsModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">Terms &amp; <span class="g">Credits</span></div>
+      <button class="modal-close" onclick="closeTerms()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <a href="https://wa.me/254706602914" target="_blank" class="svc-btn svc-btn-book">Book via WhatsApp →</a>
+      <button class="svc-btn svc-btn-terms" onclick="closeTerms()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── Waveform bars ── */
+(function() {
+  const hs = [4,8,16,24,20,12,6,18,28,22,10,14,24,30,18,8,4,12,22,26,20,14,8,16,24,18,10,6,20,28,22,12,8,18,24,16,10,4,8,14,20,16,10,6,14,22,18,12];
+  const c = document.getElementById('wf-main');
+  if (!c) return;
+  hs.forEach((h,i) => {
+    const b = document.createElement('span');
+    b.className = 'wf-b';
+    b.style.cssText = `height:${h}px;animation-delay:${(i*.038).toFixed(3)}s;animation-duration:${(1.1+(i%6)*.14).toFixed(2)}s`;
+    c.appendChild(b);
+  });
+})();
+
+/* ── Terms data ── */
+const T = {
+  production: {
+    title: 'Music Production',
+    body: `
+      <h4>Rates</h4>
+      <ul>
+        <li>Base rate: <b>KES 20,000</b> per project</li>
+        <li>Collab deal: <b>50/50</b> on composition & streaming royalties</li>
+        <li>Performance track add-on: <b>+KES 2,000</b></li>
+        <li>Stripped version add-on: <b>+KES 3,000</b></li>
+      </ul>
+      <h4>What's Included</h4>
+      <ul>
+        <li>Custom exclusive instrumental</li>
+        <li>Vocal arrangement & creative guidance</li>
+        <li>Full commercial song structuring</li>
+        <li>Delivered as <b>24-bit / 48kHz WAV</b> stems + mixed reference</li>
+        <li>Up to <b>2 revision passes</b> included</li>
+      </ul>
+      <h4>Credits</h4>
+      <p>All commercial releases must include: <b>Produced by Tyrelm Nation / Edwin Matekwa</b></p>
+      <h4>Additional Revisions</h4>
+      <p>Beyond the 2 included passes, additional revisions are billed at <b>KES 1,500</b> per pass.</p>
+    `
+  },
+  mixing: {
+    title: 'Mixing & Mastering',
+    body: `
+      <h4>Rates</h4>
+      <ul>
+        <li>Stereo Mix & Master: <b>KES 15,000</b> per track</li>
+        <li>Album deal (5+ tracks): <b>KES 12,000</b> per track</li>
+        <li>Dolby Atmos / Ambisonic mix: <b>KES 25,000</b> per track</li>
+        <li>Mastering only: <b>KES 5,000</b> per track</li>
+      </ul>
+      <h4>Delivery</h4>
+      <ul>
+        <li>Mastered at <b>24-bit / 48kHz WAV</b></li>
+        <li>Streaming-ready and broadcast-ready versions provided</li>
+        <li>Up to <b>2 revision passes</b> included</li>
+      </ul>
+      <h4>Stem Requirements</h4>
+      <ul>
+        <li>Send stems at <b>24-bit / 44–48kHz WAV</b></li>
+        <li>Label all tracks clearly (e.g. "Lead Vox", "Kick", "Bass")</li>
+        <li>Export from session start — no offline/missing clips</li>
+      </ul>
+      <h4>Credits</h4>
+      <p>Must credit: <b>Mixed & Mastered by Edwin Matekwa / Tyrelm Nation</b></p>
+    `
+  },
+  tracking: {
+    title: 'Recording / Tracking',
+    body: `
+      <h4>Rates</h4>
+      <ul>
+        <li>Engineering fee: <b>KES 2,000</b> per hour</li>
+        <li>Studio — Budget tier: <b>KES 1,000</b> / hr</li>
+        <li>Studio — Mid tier: <b>KES 2,500</b> / hr</li>
+        <li>Studio — Premium tier: <b>KES 5,000</b> / hr</li>
+      </ul>
+      <h4>What's Included</h4>
+      <ul>
+        <li>Vocals, acoustic instruments, voice-over</li>
+        <li>Full session comping & file delivery</li>
+        <li>Stems delivered as <b>24-bit WAV</b></li>
+      </ul>
+      <h4>Pre-Session</h4>
+      <p>Send reference tracks and session notes via WhatsApp or email at least <b>24 hours before</b> your session.</p>
+      <h4>Cancellation Policy</h4>
+      <p>Cancellations within <b>12 hours</b> of session time are billed at 50% of the booked duration.</p>
+    `
+  },
+  consultation: {
+    title: 'Audio Consultation',
+    body: `
+      <h4>Rate</h4>
+      <ul>
+        <li><b>KES 2,500</b> per 60-minute session</li>
+      </ul>
+      <h4>What's Covered</h4>
+      <ul>
+        <li>Critical listening & mix feedback</li>
+        <li>Arrangement & song structure review</li>
+        <li>Pre-production planning & direction</li>
+        <li>Available remotely (Zoom / WhatsApp) or in-person</li>
+      </ul>
+      <h4>Submission Requirements</h4>
+      <p>All materials — tracks, reference links, arrangement notes — must be sent at least <b>12 hours before</b> the session. Accepted formats: WAV, MP3, PDF, YouTube/SoundCloud links.</p>
+      <h4>Follow-Up</h4>
+      <p>Written session notes delivered within <b>24 hours</b> of completion.</p>
+    `
+  }
+};
+
+function openTerms(type) {
+  const d = T[type]; if (!d) return;
+  document.getElementById('modalTitle').innerHTML = d.title + ' — <span class="g">Terms & Credits</span>';
+  document.getElementById('modalBody').innerHTML = d.body;
+  document.getElementById('termsModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeTerms() {
+  document.getElementById('termsModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('termsModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeTerms(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTerms(); });
+</script>
 
 </body>
 </html>
