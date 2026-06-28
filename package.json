@@ -1,0 +1,73 @@
+{
+  "name": "tyrelm-nation",
+  "version": "1.0.0",
+  "description": "Tyrelm Nation — Futuristic Studio with Impeccable Design Standards",
+  "main": "index.html",
+  "scripts": {
+    "design:audit": "npx pbakaus/impeccable audit --report design-audit.json",
+    "design:check": "npx pbakaus/impeccable check --strict",
+    "design:validate": "npx pbakaus/impeccable validate:tokens --enforce",
+    "design:affordance": "npx pbakaus/impeccable check:affordance --strict",
+    "design:accessibility": "npx pbakaus/impeccable audit:accessibility --report a11y-report.json",
+    "design:performance": "npx pbakaus/impeccable audit:animations --performance",
+    "design:responsive": "npx pbakaus/impeccable check:responsive --breakpoints 480,900,1280",
+    "design:full": "npm run design:audit && npm run design:affordance && npm run design:accessibility && npm run design:performance",
+    "design:watch": "npx pbakaus/impeccable watch --fix-auto",
+    "build": "npm run design:check && echo 'Design validation passed ✓'"
+  },
+  "keywords": [
+    "design",
+    "music-production",
+    "studio",
+    "kinetic",
+    "impeccable",
+    "cyan-neon",
+    "futuristic"
+  ],
+  "author": "Edwin Matekwa / Tyrelm Nation",
+  "license": "MIT",
+  "devDependencies": {
+    "pbakaus/impeccable": "latest"
+  },
+  "impeccable": {
+    "tokens": {
+      "colors": {
+        "--black": "#050505",
+        "--gold": "#C9A84C",
+        "--gold-hover": "#D4B964",
+        "--gold-muted": "#7A6430",
+        "--cyan": "#00E5FF",
+        "--pink": "#FF006E",
+        "--purple": "#B537F2",
+        "--white": "#EFEFEF",
+        "--muted": "#777"
+      },
+      "typography": {
+        "--ff-cnd": "'Barlow Condensed', sans-serif",
+        "--ff-bdy": "'Inter', sans-serif",
+        "--ff-mono": "'Space Mono', monospace"
+      }
+    },
+    "rules": {
+      "affordance": {
+        "interactive-elements": "Must have clear hover states",
+        "buttons": "Minimum 44px touch target",
+        "links": "Must have underline or color change on hover"
+      },
+      "accessibility": {
+        "contrast": "WCAG AA minimum 4.5:1",
+        "focus-states": "All interactive elements must be keyboard accessible",
+        "motion": "Respect prefers-reduced-motion"
+      },
+      "performance": {
+        "animations": "Max 2 simultaneous animations",
+        "transitions": "Use .2s-.3s for responsiveness",
+        "will-change": "Apply strategically to high-frequency animations"
+      },
+      "responsive": {
+        "breakpoints": [480, 900, 1280],
+        "mobile-first": true
+      }
+    }
+  }
+}
