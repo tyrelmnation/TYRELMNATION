@@ -600,6 +600,30 @@ footer {
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { animation:none !important; transition:none !important; }
 }
+/* ─── LATEST DROPS FOLDER ──────────────────────────── */
+.rel-folder { cursor:pointer; user-select:none; display:inline-flex; align-items:center; gap:.8rem; }
+.rel-folder:hover { opacity:.75; }
+.rel-folder-icon { font-size:1.1rem; opacity:.6; transition:transform .25s; display:inline-block; }
+.rel-folder:hover .rel-folder-icon { opacity:.9; }
+.rel-panel {
+  display:none; position:fixed; inset:0; z-index:999;
+  background:rgba(5,5,5,.92); backdrop-filter:blur(12px);
+  align-items:center; justify-content:center; padding:2rem;
+}
+.rel-panel.active { display:flex; }
+.rel-panel-inner {
+  width:100%; max-width:720px; max-height:85vh; overflow-y:auto;
+  position:relative;
+}
+.rel-panel .rel-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; }
+.rel-panel .rel-card { aspect-ratio:4/3; }
+.rel-panel-close {
+  position:absolute; top:-2.5rem; right:0;
+  background:none; border:none; color:var(--gold-muted);
+  font-family:var(--ff-mono); font-size:.7rem; cursor:pointer;
+  text-transform:uppercase; letter-spacing:.1em; padding:.4rem .6rem;
+}
+.rel-panel-close:hover { color:var(--gold); }
 </style>
 </head>
 <body>
@@ -651,38 +675,45 @@ footer {
 <div style="border-top:1px solid var(--rule)">
 <section class="s" id="releases">
   <span class="s-eyebrow">Music</span>
-  <h2>Latest <span class="g">Drops</span></h2>
+  <h2 class="rel-folder" onclick="toggleRelPanel()">Latest <span class="g">Drops</span> <span class="rel-folder-icon">&#128193;</span></h2>
   <p class="s-sub">Fresh out of the session.</p>
-  <div class="rel-grid">
-    <a href="https://open.spotify.com/track/1sSO9CMsFzN5wvNeP1i3Ea?si=c089a99c1ec54969" target="_blank" class="rel-card hud">
-      <img src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/DOBA%20NOMA.webp" alt="Doba Noma">
-      <div class="rel-overlay">
-        <div class="rel-label">Single · 2026</div>
-        <div class="rel-title">Doba Noma</div>
-      </div>
-      <div class="rel-play">▶</div>
-      <span class="hc-bl"></span><span class="hc-br"></span>
-    </a>
-    <a href="https://youtu.be/DX-zDYDqjMk" target="_blank" class="rel-card hud">
-      <img src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/ARTWORK.webp" alt="Ghost">
-      <div class="rel-overlay">
-        <div class="rel-label">Single · 2026</div>
-        <div class="rel-title">Ghost</div>
-      </div>
-      <div class="rel-play">▶</div>
-      <span class="hc-bl"></span><span class="hc-br"></span>
-    </a>
-    <a href="https://youtu.be/aAjFKC2pdzw" target="_blank" class="rel-card hud">
-      <img src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/Time-Cover-Art-Progress-Raw.webp" alt="Better Person">
-      <div class="rel-overlay">
-        <div class="rel-label">Single · 2025</div>
-        <div class="rel-title">Better Person</div>
-      </div>
-      <div class="rel-play">▶</div>
-      <span class="hc-bl"></span><span class="hc-br"></span>
-    </a>
-  </div>
 </section>
+
+<!-- releases popup panel -->
+<div class="rel-panel" id="relPanel" onclick="if(event.target===this) toggleRelPanel()">
+  <div class="rel-panel-inner">
+    <button class="rel-panel-close" onclick="toggleRelPanel()">Close &#10005;</button>
+    <div class="rel-grid">
+      <a href="https://open.spotify.com/track/1sSO9CMsFzN5wvNeP1i3Ea?si=c089a99c1ec54969" target="_blank" class="rel-card hud">
+        <img src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/DOBA%20NOMA.webp" alt="Doba Noma">
+        <div class="rel-overlay">
+          <div class="rel-label">Single · 2026</div>
+          <div class="rel-title">Doba Noma</div>
+        </div>
+        <div class="rel-play">&#9654;</div>
+        <span class="hc-bl"></span><span class="hc-br"></span>
+      </a>
+      <a href="https://youtu.be/DX-zDYDqjMk" target="_blank" class="rel-card hud">
+        <img src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/ARTWORK.webp" alt="Ghost">
+        <div class="rel-overlay">
+          <div class="rel-label">Single · 2026</div>
+          <div class="rel-title">Ghost</div>
+        </div>
+        <div class="rel-play">&#9654;</div>
+        <span class="hc-bl"></span><span class="hc-br"></span>
+      </a>
+      <a href="https://youtu.be/aAjFKC2pdzw" target="_blank" class="rel-card hud">
+        <img src="https://tyrelmnation.github.io/TYRELMNATION/ALBUM%20ARTS/Time-Cover-Art-Progress-Raw.webp" alt="Better Person">
+        <div class="rel-overlay">
+          <div class="rel-label">Single · 2025</div>
+          <div class="rel-title">Better Person</div>
+        </div>
+        <div class="rel-play">&#9654;</div>
+        <span class="hc-bl"></span><span class="hc-br"></span>
+      </a>
+    </div>
+  </div>
+</div>
 </div>
 
 <!-- SERVICES -->
@@ -1122,6 +1153,11 @@ function closeTerms() {
 }
 document.getElementById('termsModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeTerms(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTerms(); });
+/* ─── RELEASES POPUP PANEL ──────────────────────────── */
+function toggleRelPanel() {
+  document.getElementById('relPanel').classList.toggle('active');
+  document.body.style.overflow = document.getElementById('relPanel').classList.contains('active') ? 'hidden' : '';
+}
 </script>
 
 </body>
